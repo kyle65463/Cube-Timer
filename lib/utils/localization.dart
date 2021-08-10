@@ -10,10 +10,16 @@ class Localization extends Translations {
   @override
   Map<String, Map<String, String>> get keys => {
         'en_US': {
-          'hello': 'Hello World',
+          'timer': 'Timer',
+          'statistics': 'Statistics',
+          'records': 'Records',
+          'settings': 'Settings',
         },
-        'zh': {
-          'hello': '嗨',
+        'zh_TW': {
+          'timer': '計時器',
+          'statistics': '統計',
+          'records': '紀錄',
+          'settings': '設定',
         }
       };
 }

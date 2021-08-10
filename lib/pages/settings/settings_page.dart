@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class StatisticsPage extends StatelessWidget {
+class SettingsPage extends StatelessWidget {
   // Constructor
-  const StatisticsPage({
+  const SettingsPage({
     Key? key,
   }) : super(key: key);
 
@@ -15,7 +15,7 @@ class StatisticsPage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Center(
-            child: Text('statistics'.tr),
+            child: Text('records'.tr),
           ),
         ],
       ),

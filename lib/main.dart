@@ -1,4 +1,4 @@
-import 'package:cubetimer/pages/timer/timer_page.dart';
+import 'package:cubetimer/pages/main_menu/main_menu_page.dart';
 import 'package:cubetimer/utils/localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
       translations: Localization(),
       locale: Get.deviceLocale,
       fallbackLocale: const Locale('en', 'US'),
-      home: const TimerPage(), 
+      home: MainMenuPage(), 
     );
   }
 }

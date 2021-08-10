@@ -1,6 +1,4 @@
-import 'package:cubetimer/pages/statistics/statistics_page.dart';
 import 'package:flutter/material.dart';
-import 'package:get/instance_manager.dart';
 import 'package:get/get.dart';
 
 class TimerPage extends StatelessWidget {
@@ -15,15 +13,9 @@ class TimerPage extends StatelessWidget {
       appBar: AppBar(),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          const Center(
-            child: Text('Timer'),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              Get.offAll(const StatisticsPage());
-            },
-            child: const Text('to statistics'),
+        children:  [
+          Center(
+            child: Text('timer'.tr),
           ),
         ],
       ),
