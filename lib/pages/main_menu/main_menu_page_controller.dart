@@ -6,10 +6,10 @@ import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 
 class MainMenuPageController extends GetxController {
-  Widget page = const TimerPage();
+  Widget page = TimerPage();
   int index = 0;
   List<Widget> pages = [
-    const TimerPage(),
+    TimerPage(),
     const RecordsPage(),
     const StatisticsPage(),
   ];
