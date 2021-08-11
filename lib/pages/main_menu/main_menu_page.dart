@@ -17,28 +17,41 @@ class MainMenuPage extends StatelessWidget {
     return GetBuilder<MainMenuPageController>(
       builder: (controller) => Scaffold(
         body: controller.page,
-        bottomNavigationBar: BottomNavigationBar(
-          items: [
-            BottomNavigationBarItem(
-              icon: const FaIcon(FontAwesomeIcons.stopwatch),
-              label: 'timer'.tr,
-            ),
-            BottomNavigationBarItem(
-              icon: const FaIcon(FontAwesomeIcons.history),
-              label: 'records'.tr,
-            ),
-            BottomNavigationBarItem(
-              icon: const FaIcon(FontAwesomeIcons.chartBar),
-              label: 'statistics'.tr,
-            ),
-          ],
-          selectedItemColor: Colors.grey[800],
-          unselectedItemColor: Colors.grey[500],
-          backgroundColor: Colors.brown[100],
-          selectedFontSize: 0,
-          unselectedFontSize: 0,
-          currentIndex: controller.index,
-          onTap: controller.changePage,
+        floatingActionButton: FloatingActionButton(
+          onPressed: controller.toggleBottomNavBar,
+        ),
+        bottomNavigationBar: AnimatedBuilder(
+          animation: controller,
+          builder: (BuildContext context, Widget? child) {
+            return AnimatedContainer(
+              duration: const Duration(milliseconds: 100),
+              height: controller.showNavBar ? 100 : 0,
+              child: child,
+            );
+          },
+          child: BottomNavigationBar(
+            items: [
+              BottomNavigationBarItem(
+                icon: const FaIcon(FontAwesomeIcons.stopwatch),
+                label: 'timer'.tr,
+              ),
+              BottomNavigationBarItem(
+                icon: const FaIcon(FontAwesomeIcons.history),
+                label: 'records'.tr,
+              ),
+              BottomNavigationBarItem(
+                icon: const FaIcon(FontAwesomeIcons.chartBar),
+                label: 'statistics'.tr,
+              ),
+            ],
+            selectedItemColor: Colors.grey[800],
+            unselectedItemColor: Colors.grey[500],
+            backgroundColor: Colors.brown[100],
+            selectedFontSize: 0,
+            unselectedFontSize: 0,
+            currentIndex: controller.index,
+            onTap: controller.changePage,
+          ),
         ),
       ),
     );

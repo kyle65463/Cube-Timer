@@ -31,7 +31,7 @@ class TimerPage extends StatelessWidget {
                       displayTime,
                       style: TextStyle(
                         fontSize: 70,
-                        color: Colors.grey[900],
+                        color: Colors.black.withOpacity(0.8),
                       ),
                     ),
                   ),

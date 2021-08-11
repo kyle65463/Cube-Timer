@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: 'Cube Timer',
       theme: ThemeData(
-        scaffoldBackgroundColor: Colors.brown[200],
+        scaffoldBackgroundColor: Colors.brown[300],
         textTheme: GoogleFonts.gentiumBookBasicTextTheme(
           Theme.of(context).textTheme,
         ),

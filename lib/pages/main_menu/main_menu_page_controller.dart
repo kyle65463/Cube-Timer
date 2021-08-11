@@ -13,6 +13,12 @@ class MainMenuPageController extends GetxController {
     const RecordsPage(),
     const StatisticsPage(),
   ];
+  bool showNavBar = true;
+
+  void toggleBottomNavBar() {
+    showNavBar = !showNavBar;
+    update();
+  }
 
   void changePage(int index) {
     this.index = index;

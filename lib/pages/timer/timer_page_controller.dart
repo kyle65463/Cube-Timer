@@ -1,3 +1,5 @@
+import 'package:cubetimer/pages/main_menu/main_menu_page_controller.dart';
+import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:stop_watch_timer/stop_watch_timer.dart';
 
@@ -17,6 +19,7 @@ class TimerPageController extends GetxController {
   }
 
   void onTimerTriggered() {
+    Get.find<MainMenuPageController>().toggleBottomNavBar();
     if (isRunning) {
       _stopTimer();
     } else {
