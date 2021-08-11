@@ -1,4 +1,5 @@
 import 'package:cubetimer/pages/records/records_page.dart';
+import 'package:cubetimer/pages/settings/view/settings_page.dart';
 import 'package:cubetimer/pages/statistics/statistics_page.dart';
 import 'package:cubetimer/pages/timer/timer_page.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +13,7 @@ class MainMenuPageController extends GetxController {
     TimerPage(),
     const RecordsPage(),
     const StatisticsPage(),
+    SettingsPage(),
   ];
   bool showNavBar = true;
   bool showTimeCounter = true;

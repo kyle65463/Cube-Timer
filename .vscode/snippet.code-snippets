@@ -1,0 +1,13 @@
+{
+	"singleton": {
+		"prefix": "singleton",
+		"body": [
+			"// Singleton",
+			"factory $1() => _singleton;",
+			"static final $1 _singleton = $1._internal();",
+			"$1._internal();",
+			""
+		],
+		"description": "Make a singleton"
+	}
+}

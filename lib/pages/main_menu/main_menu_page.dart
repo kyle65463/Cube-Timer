@@ -47,6 +47,10 @@ class MainMenuPage extends StatelessWidget {
                           icon: const FaIcon(FontAwesomeIcons.chartBar),
                           label: 'statistics'.tr,
                         ),
+                        BottomNavigationBarItem(
+                          icon: const FaIcon(FontAwesomeIcons.bars),
+                          label: 'more'.tr,
+                        ),
                       ],
                       selectedItemColor: Colors.grey[800],
                       unselectedItemColor: Colors.grey[500],

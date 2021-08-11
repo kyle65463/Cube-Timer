@@ -1,10 +1,15 @@
 import 'package:cubetimer/pages/main_menu/main_menu_page.dart';
+import 'package:cubetimer/repositories/database/database.dart';
+import 'package:cubetimer/repositories/database/hive_database.dart';
+import 'package:cubetimer/repositories/settings_repository.dart';
 import 'package:cubetimer/utils/localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-void main() {
+Future<void> main() async {
+  await Get.put<Database>(HiveDatabase()).init();
+  Get.lazyPut<SettingsRepository>(() => SettingsRepository());
   runApp(MyApp());
 }
 
@@ -14,7 +19,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: 'Cube Timer',
       theme: ThemeData(
-        scaffoldBackgroundColor: Colors.brown[300],
+        scaffoldBackgroundColor: Colors.brown[200],
         textTheme: GoogleFonts.gentiumBookBasicTextTheme(
           Theme.of(context).textTheme,
         ),
