@@ -1,14 +1,17 @@
 import 'package:cubetimer/models/settings/settings_key.dart';
 import 'package:cubetimer/models/settings/settings_value.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 
 part 'theme.g.dart';
 
 // Settings key
 class SettingsKeyTheme extends SettingsSelectionKey {
-  SettingsKeyTheme()
+  // Singleton
+  factory SettingsKeyTheme() => _singleton;
+  static final SettingsKeyTheme _singleton = SettingsKeyTheme._internal();
+  
+  // Constructor
+  SettingsKeyTheme._internal()
       : super(
           name: 'theme',
           defaultValue: BrownTheme(),

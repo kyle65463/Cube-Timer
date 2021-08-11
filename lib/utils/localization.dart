@@ -17,7 +17,12 @@ class Localization extends Translations {
           'more': 'More',
           'language': 'Language',
           'theme': 'Theme',
+          'rate us': 'Rate Us',
+          'feedback': 'Feedback',
           'about': 'About',
+          'timer settings': 'Timer Settings',
+          'confirm': 'Confirm',
+          'cancel': 'Cancel',
 
           // Languages
           'language en-us': 'English',
@@ -31,8 +36,16 @@ class Localization extends Translations {
           'timer': '計時器',
           'statistics': '統計',
           'records': '紀錄',
-          'settings': '設定',
           'more': '更多',
+
+          // Settings
+          'settings': '設定',
+          'timer settings': '計時器設定',
+          'language': '語言',
+          'theme': '主題',
+          'rate us': '評分',
+          'feedback': '意見與回饋',
+          'about': '關於',
 
           // Languages
           'language en-us': '英文',
@@ -41,6 +54,9 @@ class Localization extends Translations {
           // Themes
           'theme brown': '棕色',
           'theme white': '白色',
+
+          'confirm': '確認',
+          'cancel': '取消',
         }
       };
 }

@@ -1,6 +1,7 @@
 import 'package:cubetimer/dialog/controller/selection_dialog_controller.dart';
 import 'package:cubetimer/dialog/dialog.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
 class SelectionDialog {
@@ -15,6 +16,7 @@ class SelectionDialog {
   final List<String> options;
   final int originalIndex;
 
+  // Functions
   Future<int?> show(BuildContext context) async {
     await MyDialog(
       title: title,
@@ -28,13 +30,19 @@ class SelectionDialog {
             ...controller.options.asMap().entries.map(
               (e) {
                 final int index = e.key;
-                return TextButton(
-                  onPressed: () {
+                final String title = e.value.tr;
+                return ListTile(
+                  title: Text(title),
+                  contentPadding: const EdgeInsets.symmetric(horizontal: 20),
+                  trailing: index == controller.currentIndex
+                      ? const FaIcon(
+                          FontAwesomeIcons.check,
+                          size: 20,
+                        )
+                      : null,
+                  onTap: () {
                     controller.select(index);
                   },
-                  child: Text(
-                    '${e.key} ${e.value.tr}${controller.currentIndex == e.key ? '   selected' : ''}',
-                  ),
                 );
               },
             ).toList(),
@@ -44,6 +52,8 @@ class SelectionDialog {
       btnOkOnPressed: () {},
       btnCancelOnPressed: () {},
     ).show(context);
+
+    // Return the selected index
     return Get.find<SelectionDialogController>().currentIndex;
   }
 }

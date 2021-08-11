@@ -1,5 +1,6 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class MyDialog {
   // Constructor
@@ -42,6 +43,8 @@ class MyDialog {
               ],
             )
           : null,
+      btnOkText: 'confirm'.tr,
+      btnCancelText: 'cancel'.tr,
       btnOkOnPress: btnOkOnPressed,
       btnCancelOnPress: !hasCancelButton ? null : btnCancelOnPressed ?? () {},
     ).show();

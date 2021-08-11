@@ -26,6 +26,7 @@ class SettingsTile extends StatelessWidget {
       final String trailText = settingsValue.toString().tr;
       final List<SettingsValue> options =
           (settingsKey as SettingsSelectionKey).options;
+      final int originalIndex = options.indexOf(settingsValue);
       return ListTile(
         title: Text(
           titleText,
@@ -37,17 +38,17 @@ class SettingsTile extends StatelessWidget {
           trailText,
           style: TextStyle(
             fontSize: 17,
-            color: Colors.brown[800],
+            color: Colors.brown[700],
           ),
         ),
         tileColor: Colors.brown[100],
         contentPadding: const EdgeInsets.symmetric(horizontal: 25),
         dense: true,
         onTap: () async {
-          int? index = await SelectionDialog(
+          final int? index = await SelectionDialog(
             title: titleText,
             options: options.map((e) => e.toString()).toList(),
-            originalIndex: 0,
+            originalIndex: originalIndex,
           ).show(context);
 
           if (index != null) {

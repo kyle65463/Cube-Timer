@@ -1,3 +1,5 @@
+import 'package:cubetimer/models/settings/options/language.dart';
+import 'package:cubetimer/models/settings/settings.dart';
 import 'package:cubetimer/pages/main_menu/main_menu_page.dart';
 import 'package:cubetimer/repositories/database/database.dart';
 import 'package:cubetimer/repositories/database/hive_database.dart';
@@ -14,8 +16,14 @@ Future<void> main() async {
 }
 
 class MyApp extends StatelessWidget {
+  // Variables
+  final SettingsRepository settingsRepository = Get.find<SettingsRepository>();
+
+  // Functions
   @override
   Widget build(BuildContext context) {
+    final Settings settings = settingsRepository.loadSettings();
+    final Language? language = settings.map[SettingsKeyLanguage()] as Language?;
     return GetMaterialApp(
       title: 'Cube Timer',
       theme: ThemeData(
@@ -25,7 +33,7 @@ class MyApp extends StatelessWidget {
         ),
       ),
       translations: Localization(),
-      locale: Get.deviceLocale,
+      locale: language?.locale ?? Get.deviceLocale,
       fallbackLocale: const Locale('en', 'US'),
       home: MainMenuPage(),
     );

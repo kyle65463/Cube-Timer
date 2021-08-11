@@ -1,5 +1,6 @@
 import 'package:cubetimer/models/settings/settings_key.dart';
 import 'package:cubetimer/models/settings/settings_value.dart';
+import 'package:cubetimer/utils/language_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
@@ -8,11 +9,22 @@ part 'language.g.dart';
 
 // Settings key
 class SettingsKeyLanguage extends SettingsSelectionKey {
-  SettingsKeyLanguage()
-      : super(name: 'language', defaultValue: EnUS(), options: [
-          ZhTW(),
-          EnUS(),
-        ]);
+  // Singleton
+  factory SettingsKeyLanguage() => _singleton;
+  static final SettingsKeyLanguage _singleton = SettingsKeyLanguage._internal();
+
+  // Constructor
+  SettingsKeyLanguage._internal()
+      : super(
+          name: 'language',
+          defaultValue: LanguageUtils.localeToLanguage(Get.deviceLocale),
+          options: languages,
+        );
+
+  static List<Language> languages = [
+    ZhTW(),
+    EnUS(),
+  ];
 }
 
 // Settings Value

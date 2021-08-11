@@ -37,10 +37,14 @@ class SettingsPage extends StatelessWidget {
                         padding: const EdgeInsets.symmetric(horizontal: 25),
                         child: Text(
                           'more'.tr,
-                          style: const TextStyle(fontSize: 40),
+                          style: const TextStyle(
+                            fontSize: 35,
+                            fontWeight: FontWeight.bold,
+                            height: 1,
+                          ),
                         ),
                       ),
-                      const SizedBox(height: 35),
+                      const SizedBox(height: 25),
 
                       // Settings section
                       ...controller.settings.map.entries.map((entry) {
