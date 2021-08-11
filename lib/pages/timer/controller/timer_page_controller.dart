@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:cubetimer/pages/main_menu/main_menu_page_controller.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
@@ -10,6 +12,7 @@ class TimerPageController extends GetxController {
   bool get isRunning => timer.isRunning;
 
   int _currentTime = 0;
+  double timerCounterFontSize = 75;
 
   // Functions
   @override
@@ -48,12 +51,23 @@ class TimerPageController extends GetxController {
     return result;
   }
 
+  double getTimeCounterFontSize(int time) {
+    const double lowerBound = 70, upperBound = 95;
+    if (!isRunning) {
+      return lowerBound;
+    } else {
+      return min(lowerBound + (time / 5), upperBound);
+    }
+  }
+
   void _startTimer() {
     timer.onExecute.add(StopWatchExecute.start);
+    timerCounterFontSize = 95;
   }
 
   void _stopTimer() {
     timer.onExecute.add(StopWatchExecute.stop);
+    timerCounterFontSize = 75;
   }
 
   void _resetTimer() {

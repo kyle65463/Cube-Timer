@@ -14,12 +14,16 @@ class TimeCounter extends StatelessWidget {
       builder: (context, snapshot) {
         final int time = snapshot.data!;
         final String displayTime = controller.parseDisplayTime(time);
-        return Center(
-          child: Text(
-            displayTime,
-            style: TextStyle(
-              fontSize: 70,
-              color: Colors.black.withOpacity(0.8),
+        final double fontSize = controller.getTimeCounterFontSize(time);
+        return GestureDetector(
+          onTap: controller.onTimerTriggered,
+          child: Center(
+            child: Text(
+              displayTime,
+              style: TextStyle(
+                fontSize: fontSize,
+                color: Colors.black.withOpacity(0.8),
+              ),
             ),
           ),
         );
