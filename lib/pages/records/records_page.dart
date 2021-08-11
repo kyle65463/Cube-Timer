@@ -15,7 +15,10 @@ class RecordsPage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Center(
-            child: Text('records'.tr),
+            child: Text(
+              'records'.tr,
+              style: Theme.of(context).textTheme.headline3,
+            ),
           ),
         ],
       ),

@@ -14,6 +14,7 @@ class MainMenuPageController extends GetxController {
     const StatisticsPage(),
   ];
   bool showNavBar = true;
+  bool showTimeCounter = true;
 
   void toggleBottomNavBar() {
     showNavBar = !showNavBar;
