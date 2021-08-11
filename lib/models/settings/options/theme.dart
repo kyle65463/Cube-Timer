@@ -1,5 +1,7 @@
 import 'package:cubetimer/models/settings/settings_key.dart';
 import 'package:cubetimer/models/settings/settings_value.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 
 part 'theme.g.dart';
@@ -18,7 +20,13 @@ class SettingsKeyTheme extends SettingsSelectionKey {
 }
 
 // Settings value
-abstract class Theme extends SettingsValue {}
+abstract class Theme extends SettingsValue {
+  // Functions
+  @override
+  void apply() {
+    // Get.changeTheme(ThemeData.light());
+  }
+}
 
 @HiveType(typeId: 131) // 131 - 140
 class BrownTheme extends Theme {

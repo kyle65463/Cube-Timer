@@ -1,6 +1,7 @@
 import 'package:cubetimer/models/settings/settings_key.dart';
 import 'package:cubetimer/models/settings/settings_value.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 
 part 'language.g.dart';
@@ -30,6 +31,11 @@ abstract class Language extends SettingsValue {
   // Functions
   @override
   String toString() => 'language $languageCode-$countryCode'.toLowerCase();
+
+  @override
+  void apply() {
+    Get.updateLocale(locale);
+  }
 }
 
 @HiveType(typeId: 101) // 101 - 130

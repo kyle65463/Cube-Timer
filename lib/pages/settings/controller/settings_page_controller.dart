@@ -1,4 +1,6 @@
 import 'package:cubetimer/models/settings/settings.dart';
+import 'package:cubetimer/models/settings/settings_key.dart';
+import 'package:cubetimer/models/settings/settings_value.dart';
 import 'package:cubetimer/repositories/settings_repository.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
@@ -18,7 +20,11 @@ class SettingsPageController extends GetxController {
   late Future _initDone;
 
   // Functions
-  void saveSettings() {}
+  void saveSettings(SettingsKey key, SettingsValue value) {
+    _settings.map[key] = value;
+    _repository.saveSettings(_settings);
+    update();
+  }
 
   Future<void> _loadSettings() async {
     _settings = _repository.loadSettings();
