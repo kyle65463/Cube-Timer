@@ -18,12 +18,18 @@ class TimeCounter extends StatelessWidget {
         return GestureDetector(
           onTap: controller.onTimerTriggered,
           child: Center(
-            child: Text(
-              displayTime,
-              style: TextStyle(
-                fontSize: fontSize,
-                color: Colors.black.withOpacity(0.8),
-              ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  displayTime,
+                  style: TextStyle(
+                    fontSize: fontSize,
+                    color: Colors.black.withOpacity(0.8),
+                  ),
+                ),
+                const SizedBox(height: 60),
+              ],
             ),
           ),
         );

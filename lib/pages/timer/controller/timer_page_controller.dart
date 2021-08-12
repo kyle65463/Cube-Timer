@@ -4,7 +4,7 @@ import 'package:cubetimer/models/record/record.dart';
 import 'package:cubetimer/models/record/track.dart';
 import 'package:cubetimer/models/solve/move/turn.dart';
 import 'package:cubetimer/models/solve/scramble.dart';
-import 'package:cubetimer/pages/main_menu/main_menu_page_controller.dart';
+import 'package:cubetimer/pages/main_menu/controller/main_menu_page_controller.dart';
 import 'package:cubetimer/repositories/records_repository.dart';
 import 'package:cubetimer/utils/timer_utils.dart';
 import 'package:get/get.dart';

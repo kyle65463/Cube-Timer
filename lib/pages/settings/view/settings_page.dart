@@ -21,7 +21,7 @@ class SettingsPage extends StatelessWidget {
         child: GetBuilder<SettingsPageController>(
           builder: (controller) => FutureBuilder<void>(
             future: controller.initDone,
-            builder: (BuildContext context, AsyncSnapshot<void> snapshot) {
+            builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return const Center(
                   child: CircularProgressIndicator(),

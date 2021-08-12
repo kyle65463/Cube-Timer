@@ -1,6 +1,6 @@
 import 'package:cubetimer/models/settings/options/language.dart';
 import 'package:cubetimer/models/settings/settings.dart';
-import 'package:cubetimer/pages/main_menu/main_menu_page.dart';
+import 'package:cubetimer/pages/main_menu/view/main_menu_page.dart';
 import 'package:cubetimer/repositories/database/database.dart';
 import 'package:cubetimer/repositories/database/hive_database.dart';
 import 'package:cubetimer/repositories/records_repository.dart';
@@ -37,6 +37,7 @@ class MyApp extends StatelessWidget {
       title: 'Cube Timer',
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.brown[200],
+        canvasColor: Colors.white,
         textTheme: GoogleFonts.gentiumBookBasicTextTheme(
           Theme.of(context).textTheme,
         ),

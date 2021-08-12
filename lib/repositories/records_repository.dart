@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:cubetimer/models/record/record.dart';
 import 'package:cubetimer/models/record/track.dart';
 import 'package:cubetimer/repositories/database/database.dart';
@@ -6,11 +8,13 @@ import 'package:get/get.dart';
 
 class TracksRepository extends Repository {
   // Variables
-  final Database _database = Get.find<Database>();
   Stream get trackStream => _database.getTrackStream();
+  Stream get currentTrackStream => _currentStreamController.stream;
+  final Database _database = Get.find<Database>();
+  final StreamController _currentStreamController = StreamController.broadcast();
 
   // Functions
-  Future<List<Track>> loadTracks() async{
+  Future<List<Track>> loadTracks() async {
     final List<Track> tracks = await _database.loadTracks();
     return tracks;
   }
@@ -59,14 +63,21 @@ class TracksRepository extends Repository {
     // Set the specific track to current track
     track.isCurrentTrack = true;
     await _database.updateTrack(track);
+    _currentStreamController.sink.add(true);
   }
 
   Future<void> createTrack(String title) async {
+    // Create the track
     final Track track = Track.createNew(title: title);
     await _database.createTrack(track);
+
+    // Set the new track to current track
+    setCurrentTrack(track);
   }
 
-  Future<void> createRecord(Record record, Track track) async{
+  Future<void> createRecord(Record record, [Track? track]) async {
+    // Create record to current track if not specified
+    track ??= await loadCurrentTrack();
     track.records.add(record);
     await _database.updateTrack(track);
   }
