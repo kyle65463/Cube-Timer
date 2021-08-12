@@ -23,6 +23,8 @@ class Localization extends Translations {
           'timer settings': 'Timer Settings',
           'confirm': 'Confirm',
           'cancel': 'Cancel',
+          'choose track': 'Choose the Track',
+          'add': 'Add',
 
           // Languages
           'language en-us': 'English',
@@ -37,6 +39,8 @@ class Localization extends Translations {
           'statistics': '統計',
           'records': '紀錄',
           'more': '更多',
+          'choose track': '選擇分類',
+          'add': '新增',
 
           // Settings
           'settings': '設定',

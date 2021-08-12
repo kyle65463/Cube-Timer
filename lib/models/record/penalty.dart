@@ -8,15 +8,18 @@ abstract class Penalty {
 
 @HiveType(typeId: 6) // 6 - 10
 class PenaltyNone extends Penalty {
-  const PenaltyNone();
+  PenaltyNone();
+  const PenaltyNone.cons();
 }
 
 @HiveType(typeId: 7)
 class PenaltyDNF extends Penalty {
-  const PenaltyDNF();
+  PenaltyDNF();
+  const PenaltyDNF.cons();
 }
 
 @HiveType(typeId: 8)
 class PenaltyPlus2Sec extends Penalty {
-  const PenaltyPlus2Sec();
+  PenaltyPlus2Sec();
+  const PenaltyPlus2Sec.cons();
 }

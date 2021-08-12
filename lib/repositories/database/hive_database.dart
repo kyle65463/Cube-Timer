@@ -16,12 +16,12 @@ class HiveDatabase extends Database {
   // Variables
   late Box<SettingsValue> _settingsBox;
   late Box<Track> _trackBox;
+  late Box<Record> _recordBox; 
 
   // Functions
   /* Initialize */
   @override
   Future<void> init() async {
-    await Hive.initFlutter();
     Hive.registerAdapter(EnUSAdapter());
     Hive.registerAdapter(ZhTWAdapter());
     Hive.registerAdapter(BrownThemeAdapter());
@@ -44,8 +44,15 @@ class HiveDatabase extends Database {
     Hive.registerAdapter(PenaltyNoneAdapter());
     Hive.registerAdapter(PenaltyDNFAdapter());
     Hive.registerAdapter(PenaltyPlus2SecAdapter());
+    await Hive.initFlutter();
     _settingsBox = await Hive.openBox('settings');
     _trackBox = await Hive.openBox('track');
+    _recordBox = await Hive.openBox('record');
+  }
+
+  @override
+  Future<void> close() async {
+    await Hive.close();
   }
 
   /* Settings */
@@ -76,7 +83,7 @@ class HiveDatabase extends Database {
   }
 
   @override
-  Future<List<Track>> loadTracks() async{
+  Future<List<Track>> loadTracks() async {
     final List<Track> tracks = _trackBox.values.toList();
     if (tracks.isEmpty) {
       final Track defaultTrack = Track.defaultValue();

@@ -11,7 +11,8 @@ class TracksRepository extends Repository {
   Stream get trackStream => _database.getTrackStream();
   Stream get currentTrackStream => _currentStreamController.stream;
   final Database _database = Get.find<Database>();
-  final StreamController _currentStreamController = StreamController.broadcast();
+  final StreamController _currentStreamController =
+      StreamController.broadcast();
 
   // Functions
   Future<List<Track>> loadTracks() async {
@@ -29,6 +30,7 @@ class TracksRepository extends Repository {
           // Dulplicated, shouldn't happen
           track.isCurrentTrack = false;
           await _database.updateTrack(track);
+          throw Exception('Current track duplicated');
         } else {
           // The current track
           isFound = true;
@@ -43,11 +45,13 @@ class TracksRepository extends Repository {
         result.isCurrentTrack = true;
         await _database.updateTrack(result);
         return result;
+      } else {
+        // No track, shouldn't happen
+        throw Exception('No track');
       }
+    } else {
+      return result;
     }
-
-    // No track, shouldn't happen
-    return Track.defaultValue();
   }
 
   Future<void> setCurrentTrack(Track track) async {

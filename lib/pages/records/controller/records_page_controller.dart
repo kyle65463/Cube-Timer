@@ -1,5 +1,5 @@
 import 'package:cubetimer/models/record/track.dart';
-import 'package:cubetimer/repositories/records_repository.dart';
+import 'package:cubetimer/repositories/tracks_repository.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 

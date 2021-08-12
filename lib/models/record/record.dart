@@ -5,7 +5,7 @@ import 'package:uuid/uuid.dart';
 
 part 'record.g.dart';
 
-@HiveType(typeId: 0)
+@HiveType(typeId: 3)
 class Record {
   // Constructor
   Record({
@@ -19,7 +19,7 @@ class Record {
   Record.createNew({
     required this.rawTime,
     required this.scramble,
-    this.penalty = const PenaltyNone(),
+    this.penalty = const PenaltyNone.cons(),
   })  : id = const Uuid().v4(),
         createTime = DateTime.now();
 

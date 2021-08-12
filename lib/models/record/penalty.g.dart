@@ -12,6 +12,10 @@ class PenaltyNoneAdapter extends TypeAdapter<PenaltyNone> {
 
   @override
   PenaltyNone read(BinaryReader reader) {
+    final numOfFields = reader.readByte();
+    final fields = <int, dynamic>{
+      for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
+    };
     return PenaltyNone();
   }
 
@@ -37,6 +41,10 @@ class PenaltyDNFAdapter extends TypeAdapter<PenaltyDNF> {
 
   @override
   PenaltyDNF read(BinaryReader reader) {
+    final numOfFields = reader.readByte();
+    final fields = <int, dynamic>{
+      for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
+    };
     return PenaltyDNF();
   }
 
@@ -62,6 +70,10 @@ class PenaltyPlus2SecAdapter extends TypeAdapter<PenaltyPlus2Sec> {
 
   @override
   PenaltyPlus2Sec read(BinaryReader reader) {
+    final numOfFields = reader.readByte();
+    final fields = <int, dynamic>{
+      for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
+    };
     return PenaltyPlus2Sec();
   }
 

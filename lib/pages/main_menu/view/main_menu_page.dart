@@ -86,6 +86,7 @@ class MainMenuPage extends StatelessWidget {
                       top: 25,
                       right: 25,
                       child: CurrentTrackBadge(
+                        tracks: controller.tracks,
                         currentTrack: controller.currentTrack,
                       ),
                     )

@@ -11,6 +11,7 @@ class MyDialog {
     this.btnOkOnPressed,
     this.btnCancelOnPressed,
     this.hasCancelButton = true,
+    this.width,
   });
 
   // Variables
@@ -20,6 +21,7 @@ class MyDialog {
   final bool hasCancelButton;
   final Function? btnOkOnPressed;
   final Function? btnCancelOnPressed;
+  final double? width;
 
   // Functions
   Future<dynamic> show(BuildContext context) async {
@@ -28,6 +30,7 @@ class MyDialog {
       dialogType: DialogType.NO_HEADER,
       title: title,
       desc: description,
+      width: width,
       body: body != null
           ? Column(
               children: [

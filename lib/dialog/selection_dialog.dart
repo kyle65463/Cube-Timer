@@ -1,5 +1,6 @@
 import 'package:cubetimer/dialog/controller/selection_dialog_controller.dart';
 import 'package:cubetimer/dialog/dialog.dart';
+import 'package:cubetimer/dialog/input_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
@@ -9,12 +10,14 @@ class SelectionDialog {
     required this.title,
     required this.options,
     required this.originalIndex,
+    this.onCreate,
   });
 
   // Variables
   final String title;
   final List<String> options;
   final int originalIndex;
+  final Function? onCreate;
 
   // Functions
   Future<int?> show(BuildContext context) async {
@@ -46,6 +49,23 @@ class SelectionDialog {
                 );
               },
             ).toList(),
+            if (onCreate != null)
+              ListTile(
+                onTap: () {
+                  InputDialog(title: 'hi').show(context);
+                  // onCreate!();
+                },
+                title: Row(
+                  children: [
+                    const FaIcon(
+                      FontAwesomeIcons.plus,
+                      size: 20,
+                    ),
+                    const SizedBox(width: 10),
+                    Text('add'.tr),
+                  ],
+                ),
+              ),
           ],
         ),
       ),

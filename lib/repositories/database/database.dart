@@ -5,6 +5,7 @@ import 'package:cubetimer/models/settings/settings_value.dart';
 abstract class Database {
   /* Initialize */
   Future<void> init();
+  Future<void> close();
 
   /* Settings */
   Stream getSettingsStream();
