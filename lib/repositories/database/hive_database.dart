@@ -1,3 +1,4 @@
+import 'package:cubetimer/models/record/penalty.dart';
 import 'package:cubetimer/models/record/record.dart';
 import 'package:cubetimer/models/record/track.dart';
 import 'package:cubetimer/models/settings/options/language.dart';
@@ -6,6 +7,7 @@ import 'package:cubetimer/models/settings/settings_key.dart';
 import 'package:cubetimer/models/settings/settings_value.dart';
 import 'package:cubetimer/models/solve/move/rotate.dart';
 import 'package:cubetimer/models/solve/move/turn.dart';
+import 'package:cubetimer/models/solve/scramble.dart';
 import 'package:cubetimer/repositories/database/database.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -38,6 +40,10 @@ class HiveDatabase extends Database {
     Hive.registerAdapter(RotateXAdapter());
     Hive.registerAdapter(RotateYAdapter());
     Hive.registerAdapter(RotateZAdapter());
+    Hive.registerAdapter(ScrambleAdapter());
+    Hive.registerAdapter(PenaltyNoneAdapter());
+    Hive.registerAdapter(PenaltyDNFAdapter());
+    Hive.registerAdapter(PenaltyPlus2SecAdapter());
     _settingsBox = await Hive.openBox('settings');
     _trackBox = await Hive.openBox('track');
   }

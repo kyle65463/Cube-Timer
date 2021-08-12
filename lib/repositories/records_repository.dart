@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 class TracksRepository extends Repository {
   // Variables
   final Database _database = Get.find<Database>();
-  Stream get tracksStream => _database.getTrackStream();
+  Stream get trackStream => _database.getTrackStream();
 
   // Functions
   List<Track> loadTracks() {

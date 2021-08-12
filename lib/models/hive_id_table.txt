@@ -1,5 +1,6 @@
 0 Record
 1 Track
+2 Scramble
 6 - 10 Penalty
 11 - 40 Turn
 41 - 50 Rotate

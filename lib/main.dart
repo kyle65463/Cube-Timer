@@ -11,7 +11,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 Future<void> main() async {
-  await Get.put<Database>(HiveDatabase()).init();
+await Get.put<Database>(HiveDatabase()).init();
   Get.lazyPut<SettingsRepository>(() => SettingsRepository());
   Get.lazyPut<TracksRepository>(() => TracksRepository());
   runApp(MyApp());

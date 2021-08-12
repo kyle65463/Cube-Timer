@@ -1,6 +1,6 @@
 import 'package:cubetimer/pages/main_menu/main_menu_page_controller.dart';
-import 'package:cubetimer/pages/timer/time_counter.dart';
-import 'package:cubetimer/pages/timer/timer_page.dart';
+import 'package:cubetimer/pages/timer/view/time_counter.dart';
+import 'package:cubetimer/pages/timer/view/timer_page.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/instance_manager.dart';

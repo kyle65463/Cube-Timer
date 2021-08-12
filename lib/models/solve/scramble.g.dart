@@ -8,7 +8,7 @@ part of 'scramble.dart';
 
 class ScrambleAdapter extends TypeAdapter<Scramble> {
   @override
-  final int typeId = 6;
+  final int typeId = 2;
 
   @override
   Scramble read(BinaryReader reader) {
