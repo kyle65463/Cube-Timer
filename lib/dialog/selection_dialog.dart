@@ -51,9 +51,14 @@ class SelectionDialog {
             ).toList(),
             if (onCreate != null)
               ListTile(
-                onTap: () {
-                  InputDialog(title: 'hi').show(context);
-                  // onCreate!();
+                onTap: () async {
+                  String? input = await InputDialog(
+                    title: 'Enter the title',
+                  ).show(context);
+                  if (input != null) {
+                    controller.addOption(input);
+                    // onCreate!();
+                  }
                 },
                 title: Row(
                   children: [
@@ -70,10 +75,13 @@ class SelectionDialog {
         ),
       ),
       btnOkOnPressed: () {},
-      btnCancelOnPressed: () {},
+      btnCancelOnPressed: () {
+        Get.find<SelectionDialogController>().cancel();
+      },
     ).show(context);
 
     // Return the selected index
+    if (Get.find<SelectionDialogController>().isCanceled) return null;
     return Get.find<SelectionDialogController>().currentIndex;
   }
 }

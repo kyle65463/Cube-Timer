@@ -24,7 +24,7 @@ class Localization extends Translations {
           'confirm': 'Confirm',
           'cancel': 'Cancel',
           'choose track': 'Choose the Track',
-          'add': 'Add',
+          'add': 'Add a new track',
 
           // Languages
           'language en-us': 'English',

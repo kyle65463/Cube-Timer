@@ -10,11 +10,23 @@ class SelectionDialogController extends GetxController {
   // Variables
   final List<String> options;
   int get currentIndex => _currentIndex;
+  bool get isCanceled => _isCanceled;
   int _currentIndex = 0;
+  bool _isCanceled = false;
 
   // Functions
   void select(int index) {
     _currentIndex = index;
+    update();
+  }
+
+  void cancel() {
+    _isCanceled = true;
+  }
+
+  void addOption(String option) {
+    options.add(option);
+    _currentIndex = options.length - 1;
     update();
   }
 }
