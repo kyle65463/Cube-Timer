@@ -8,13 +8,13 @@ abstract class Database {
 
   /* Settings */
   Stream getSettingsStream();
-  SettingsValue loadSettingsValue(SettingsKey option);
-  void updateSettingsValue(SettingsKey key, SettingsValue value);
+  Future<SettingsValue> loadSettingsValue(SettingsKey option);
+  Future<void> updateSettingsValue(SettingsKey key, SettingsValue value);
 
   /* Tracks */
   Stream getTrackStream();
-  List<Track> loadTracks();
-  void createTrack(Track track);
-  void deleteTrack(Track track);
-  void updateTrack(Track track);
+  Future<List<Track>> loadTracks();
+  Future<void> createTrack(Track track);
+  Future<void> deleteTrack(Track track);
+  Future<void> updateTrack(Track track);
 }

@@ -93,7 +93,7 @@ class TimerPageController extends GetxController {
   }
 
   Future<void> _loadTracks() async {
-    _tracks = _repository.loadTracks();
+    _tracks = await  _repository.loadTracks();
     update();
   }
 

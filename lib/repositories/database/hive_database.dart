@@ -55,18 +55,18 @@ class HiveDatabase extends Database {
   }
 
   @override
-  SettingsValue loadSettingsValue(SettingsKey key) {
+  Future<SettingsValue> loadSettingsValue(SettingsKey key) async {
     final SettingsValue? value = _settingsBox.get(key.name);
     if (value == null) {
-      _settingsBox.put(key.name, key.defaultValue);
+      await _settingsBox.put(key.name, key.defaultValue);
       return key.defaultValue;
     }
     return value;
   }
 
   @override
-  void updateSettingsValue(SettingsKey key, SettingsValue value) {
-    _settingsBox.put(key.name, value);
+  Future<void> updateSettingsValue(SettingsKey key, SettingsValue value) async {
+    await _settingsBox.put(key.name, value);
   }
 
   /* Tracks */
@@ -76,28 +76,28 @@ class HiveDatabase extends Database {
   }
 
   @override
-  List<Track> loadTracks() {
+  Future<List<Track>> loadTracks() async{
     final List<Track> tracks = _trackBox.values.toList();
     if (tracks.isEmpty) {
       final Track defaultTrack = Track.defaultValue();
-      _trackBox.put(defaultTrack.id, defaultTrack);
+      await _trackBox.put(defaultTrack.id, defaultTrack);
       return [defaultTrack];
     }
     return tracks;
   }
 
   @override
-  void createTrack(Track track) {
-    _trackBox.put(track.id, track);
+  Future<void> createTrack(Track track) async {
+    await _trackBox.put(track.id, track);
   }
 
   @override
-  void updateTrack(Track track) {
-    track.save();
+  Future<void> updateTrack(Track track) async {
+    await track.save();
   }
 
   @override
-  void deleteTrack(Track track) {
-    track.delete();
+  Future<void> deleteTrack(Track track) async {
+    await track.delete();
   }
 }

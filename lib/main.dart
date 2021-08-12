@@ -11,20 +11,27 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 Future<void> main() async {
-await Get.put<Database>(HiveDatabase()).init();
+  await Get.put<Database>(HiveDatabase()).init();
   Get.lazyPut<SettingsRepository>(() => SettingsRepository());
   Get.lazyPut<TracksRepository>(() => TracksRepository());
-  runApp(MyApp());
+
+  final SettingsRepository settingsRepository = Get.find<SettingsRepository>();
+  final Settings settings = await settingsRepository.loadSettings();
+  runApp(MyApp(settings: settings));
 }
 
 class MyApp extends StatelessWidget {
+  // Constructor
+  const MyApp({
+    required this.settings,
+  });
+
   // Variables
-  final SettingsRepository settingsRepository = Get.find<SettingsRepository>();
+  final Settings settings;
 
   // Functions
   @override
   Widget build(BuildContext context) {
-    final Settings settings = settingsRepository.loadSettings();
     final Language? language = settings.map[SettingsKeyLanguage()] as Language?;
     return GetMaterialApp(
       title: 'Cube Timer',

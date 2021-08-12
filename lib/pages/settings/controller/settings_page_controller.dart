@@ -26,7 +26,7 @@ class SettingsPageController extends GetxController {
   }
 
   Future<void> _loadSettings() async {
-    _settings = _repository.loadSettings();
+    _settings = await _repository.loadSettings();
     update();
   }
 

@@ -11,17 +11,17 @@ class SettingsRepository extends Repository {
   Stream get settingsStream => _database.getSettingsStream();
 
   // Functions
-  Settings loadSettings() {
+  Future<Settings> loadSettings() async {
     final List<SettingsKey> keys = SettingsKey.keys;
     final Map<SettingsKey, SettingsValue> map = {};
     for (final key in keys) {
-      final SettingsValue value = _database.loadSettingsValue(key);
+      final SettingsValue value = await _database.loadSettingsValue(key);
       map[key] = value;
     }
     return Settings(map: map);
   }
 
-  void updateSettings(SettingsKey key, SettingsValue value) {
-    _database.updateSettingsValue(key, value);
+  Future<void> updateSettings(SettingsKey key, SettingsValue value) async {
+    await _database.updateSettingsValue(key, value);
   }
 }

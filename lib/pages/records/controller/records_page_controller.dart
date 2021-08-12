@@ -19,7 +19,7 @@ class RecordsPageController extends GetxController {
 
   // Functions
   Future<void> _loadTracks() async {
-    _tracks = _repository.loadTracks();
+    _tracks = await _repository.loadTracks();
     update();
   }
 

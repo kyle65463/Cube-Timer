@@ -33,6 +33,7 @@ class MainMenuPage extends StatelessWidget {
                     );
                   },
                   child: SingleChildScrollView(
+                    physics: const NeverScrollableScrollPhysics(),
                     child: BottomNavigationBar(
                       items: [
                         BottomNavigationBarItem(
