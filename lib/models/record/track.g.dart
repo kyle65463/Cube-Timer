@@ -1,44 +1,44 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'record.dart';
+part of 'track.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator
 // **************************************************************************
 
-class RecordAdapter extends TypeAdapter<Record> {
+class TrackAdapter extends TypeAdapter<Track> {
   @override
-  final int typeId = 0;
+  final int typeId = 1;
 
   @override
-  Record read(BinaryReader reader) {
+  Track read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return Record(
+    return Track(
       id: fields[0] as String,
-      rawTime: fields[1] as int,
-      scramble: fields[2] as Scramble,
-      penalty: fields[3] as Penalty,
-      createTime: fields[4] as DateTime,
+      title: fields[1] as String,
+      records: (fields[2] as List).cast<Record>(),
+      createTime: fields[3] as DateTime,
+      lastUpdateTime: fields[4] as DateTime,
     );
   }
 
   @override
-  void write(BinaryWriter writer, Record obj) {
+  void write(BinaryWriter writer, Track obj) {
     writer
       ..writeByte(5)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
-      ..write(obj.rawTime)
+      ..write(obj.title)
       ..writeByte(2)
-      ..write(obj.scramble)
+      ..write(obj.records)
       ..writeByte(3)
-      ..write(obj.penalty)
+      ..write(obj.createTime)
       ..writeByte(4)
-      ..write(obj.createTime);
+      ..write(obj.lastUpdateTime);
   }
 
   @override
@@ -47,7 +47,7 @@ class RecordAdapter extends TypeAdapter<Record> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is RecordAdapter &&
+      other is TrackAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }

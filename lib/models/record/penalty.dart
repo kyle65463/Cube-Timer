@@ -2,13 +2,21 @@ import 'package:hive/hive.dart';
 
 part 'penalty.g.dart';
 
-abstract class Penalty {}
+abstract class Penalty {
+  const Penalty();
+}
 
-@HiveType(typeId: 1) // 1 - 5
-class PenaltyNone extends Penalty {}
+@HiveType(typeId: 6) // 6 - 10
+class PenaltyNone extends Penalty {
+  const PenaltyNone();
+}
 
-@HiveType(typeId: 2)
-class PenaltyDNF extends Penalty {}
+@HiveType(typeId: 7)
+class PenaltyDNF extends Penalty {
+  const PenaltyDNF();
+}
 
-@HiveType(typeId: 3)
-class PenaltyPlus2Sec extends Penalty {}
+@HiveType(typeId: 8)
+class PenaltyPlus2Sec extends Penalty {
+  const PenaltyPlus2Sec();
+}

@@ -1,6 +1,7 @@
 import 'package:cubetimer/models/record/penalty.dart';
 import 'package:cubetimer/models/solve/scramble.dart';
 import 'package:hive/hive.dart';
+import 'package:uuid/uuid.dart';
 
 part 'record.g.dart';
 
@@ -8,19 +9,29 @@ part 'record.g.dart';
 class Record {
   // Constructor
   Record({
+    required this.id,
     required this.rawTime,
     required this.scramble,
     required this.penalty,
-    required this.dateTime,
+    required this.createTime,
   });
+
+  Record.createNew({
+    required this.rawTime,
+    required this.scramble,
+    this.penalty = const PenaltyNone(),
+  })  : id = const Uuid().v4(),
+        createTime = DateTime.now();
 
   // Variables
   @HiveField(0)
-  int rawTime;
+  String id;
   @HiveField(1)
-  final Scramble scramble;
+  int rawTime;
   @HiveField(2)
-  Penalty penalty;
+  final Scramble scramble;
   @HiveField(3)
-  final DateTime dateTime;
+  Penalty penalty;
+  @HiveField(4)
+  final DateTime createTime;
 }

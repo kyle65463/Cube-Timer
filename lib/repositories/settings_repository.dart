@@ -7,20 +7,21 @@ import 'package:get/get.dart';
 
 class SettingsRepository extends Repository {
   // Variables
-  Database database = Get.find<Database>();
+  final Database _database = Get.find<Database>();
+  Stream get settingsStream => _database.getSettingsStream();
 
   // Functions
   Settings loadSettings() {
     final List<SettingsKey> keys = SettingsKey.keys;
     final Map<SettingsKey, SettingsValue> map = {};
     for (final key in keys) {
-      final SettingsValue value = database.loadSettingsValue(key);
+      final SettingsValue value = _database.loadSettingsValue(key);
       map[key] = value;
     }
     return Settings(map: map);
   }
 
-  void saveSettings(Settings settings) {
-    settings.map.forEach(database.saveSettingsValue);
+  void updateSettings(SettingsKey key, SettingsValue value) {
+    _database.updateSettingsValue(key, value);
   }
 }

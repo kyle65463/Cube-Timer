@@ -51,7 +51,7 @@ class SettingsPage extends StatelessWidget {
                         return SettingsTile(
                           settingsKey: entry.key,
                           settingsValue: entry.value,
-                          saveSettings: controller.saveSettings,
+                          saveSettings: controller.updateSettings,
                         );
                       }).toList(),
                       InfoTile(

@@ -8,7 +8,7 @@ part of 'penalty.dart';
 
 class PenaltyNoneAdapter extends TypeAdapter<PenaltyNone> {
   @override
-  final int typeId = 1;
+  final int typeId = 6;
 
   @override
   PenaltyNone read(BinaryReader reader) {
@@ -33,7 +33,7 @@ class PenaltyNoneAdapter extends TypeAdapter<PenaltyNone> {
 
 class PenaltyDNFAdapter extends TypeAdapter<PenaltyDNF> {
   @override
-  final int typeId = 2;
+  final int typeId = 7;
 
   @override
   PenaltyDNF read(BinaryReader reader) {
@@ -58,7 +58,7 @@ class PenaltyDNFAdapter extends TypeAdapter<PenaltyDNF> {
 
 class PenaltyPlus2SecAdapter extends TypeAdapter<PenaltyPlus2Sec> {
   @override
-  final int typeId = 3;
+  final int typeId = 8;
 
   @override
   PenaltyPlus2Sec read(BinaryReader reader) {

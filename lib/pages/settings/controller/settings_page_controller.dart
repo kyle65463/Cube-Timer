@@ -9,10 +9,10 @@ class SettingsPageController extends GetxController {
   // Constructor
   SettingsPageController() {
     _initDone = _loadSettings();
+    _listenSettingsStream();
   }
 
   // Variables
-
   Settings get settings => _settings;
   Future get initDone => _initDone;
   final SettingsRepository _repository = Get.find<SettingsRepository>();
@@ -20,14 +20,17 @@ class SettingsPageController extends GetxController {
   late Future _initDone;
 
   // Functions
-  void saveSettings(SettingsKey key, SettingsValue value) {
-    _settings.map[key] = value;
-    _repository.saveSettings(_settings);
+  void updateSettings(SettingsKey key, SettingsValue value) {
+    _repository.updateSettings(key, value);
     update();
   }
 
   Future<void> _loadSettings() async {
     _settings = _repository.loadSettings();
     update();
+  }
+
+  void _listenSettingsStream() {
+    _repository.settingsStream.listen((e) => _loadSettings());
   }
 }
