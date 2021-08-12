@@ -1,6 +1,7 @@
 import 'package:cubetimer/dialog/controller/selection_dialog_controller.dart';
 import 'package:cubetimer/dialog/dialog.dart';
 import 'package:cubetimer/dialog/input_dialog.dart';
+import 'package:cubetimer/models/interfaces/selectable.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
@@ -15,12 +16,12 @@ class SelectionDialog {
 
   // Variables
   final String title;
-  final List<String> options;
+  final List<Selectable> options;
   final int originalIndex;
   final Function? onCreate;
 
   // Functions
-  Future<int?> show(BuildContext context) async {
+  Future<Selectable?> show(BuildContext context) async {
     await MyDialog(
       title: title,
       body: GetBuilder<SelectionDialogController>(
@@ -33,7 +34,7 @@ class SelectionDialog {
             ...controller.options.asMap().entries.map(
               (e) {
                 final int index = e.key;
-                final String title = e.value.tr;
+                final String title = e.value.toString().tr;
                 return ListTile(
                   title: Text(title),
                   contentPadding: const EdgeInsets.symmetric(horizontal: 20),
@@ -52,12 +53,13 @@ class SelectionDialog {
             if (onCreate != null)
               ListTile(
                 onTap: () async {
-                  String? input = await InputDialog(
+                  final String? input = await InputDialog(
                     title: 'Enter the title',
                   ).show(context);
                   if (input != null) {
-                    controller.addOption(input);
-                    // onCreate!();
+                    final Selectable newOption =
+                        await onCreate!(input) as Selectable;
+                    controller.addOption(newOption);
                   }
                 },
                 title: Row(
@@ -82,6 +84,6 @@ class SelectionDialog {
 
     // Return the selected index
     if (Get.find<SelectionDialogController>().isCanceled) return null;
-    return Get.find<SelectionDialogController>().currentIndex;
+    return Get.find<SelectionDialogController>().confirm();
   }
 }

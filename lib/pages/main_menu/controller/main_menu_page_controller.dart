@@ -47,6 +47,14 @@ class MainMenuPageController extends GetxController {
     update();
   }
 
+  Future<Track> createTrack(String title) async {
+    return _repository.createTrack(title);
+  }
+
+  void selectCurrentTrack(Track track) {
+    _repository.setCurrentTrack(track);
+  }
+
   @override
   Future<void> onClose() async {
     await Get.find<Database>().close();

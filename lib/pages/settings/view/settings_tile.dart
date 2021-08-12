@@ -1,4 +1,5 @@
 import 'package:cubetimer/dialog/selection_dialog.dart';
+import 'package:cubetimer/models/interfaces/selectable.dart';
 import 'package:cubetimer/models/settings/settings_key.dart';
 import 'package:cubetimer/models/settings/settings_value.dart';
 import 'package:flutter/material.dart';
@@ -24,9 +25,6 @@ class SettingsTile extends StatelessWidget {
     final String titleText = settingsKey.name.tr;
     if (settingsKey is SettingsSelectionKey) {
       final String trailText = settingsValue.toString().tr;
-      final List<SettingsValue> options =
-          (settingsKey as SettingsSelectionKey).options;
-      final int originalIndex = options.indexOf(settingsValue);
       return ListTile(
         title: Text(
           titleText,
@@ -45,14 +43,17 @@ class SettingsTile extends StatelessWidget {
         contentPadding: const EdgeInsets.symmetric(horizontal: 25),
         dense: true,
         onTap: () async {
-          final int? index = await SelectionDialog(
+          final List<SettingsValue> options =
+              (settingsKey as SettingsSelectionKey).options;
+          final int originalIndex = options.indexOf(settingsValue);
+          final Selectable? result = await SelectionDialog(
             title: titleText,
-            options: options.map((e) => e.toString()).toList(),
+            options: options.map((e) => e as Selectable).toList(),
             originalIndex: originalIndex,
           ).show(context);
 
-          if (index != null) {
-            final SettingsValue newSettingsValue = options[index];
+          if (result != null) {
+            final SettingsValue newSettingsValue = result as SettingsValue;
             newSettingsValue.apply();
             saveSettings(settingsKey, newSettingsValue);
           }

@@ -1,3 +1,4 @@
+import 'package:cubetimer/models/interfaces/selectable.dart';
 import 'package:cubetimer/models/record/record.dart';
 import 'package:hive/hive.dart';
 import 'package:uuid/uuid.dart';
@@ -5,7 +6,7 @@ import 'package:uuid/uuid.dart';
 part 'track.g.dart';
 
 @HiveType(typeId: 1)
-class Track extends HiveObject {
+class Track extends HiveObject implements Selectable {
   // Constructors
   Track({
     required this.id,
@@ -28,7 +29,7 @@ class Track extends HiveObject {
 
   Track.defaultValue()
       : id = const Uuid().v4(),
-        title = 'default',
+        title = 'Default track',
         records = [],
         createTime = DateTime.now(),
         lastUpdateTime = DateTime.now(),
@@ -50,4 +51,10 @@ class Track extends HiveObject {
   bool isArchived;
   @HiveField(6)
   bool isCurrentTrack;
+
+  // Functions
+  @override
+  String toString() {
+    return title;
+  }
 }

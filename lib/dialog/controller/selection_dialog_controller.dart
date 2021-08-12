@@ -1,3 +1,4 @@
+import 'package:cubetimer/models/interfaces/selectable.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 
 class SelectionDialogController extends GetxController {
@@ -8,7 +9,7 @@ class SelectionDialogController extends GetxController {
   }) : _currentIndex = currentIndex;
 
   // Variables
-  final List<String> options;
+  final List<Selectable> options;
   int get currentIndex => _currentIndex;
   bool get isCanceled => _isCanceled;
   int _currentIndex = 0;
@@ -20,11 +21,15 @@ class SelectionDialogController extends GetxController {
     update();
   }
 
+  Selectable? confirm() {
+    return options[_currentIndex];
+  }
+
   void cancel() {
     _isCanceled = true;
   }
 
-  void addOption(String option) {
+  void addOption(Selectable option) {
     options.add(option);
     _currentIndex = options.length - 1;
     update();

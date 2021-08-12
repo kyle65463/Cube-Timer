@@ -7,6 +7,7 @@ class InputDialogController extends GetxController {
 
   // Variables
   final TextEditingController inputController = TextEditingController();
+  final GlobalKey<FormState> inputKey = GlobalKey<FormState>();
   bool get isCanceled => _isCanceled;
   bool _isCanceled = false;
 
@@ -16,7 +17,7 @@ class InputDialogController extends GetxController {
   }
 
   String? validate() {
-    if (inputController.text.isNotEmpty) inputController.text;
+    if (inputController.text.isNotEmpty) return inputController.text;
     return null;
   }
 }

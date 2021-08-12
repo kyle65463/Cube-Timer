@@ -23,7 +23,7 @@ class InputDialog {
             const SizedBox(height: 20),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15),
-              child: TextField(
+              child: TextFormField(
                 decoration: const InputDecoration(
                   isDense: true,
                   contentPadding: EdgeInsets.symmetric(vertical: 5),
@@ -35,7 +35,9 @@ class InputDialog {
           ],
         ),
       ),
-      btnOkOnPressed: () {},
+      btnOkOnPressed: () {
+
+      },
       btnCancelOnPressed: () {
         Get.find<InputDialogController>().cancel();
       },

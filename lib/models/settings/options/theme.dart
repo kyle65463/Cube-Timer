@@ -1,3 +1,4 @@
+import 'package:cubetimer/models/interfaces/selectable.dart';
 import 'package:cubetimer/models/settings/settings_key.dart';
 import 'package:cubetimer/models/settings/settings_value.dart';
 import 'package:hive/hive.dart';
@@ -23,7 +24,7 @@ class SettingsKeyTheme extends SettingsSelectionKey {
 }
 
 // Settings value
-abstract class Theme extends SettingsValue {
+abstract class Theme extends SettingsValue implements Selectable {
   // Functions
   @override
   void apply() {

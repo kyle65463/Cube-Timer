@@ -70,13 +70,10 @@ class TracksRepository extends Repository {
     _currentStreamController.sink.add(true);
   }
 
-  Future<void> createTrack(String title) async {
-    // Create the track
+  Future<Track> createTrack(String title) async {
     final Track track = Track.createNew(title: title);
     await _database.createTrack(track);
-
-    // Set the new track to current track
-    setCurrentTrack(track);
+    return track;
   }
 
   Future<void> createRecord(Record record, [Track? track]) async {

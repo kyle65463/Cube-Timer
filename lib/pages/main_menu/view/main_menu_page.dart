@@ -88,6 +88,8 @@ class MainMenuPage extends StatelessWidget {
                       child: CurrentTrackBadge(
                         tracks: controller.tracks,
                         currentTrack: controller.currentTrack,
+                        onCreateTrack: controller.createTrack,
+                        onSelectCurrentTrack: controller.selectCurrentTrack,
                       ),
                     )
                   else

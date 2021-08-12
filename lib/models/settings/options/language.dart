@@ -1,3 +1,4 @@
+import 'package:cubetimer/models/interfaces/selectable.dart';
 import 'package:cubetimer/models/settings/settings_key.dart';
 import 'package:cubetimer/models/settings/settings_value.dart';
 import 'package:cubetimer/utils/language_utils.dart';
@@ -28,7 +29,7 @@ class SettingsKeyLanguage extends SettingsSelectionKey {
 }
 
 // Settings Value
-abstract class Language extends SettingsValue {
+abstract class Language extends SettingsValue implements Selectable {
   // Constructor
   Language({
     required this.languageCode,
