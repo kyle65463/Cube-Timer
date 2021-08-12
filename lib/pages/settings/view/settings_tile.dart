@@ -45,11 +45,10 @@ class SettingsTile extends StatelessWidget {
         onTap: () async {
           final List<SettingsValue> options =
               (settingsKey as SettingsSelectionKey).options;
-          final int originalIndex = options.indexOf(settingsValue);
           final Selectable? result = await SelectionDialog(
             title: titleText,
             options: options.map((e) => e as Selectable).toList(),
-            originalIndex: originalIndex,
+            originalOption: settingsValue as Selectable,
           ).show(context);
 
           if (result != null) {

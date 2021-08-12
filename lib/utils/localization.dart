@@ -23,8 +23,11 @@ class Localization extends Translations {
           'timer settings': 'Timer Settings',
           'confirm': 'Confirm',
           'cancel': 'Cancel',
-          'choose track': 'Choose the Track',
-          'add': 'Add a new track',
+          'select track': 'Select the Track',
+          'add': 'Add',
+          'add new track': 'Add a new track',
+          'enter': 'Enter',
+          'enter title': 'Enter the title',
 
           // Languages
           'language en-us': 'English',
@@ -39,8 +42,11 @@ class Localization extends Translations {
           'statistics': '統計',
           'records': '紀錄',
           'more': '更多',
-          'choose track': '選擇分類',
+          'select track': '選擇分類',
           'add': '新增',
+          'add new track': '新增分類',
+          'enter': '輸入',
+          'enter title': '輸入名稱',
 
           // Settings
           'settings': '設定',

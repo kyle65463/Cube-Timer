@@ -28,11 +28,12 @@ class CurrentTrackBadge extends StatelessWidget {
     return GestureDetector(
       onTap: () async {
         final Selectable? result = await SelectionDialog(
-          title: 'choose track'.tr,
+          title: 'select track'.tr,
           options: tracks,
-          originalIndex:
-              tracks.map((e) => e.id).toList().indexOf(currentTrack.id),
+          originalOption: currentTrack,
           onCreate: onCreateTrack,
+          btnAddText: 'add new track'.tr,
+          inputDialogTitle: 'enter title'.tr,
         ).show(context);
         if (result != null) {
           final Track selectedTrack = result as Track;

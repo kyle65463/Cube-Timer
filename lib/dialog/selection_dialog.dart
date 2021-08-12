@@ -10,24 +10,29 @@ class SelectionDialog {
   SelectionDialog({
     required this.title,
     required this.options,
-    required this.originalIndex,
+    required this.originalOption,
     this.onCreate,
+    this.btnAddText,
+    this.inputDialogTitle,
   });
 
   // Variables
   final String title;
   final List<Selectable> options;
-  final int originalIndex;
+  final Selectable originalOption;
   final Function? onCreate;
+  final String? btnAddText;
+  final String? inputDialogTitle;
 
   // Functions
   Future<Selectable?> show(BuildContext context) async {
+    options.sort((a, b) => a.toString().compareTo(b.toString()));
     await MyDialog(
       title: title,
       body: GetBuilder<SelectionDialogController>(
         init: SelectionDialogController(
           options: options,
-          currentIndex: originalIndex,
+          originalOption: originalOption,
         ),
         builder: (controller) => Column(
           children: [
@@ -36,7 +41,11 @@ class SelectionDialog {
                 final int index = e.key;
                 final String title = e.value.toString().tr;
                 return ListTile(
-                  title: Text(title),
+                  title: Text(
+                    title,
+                    style: const TextStyle(fontSize: 17),
+                  ),
+                  dense: true,
                   contentPadding: const EdgeInsets.symmetric(horizontal: 20),
                   trailing: index == controller.currentIndex
                       ? const FaIcon(
@@ -52,9 +61,10 @@ class SelectionDialog {
             ).toList(),
             if (onCreate != null)
               ListTile(
+                dense: true,
                 onTap: () async {
                   final String? input = await InputDialog(
-                    title: 'Enter the title',
+                    title: inputDialogTitle ?? 'enter'.tr,
                   ).show(context);
                   if (input != null) {
                     final Selectable newOption =
@@ -69,7 +79,10 @@ class SelectionDialog {
                       size: 20,
                     ),
                     const SizedBox(width: 10),
-                    Text('add'.tr),
+                    Text(
+                      btnAddText ?? 'add'.tr,
+                      style: const TextStyle(fontSize: 17),
+                    ),
                   ],
                 ),
               ),
