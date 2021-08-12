@@ -42,20 +42,10 @@ class RecordsPage extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 20),
-                    ...controller.tracks.map((track) {
-                      return Column(
-                        children: [
-                          Text(
-                            track.title,
-                            style: const TextStyle(fontSize: 20),
-                          ),
-                          ...track.records
-                              .map((e) =>
-                                  Text(TimerUtils.parseDisplayTime(e.rawTime)))
-                              .toList(),
-                        ],
-                      );
-                    }).toList(),
+                    ...controller.track.records
+                        .map(
+                            (e) => Text(TimerUtils.parseDisplayTime(e.rawTime)))
+                        .toList(),
                   ],
                 ),
               ),

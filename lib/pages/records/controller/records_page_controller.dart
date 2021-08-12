@@ -6,24 +6,28 @@ import 'package:get/get_state_manager/get_state_manager.dart';
 class RecordsPageController extends GetxController {
   // Constructor
   RecordsPageController() {
-    _initDone = _loadTracks();
-    _listenTrackStream();
+    _initDone = _init();
   }
 
   // Variables
-  List<Track> get tracks => _tracks;
+  Track get track => _track;
   Future get initDone => _initDone;
   final TracksRepository _repository = Get.find<TracksRepository>();
-  late List<Track> _tracks;
+  late Track _track;
   late Future _initDone;
 
   // Functions
-  Future<void> _loadTracks() async {
-    _tracks = await _repository.loadTracks();
+  Future<void> _init() async {
+    await _loadCurrentTrack();
+    _listenCurrentTrackStream();
+  }
+
+  Future<void> _loadCurrentTrack() async {
+    _track = await _repository.loadCurrentTrack();
     update();
   }
 
-  void _listenTrackStream() {
-    _repository.trackStream.listen((e) => _loadTracks());
+  void _listenCurrentTrackStream() {
+    _repository.currentTrackStream.listen((e) => _loadCurrentTrack());
   }
 }

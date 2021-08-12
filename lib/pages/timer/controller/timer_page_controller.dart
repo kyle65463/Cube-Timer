@@ -15,8 +15,7 @@ class TimerPageController extends GetxController {
   // Constructor
   TimerPageController() {
     timer.records.listen(_saveRecord);
-    _initDone = _loadTracks();
-    _listenTrackStream();
+    _initDone = _init();
   }
 
   // Variables
@@ -28,14 +27,19 @@ class TimerPageController extends GetxController {
   int _currentTime = 0;
   double timerCounterFontSize = 75;
   final TracksRepository _repository = Get.find<TracksRepository>();
-  late List<Track> _tracks;
   late Future _initDone;
+  late Track _track;
 
   // Functions
   @override
   void onClose() {
     super.onClose();
     timer.dispose();
+  }
+
+  Future<void> _init() async {
+    await _loadCurrentTrack();
+    _listenCurrentTrackStream();
   }
 
   void onTimerTriggered() {
@@ -84,7 +88,7 @@ class TimerPageController extends GetxController {
           TurnR(positive: true),
         ]),
       ),
-      _tracks.first,
+      _track,
     );
   }
 
@@ -92,12 +96,13 @@ class TimerPageController extends GetxController {
     timer.onExecute.add(StopWatchExecute.reset);
   }
 
-  Future<void> _loadTracks() async {
-    _tracks = await  _repository.loadTracks();
+  Future<void> _loadCurrentTrack() async {
+    _track = await _repository.loadCurrentTrack();
+    _resetTimer();
     update();
   }
 
-  void _listenTrackStream() {
-    _repository.trackStream.listen((e) => _loadTracks());
+  void _listenCurrentTrackStream() {
+    _repository.currentTrackStream.listen((e) => _loadCurrentTrack());
   }
 }

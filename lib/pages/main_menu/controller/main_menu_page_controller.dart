@@ -62,10 +62,10 @@ class MainMenuPageController extends GetxController {
   }
 
   Future<void> _init() async {
-    _listenTrackStream();
-    _listenCurrentTrackStream();
     await _loadTracks();
     await _loadCurrentTrack();
+    _listenTrackStream();
+    _listenCurrentTrackStream();
   }
 
   Future<void> _loadTracks() async {
