@@ -7,6 +7,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
 class SelectionDialog {
+  // Constructor
   SelectionDialog({
     required this.title,
     required this.options,
@@ -93,8 +94,8 @@ class SelectionDialog {
           ],
         ),
       ),
-      btnOkOnPressed: () {},
-      btnCancelOnPressed: () {
+      onConfirm: () {},
+      onCancel: () {
         Get.find<SelectionDialogController>().cancel();
       },
     ).show();

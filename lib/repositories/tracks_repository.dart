@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:cubetimer/models/record/penalty.dart';
 import 'package:cubetimer/models/record/record.dart';
 import 'package:cubetimer/models/record/track.dart';
 import 'package:cubetimer/repositories/database/database.dart';
@@ -81,5 +82,24 @@ class TracksRepository extends Repository {
     track ??= await loadCurrentTrack();
     track.records.add(record);
     await _database.updateTrack(track);
+    _currentStreamController.sink.add(true);
+  }
+
+  Future<void> deleteRecord(Record record, [Track? track]) async {
+    // Create record to current track if not specified
+    track ??= await loadCurrentTrack();
+    track.records.remove(record);
+    await _database.updateTrack(track);
+    _currentStreamController.sink.add(true);
+  }
+
+  Future<void> updateRecord(Record record, [Track? track]) async {
+    track ??= await loadCurrentTrack();
+    if (!track.records.contains(record)) {
+      // Shouldn't happen
+      throw Exception('Record not found in the track!');
+    }
+    await _database.updateTrack(track);
+    _currentStreamController.sink.add(true);
   }
 }

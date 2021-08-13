@@ -126,7 +126,7 @@ class AwesomeDialog {
     this.onDissmissCallback,
     this.isDense = false,
     this.dismissOnTouchOutside = true,
-    this.headerAnimationLoop = true,
+    this.headerAnimationLoop = false,
     this.aligment = Alignment.center,
     this.animType = AnimType.SCALE,
     this.padding,
@@ -156,22 +156,22 @@ class AwesomeDialog {
             switch (animType) {
               case AnimType.SCALE:
                 return ScaleFade(
-                    scale: 0.1,
-                    fade: true,
-                    curve: Curves.fastLinearToSlowEaseIn,
-                    child: _buildDialog);
+                  scale: 0.1,
+                  curve: Curves.fastLinearToSlowEaseIn,
+                  child: _buildDialog,
+                );
 
               case AnimType.LEFTSLIDE:
-                return FadeIn(from: SlideFrom.LEFT, child: _buildDialog);
+                return FadeIn(from: SlideFrom.left, child: _buildDialog);
 
               case AnimType.RIGHSLIDE:
-                return FadeIn(from: SlideFrom.RIGHT, child: _buildDialog);
+                return FadeIn(from: SlideFrom.right, child: _buildDialog);
 
               case AnimType.BOTTOMSLIDE:
-                return FadeIn(from: SlideFrom.BOTTOM, child: _buildDialog);
+                return FadeIn(from: SlideFrom.bottom, child: _buildDialog);
 
               case AnimType.TOPSLIDE:
-                return FadeIn(from: SlideFrom.TOP, child: _buildDialog);
+                return FadeIn(from: SlideFrom.top, child: _buildDialog);
 
               default:
                 return _buildDialog;
@@ -247,7 +247,7 @@ class AwesomeDialog {
         buttonTextStyle: buttonsTextStyle,
       );
 
-  dismiss() {
+  void dismiss() {
     if (!isDissmisedBySystem) Get.back();
   }
 

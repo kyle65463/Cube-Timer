@@ -20,7 +20,7 @@ class Record {
   Record.createNew({
     required this.rawTime,
     required this.scramble,
-    this.penalty = const PenaltyNone.cons(),
+    required this.penalty,
   })  : id = const Uuid().v4(),
         createTime = DateTime.now();
 

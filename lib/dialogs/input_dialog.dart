@@ -35,8 +35,8 @@ class InputDialog {
           ],
         ),
       ),
-      btnOkOnPressed: () {},
-      btnCancelOnPressed: () {
+      onConfirm: () {},
+      onCancel: () {
         Get.find<InputDialogController>().cancel();
       },
     ).show();

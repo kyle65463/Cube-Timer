@@ -8,10 +8,11 @@ class CustomDialog {
     this.title,
     this.description,
     this.body,
-    this.btnOkOnPressed,
-    this.btnCancelOnPressed,
+    this.onConfirm,
+    this.onCancel,
     this.hasCancelButton = true,
     this.width,
+    this.dialogType,
   });
 
   // Variables
@@ -19,14 +20,15 @@ class CustomDialog {
   final String? description;
   final Widget? body;
   final bool hasCancelButton;
-  final Function? btnOkOnPressed;
-  final Function? btnCancelOnPressed;
+  final Function? onConfirm;
+  final Function? onCancel;
   final double? width;
+  final DialogType? dialogType;
 
   // Functions
-  Future<dynamic> show() async {
+  Future<void> show() async {
     return AwesomeDialog(
-      dialogType: DialogType.NO_HEADER,
+      dialogType: dialogType ?? DialogType.NO_HEADER,
       title: title,
       desc: description,
       width: width,
@@ -52,8 +54,8 @@ class CustomDialog {
           : null,
       btnOkText: 'confirm'.tr,
       btnCancelText: 'cancel'.tr,
-      btnOkOnPress: btnOkOnPressed,
-      btnCancelOnPress: !hasCancelButton ? null : btnCancelOnPressed ?? () {},
+      btnOkOnPress: onConfirm,
+      btnCancelOnPress: !hasCancelButton ? null : onCancel ?? () {},
     ).show();
   }
 }

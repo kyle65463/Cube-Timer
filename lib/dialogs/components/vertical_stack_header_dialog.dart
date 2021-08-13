@@ -127,7 +127,7 @@ class VerticalStackDialog extends StatelessWidget {
             ),
           ),
           if (header != null)
-            Container(
+            SizedBox(
               width: width ?? mediaQueryData.size.width,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,

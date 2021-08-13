@@ -1,4 +1,4 @@
-import 'package:cubetimer/dialogs/components/animated_button.dart';
+import 'package:cubetimer/models/record/penalty.dart';
 import 'package:cubetimer/models/record/record.dart';
 import 'package:cubetimer/models/record/track.dart';
 import 'package:cubetimer/pages/records/view/dialogs/record_info_dialog.dart';
@@ -21,7 +21,9 @@ class RecordsPageController extends GetxController {
 
   // Functions
   void showRecordInfo(Record record) {
-    RecordInfoDialog(record: record).show();
+    RecordInfoDialog(
+      record: record,
+    ).show();
   }
 
   void enterRecordsEditingMode() {}

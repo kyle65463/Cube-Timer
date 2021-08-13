@@ -9,5 +9,12 @@
 			""
 		],
 		"description": "Make a singleton"
+	},
+	"sizedbox": {
+		"prefix": "sizedbox",
+		"body": [
+			"const SizedBox(height: $1),",
+		],
+		"description": "Create a const SizdBox"
 	}
 }

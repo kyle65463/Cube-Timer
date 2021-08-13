@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:cubetimer/models/record/penalty.dart';
 import 'package:cubetimer/models/record/record.dart';
 import 'package:cubetimer/models/record/track.dart';
 import 'package:cubetimer/models/solve/move/turn.dart';
@@ -78,7 +79,28 @@ class TimerPageController extends GetxController {
     _repository.createRecord(
       Record.createNew(
         rawTime: rawTime,
+        penalty: PenaltyNone(),
         scramble: Scramble(moves: [
+          TurnU(positive: true),
+          TurnR(positive: true),
+          TurnU(positive: true),
+          TurnR(positive: true),
+          TurnU(positive: true),
+          TurnR(positive: true),
+          TurnU(positive: true),
+          TurnR(positive: true),
+          TurnU(positive: true),
+          TurnR(positive: true),
+          TurnU(positive: true),
+          TurnR(positive: true),
+          TurnU(positive: true),
+          TurnR(positive: true),
+          TurnU(positive: true),
+          TurnR(positive: true),
+          TurnU(positive: true),
+          TurnR(positive: true),
+          TurnU(positive: true),
+          TurnR(positive: true),
           TurnU(positive: true),
           TurnR(positive: true),
         ]),

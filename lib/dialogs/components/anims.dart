@@ -2,17 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
 
 //Helper Enum Class
-enum SlideFrom { TOP, BOTTOM, LEFT, RIGHT }
+enum SlideFrom {
+  top,
+  bottom,
+  left,
+  right,
+}
 
 Offset getOffset(MultiTweenValues<AniProps> animation, SlideFrom from) {
   switch (from) {
-    case SlideFrom.TOP:
+    case SlideFrom.top:
       return Offset(0, -1 * animation.get(AniProps.translateX));
-    case SlideFrom.BOTTOM:
+    case SlideFrom.bottom:
       return Offset(0, animation.get(AniProps.translateX));
-    case SlideFrom.LEFT:
+    case SlideFrom.left:
       return Offset(-1 * animation.get(AniProps.translateX), 0);
-    case SlideFrom.RIGHT:
+    case SlideFrom.right:
       return Offset(animation.get(AniProps.translateX), 0);
     default:
       return const Offset(0, 0);
@@ -35,7 +40,7 @@ class FadeIn extends StatelessWidget {
       this.child,
       this.fade = true,
       this.control = CustomAnimationControl.play,
-      this.from = SlideFrom.RIGHT,
+      this.from = SlideFrom.right,
       this.curve = Curves.ease});
 
   @override
@@ -72,14 +77,15 @@ class Slide extends StatelessWidget {
   final double slideDistance;
   final Curve curve;
 
-  Slide(
-      {this.delay = 0,
-      this.child,
-      this.duration = 1,
-      this.slideDistance = 60.0,
-      this.control = CustomAnimationControl.play,
-      this.from = SlideFrom.RIGHT,
-      this.curve = Curves.ease});
+  const Slide({
+    this.delay = 0,
+    this.child,
+    this.duration = 1,
+    this.slideDistance = 60.0,
+    this.control = CustomAnimationControl.play,
+    this.from = SlideFrom.right,
+    this.curve = Curves.ease,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -96,12 +102,11 @@ class Slide extends StatelessWidget {
       control: control,
       duration: tween.duration,
       tween: tween,
-      child: child,
       builder: (context, child, animation) => Transform.translate(
         offset: getOffset(animation, from),
         child: child,
-        //offset: Offset(animation["translateX"], 0), child: child),
       ),
+      child: child,
     );
   }
 }
@@ -115,7 +120,7 @@ class ScaleFade extends StatelessWidget {
   final double scale;
   final Curve curve;
 
-  ScaleFade({
+  const ScaleFade({
     this.delay = 1,
     this.duration = 1,
     this.child,
@@ -131,26 +136,25 @@ class ScaleFade extends StatelessWidget {
       ..add(
         AniProps.opacity,
         fade ? Tween(begin: 0.0, end: 1.0) : Tween(begin: 1.0, end: 1.0),
-        Duration(milliseconds: (500 * duration).round()),
+        Duration(milliseconds: (300 * duration).round()),
       )
       ..add(AniProps.scale, Tween(begin: scale, end: 1.0),
-          Duration(milliseconds: (500 * duration).round()), curve);
+          Duration(milliseconds: (300 * duration).round()), curve);
 
     return CustomAnimation<MultiTweenValues<AniProps>>(
-        delay: Duration(milliseconds: (200 * delay).round()),
-        control: control,
-        duration: tween.duration,
-        tween: tween,
-        child: child,
-        builder: (context, child, animation) => Opacity(
-              opacity: animation.get(AniProps.opacity),
-              child: Transform.scale(
-                scale: animation.get(AniProps.scale),
-                alignment: Alignment.center,
-                child: child,
-                //offset: Offset(animation["translateX"], 0), child: child),
-              ),
-            ));
+      delay: Duration(milliseconds: (100 * delay).round()),
+      control: control,
+      duration: tween.duration,
+      tween: tween,
+      builder: (context, child, animation) => Opacity(
+        opacity: animation.get(AniProps.opacity),
+        child: Transform.scale(
+          scale: animation.get(AniProps.scale),
+          child: child,
+        ),
+      ),
+      child: child,
+    );
   }
 }
 
@@ -160,7 +164,7 @@ class ShowHide extends StatelessWidget {
   final double duration;
   final bool isShow;
 
-  ShowHide({
+  const ShowHide({
     this.delay = 1,
     this.duration = 1,
     this.child,

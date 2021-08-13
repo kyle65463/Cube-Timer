@@ -16,7 +16,6 @@ class HiveDatabase extends Database {
   // Variables
   late Box<SettingsValue> _settingsBox;
   late Box<Track> _trackBox;
-  late Box<Record> _recordBox; 
 
   // Functions
   /* Initialize */
@@ -47,7 +46,6 @@ class HiveDatabase extends Database {
     await Hive.initFlutter();
     _settingsBox = await Hive.openBox('settings');
     _trackBox = await Hive.openBox('track');
-    _recordBox = await Hive.openBox('record');
   }
 
   @override

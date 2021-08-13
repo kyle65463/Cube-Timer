@@ -23,11 +23,16 @@ class Localization extends Translations {
           'timer settings': 'Timer Settings',
           'confirm': 'Confirm',
           'cancel': 'Cancel',
-          'select track': 'Select the Track',
+          'select track': 'Select the track',
           'add': 'Add',
           'add new track': 'Add a new track',
           'enter': 'Enter',
           'enter title': 'Enter the title',
+
+          // Dialogs
+          'dialog title delete record': 'Delete record',
+          'dialog description delete record':
+              'Are you sure? This action can not be recovered.',
 
           // Languages
           'language en-us': 'English',
@@ -47,6 +52,10 @@ class Localization extends Translations {
           'add new track': '新增分類',
           'enter': '輸入',
           'enter title': '輸入名稱',
+
+          // dialogs
+          'dialog title delete record': '刪除紀錄',
+          'dialog description delete record': '確定要刪除紀錄嗎？這個行動無法回復。',
 
           // Settings
           'settings': '設定',
