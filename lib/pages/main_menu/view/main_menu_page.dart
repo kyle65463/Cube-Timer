@@ -20,85 +20,80 @@ class MainMenuPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<MainMenuPageController>(
       builder: (controller) => Scaffold(
-        body: SafeArea(
-          bottom: false,
-          child: FutureBuilder<void>(
-            future: controller.initDone,
-            builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.waiting) {
-                return const Center(
-                  child: CircularProgressIndicator(),
-                );
-              }
-              return Stack(
-                children: [
-                  Column(
-                    children: [
-                      Expanded(child: controller.page),
-                      AnimatedBuilder(
-                        animation: controller,
-                        builder: (BuildContext context, Widget? child) {
-                          return AnimatedContainer(
-                            duration: const Duration(milliseconds: 100),
-                            height: controller.showNavBar ? 80 : 0,
-                            child: child,
-                          );
-                        },
-                        child: SingleChildScrollView(
-                          physics: const NeverScrollableScrollPhysics(),
-                          child: BottomNavigationBar(
-                            items: [
-                              BottomNavigationBarItem(
-                                icon: const FaIcon(FontAwesomeIcons.stopwatch),
-                                label: 'timer'.tr,
-                              ),
-                              BottomNavigationBarItem(
-                                icon: const FaIcon(FontAwesomeIcons.history),
-                                label: 'records'.tr,
-                              ),
-                              BottomNavigationBarItem(
-                                icon: const FaIcon(FontAwesomeIcons.chartBar),
-                                label: 'statistics'.tr,
-                              ),
-                              BottomNavigationBarItem(
-                                icon: const FaIcon(FontAwesomeIcons.bars),
-                                label: 'more'.tr,
-                              ),
-                            ],
-                            selectedItemColor: Colors.grey[800],
-                            unselectedItemColor: Colors.grey[500],
-                            backgroundColor: Colors.brown[100],
-                            selectedFontSize: 0,
-                            unselectedFontSize: 0,
-                            currentIndex: controller.index,
-                            onTap: controller.changePage,
-                          ),
+        body: FutureBuilder<void>(
+          future: controller.initDone,
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+            return Stack(
+              children: [
+                Column(
+                  children: [
+                    Expanded(child: controller.page),
+                    AnimatedContainer(
+                      duration: const Duration(milliseconds: 150),
+                      height: controller.showNavBar ? 80 : 0,
+                      child: SingleChildScrollView(
+                        physics: const NeverScrollableScrollPhysics(),
+                        child: BottomNavigationBar(
+                          items: [
+                            BottomNavigationBarItem(
+                              icon: const FaIcon(FontAwesomeIcons.stopwatch),
+                              label: 'timer'.tr,
+                            ),
+                            BottomNavigationBarItem(
+                              icon: const FaIcon(FontAwesomeIcons.history),
+                              label: 'records'.tr,
+                            ),
+                            BottomNavigationBarItem(
+                              icon: const FaIcon(FontAwesomeIcons.chartBar),
+                              label: 'statistics'.tr,
+                            ),
+                            BottomNavigationBarItem(
+                              icon: const FaIcon(FontAwesomeIcons.bars),
+                              label: 'more'.tr,
+                            ),
+                          ],
+                          selectedItemColor: Colors.grey[800],
+                          unselectedItemColor: Colors.grey[500],
+                          backgroundColor: Colors.brown[100],
+                          selectedFontSize: 0,
+                          unselectedFontSize: 0,
+                          currentIndex: controller.index,
+                          onTap: controller.changePage,
                         ),
                       ),
-                    ],
+                    ),
+                  ],
+                ),
+                if (controller.page is TimerPage)
+                  TimeCounter()
+                else
+                  Container(),
+                if (controller.page is! SettingsPage &&
+                    controller.showCurrentTrackBadge &&
+                    controller.appBar == null)
+                  Positioned(
+                    top: MediaQuery.of(context).padding.top + 25,
+                    right: 25,
+                    child: CurrentTrackBadge(
+                      tracks: controller.tracks,
+                      currentTrack: controller.currentTrack,
+                      onCreateTrack: controller.createTrack,
+                      onSelectCurrentTrack: controller.selectCurrentTrack,
+                    ),
                   ),
-                  if (controller.page is TimerPage)
-                    TimeCounter()
-                  else
-                    Container(),
-                  if (controller.page is! SettingsPage &&
-                      controller.showCurrentTrackBadge)
-                    Positioned(
-                      top: 25,
-                      right: 25,
-                      child: CurrentTrackBadge(
-                        tracks: controller.tracks,
-                        currentTrack: controller.currentTrack,
-                        onCreateTrack: controller.createTrack,
-                        onSelectCurrentTrack: controller.selectCurrentTrack,
-                      ),
-                    )
-                  else
-                    Container(),
-                ],
-              );
-            },
-          ),
+                AnimatedContainer(
+                  duration: const Duration(milliseconds: 150),
+                  height: controller.appBar != null ? 110 : 0,
+                  child: controller.appBar ?? Container(),
+                ),
+              ],
+            );
+          },
         ),
       ),
     );

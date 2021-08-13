@@ -28,6 +28,7 @@ class Localization extends Translations {
           'add new track': 'Add a new track',
           'enter': 'Enter',
           'enter title': 'Enter the title',
+          'num records selected': '@num records selected',
 
           // Penalty
           'penalty': 'Penalty',
@@ -58,6 +59,7 @@ class Localization extends Translations {
           'add new track': '新增分類',
           'enter': '輸入',
           'enter title': '輸入名稱',
+          'num records selected': '已選擇 @num 筆紀錄',
 
           // Penalty
           'penalty': '處罰',

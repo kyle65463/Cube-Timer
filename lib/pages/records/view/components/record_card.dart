@@ -8,19 +8,33 @@ class RecordCard extends StatelessWidget {
   // Constructor
   const RecordCard({
     required this.record,
+    required this.inEditMode,
+    required this.isSelected,
     required this.showRecordInfo,
-    required this.onLongPress,
+    required this.editSelected,
+    required this.enterEditMode,
     Key? key,
   }) : super(key: key);
 
   // Variables
   final Record record;
+  final bool inEditMode;
+  final bool isSelected;
   final Function showRecordInfo;
-  final void Function() onLongPress;
+  final Function editSelected;
+  final Function enterEditMode;
 
   // Function
   void _onTap() {
-    showRecordInfo(record);
+    if (inEditMode) {
+      editSelected(record);
+    } else {
+      showRecordInfo(record);
+    }
+  }
+
+  void _onLongPress() {
+    if (!inEditMode) enterEditMode(record);
   }
 
   @override
@@ -28,12 +42,18 @@ class RecordCard extends StatelessWidget {
     final bool hasPenalty = record.penalty is! PenaltyNone;
     return Card(
       shape: RoundedRectangleBorder(
+        side: isSelected
+            ? BorderSide(
+                color: Colors.grey[700]!,
+                width: 1.5,
+              )
+            : BorderSide.none,
         borderRadius: BorderRadius.circular(5),
       ),
       color: Colors.brown[100],
       child: InkWell(
         onTap: _onTap,
-        onLongPress: onLongPress,
+        onLongPress: _onLongPress,
         child: Stack(
           children: [
             Center(

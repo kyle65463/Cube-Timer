@@ -30,7 +30,6 @@ class TimeCounter extends StatelessWidget {
                     color: Colors.black.withOpacity(0.8),
                   ),
                 ),
-                const SizedBox(height: 60),
               ],
             ),
           ),

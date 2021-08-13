@@ -1,6 +1,5 @@
 import 'package:cubetimer/pages/records/controller/records_page_controller.dart';
 import 'package:cubetimer/pages/records/view/components/record_card.dart';
-import 'package:cubetimer/utils/timer_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -27,6 +26,7 @@ class RecordsPage extends StatelessWidget {
               );
             }
             return SafeArea(
+              bottom: false,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -34,7 +34,7 @@ class RecordsPage extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 25),
                     child: Text(
-                      'records'.tr,
+                      controller.inEditMode ? '' : 'records'.tr,
                       style: const TextStyle(
                         fontSize: 35,
                         fontWeight: FontWeight.bold,
@@ -57,8 +57,12 @@ class RecordsPage extends StatelessWidget {
                         (record) {
                           return RecordCard(
                             record: record,
+                            inEditMode: controller.inEditMode,
+                            isSelected:
+                                controller.selectedRecords.contains(record),
                             showRecordInfo: controller.showRecordInfo,
-                            onLongPress: controller.enterRecordsEditingMode,
+                            enterEditMode: controller.enterEditMode,
+                            editSelected: controller.editSelected,
                           );
                         },
                       ).toList(),

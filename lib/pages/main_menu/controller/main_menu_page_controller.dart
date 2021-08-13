@@ -27,6 +27,7 @@ class MainMenuPageController extends GetxController {
   bool showNavBar = true;
   bool showCurrentTrackBadge = true;
   bool showTimeCounter = true;
+  Function? leaveEditMode;
   List<Track> get tracks => _tracks;
   Track get currentTrack => _currentTrack;
   Future get initDone => _initDone;
@@ -35,10 +36,22 @@ class MainMenuPageController extends GetxController {
   late List<Track> _tracks;
   late Track _currentTrack;
   late Future _initDone;
+  Widget? get appBar => _appBar;
+  Widget? _appBar;
 
   // Functions
   void toggleBottomNavBar() {
     showNavBar = !showNavBar;
+    update();
+  }
+
+  void showAppBar(Widget appBar) {
+    _appBar = appBar;
+    update();
+  }
+
+  void closeAppBar() {
+    _appBar = null;
     update();
   }
 
