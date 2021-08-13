@@ -1,4 +1,5 @@
 import 'package:cubetimer/pages/main_menu/controller/main_menu_page_controller.dart';
+import 'package:cubetimer/pages/main_menu/view/bottom_nav_bar.dart';
 import 'package:cubetimer/pages/main_menu/view/current_track_badge.dart';
 import 'package:cubetimer/pages/settings/view/settings_page.dart';
 import 'package:cubetimer/pages/timer/view/time_counter.dart';
@@ -23,6 +24,7 @@ class MainMenuPage extends StatelessWidget {
         body: FutureBuilder<void>(
           future: controller.initDone,
           builder: (context, snapshot) {
+            // Waiting for init
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const Center(
                 child: CircularProgressIndicator(),
@@ -32,52 +34,32 @@ class MainMenuPage extends StatelessWidget {
               children: [
                 Column(
                   children: [
+                    // Body
                     Expanded(child: controller.page),
+
+                    // Bottom nav bar
                     AnimatedContainer(
                       duration: const Duration(milliseconds: 150),
-                      height: controller.showNavBar ? 80 : 0,
-                      child: SingleChildScrollView(
-                        physics: const NeverScrollableScrollPhysics(),
-                        child: BottomNavigationBar(
-                          items: [
-                            BottomNavigationBarItem(
-                              icon: const FaIcon(FontAwesomeIcons.stopwatch),
-                              label: 'timer'.tr,
-                            ),
-                            BottomNavigationBarItem(
-                              icon: const FaIcon(FontAwesomeIcons.history),
-                              label: 'records'.tr,
-                            ),
-                            BottomNavigationBarItem(
-                              icon: const FaIcon(FontAwesomeIcons.chartBar),
-                              label: 'statistics'.tr,
-                            ),
-                            BottomNavigationBarItem(
-                              icon: const FaIcon(FontAwesomeIcons.bars),
-                              label: 'more'.tr,
-                            ),
-                          ],
-                          selectedItemColor: Colors.grey[800],
-                          unselectedItemColor: Colors.grey[500],
-                          backgroundColor: Colors.brown[100],
-                          selectedFontSize: 0,
-                          unselectedFontSize: 0,
-                          currentIndex: controller.index,
-                          onTap: controller.changePage,
-                        ),
-                      ),
+                      height: controller.showNavBar
+                          ? 55 + MediaQuery.of(context).padding.bottom
+                          : 0,
+                      child: BottomNavBar(),
                     ),
                   ],
                 ),
+
+                // Time counter
                 if (controller.page is TimerPage)
                   TimeCounter()
+
+                // Current track badge
                 else
                   Container(),
                 if (controller.page is! SettingsPage &&
                     controller.showCurrentTrackBadge &&
                     controller.appBar == null)
                   Positioned(
-                    top: MediaQuery.of(context).padding.top + 25,
+                    top: MediaQuery.of(context).padding.top + 35,
                     right: 25,
                     child: CurrentTrackBadge(
                       tracks: controller.tracks,
@@ -86,9 +68,13 @@ class MainMenuPage extends StatelessWidget {
                       onSelectCurrentTrack: controller.selectCurrentTrack,
                     ),
                   ),
+                  
+                // App bar
                 AnimatedContainer(
                   duration: const Duration(milliseconds: 150),
-                  height: controller.appBar != null ? 110 : 0,
+                  height: controller.appBar != null
+                      ? MediaQuery.of(context).padding.top + 60
+                      : 0,
                   child: controller.appBar ?? Container(),
                 ),
               ],

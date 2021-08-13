@@ -45,21 +45,26 @@ class CurrentTrackBadge extends StatelessWidget {
         shape: BadgeShape.square,
         badgeColor: Colors.brown[100]!,
         borderRadius: BorderRadius.circular(8),
-        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-        badgeContent: SizedBox(
-          width: 100,
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+        badgeContent: Container(
+          constraints: const BoxConstraints(maxWidth: 150),
           child: Row(
+            mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                currentTrack.title,
-                textAlign: TextAlign.center,
-                style: const TextStyle(
-                  color: Colors.black,
-                  fontSize: 14,
-                  height: 1,
+              Flexible(
+                child: Text(
+                  currentTrack.title,
+                  overflow: TextOverflow.ellipsis,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                    color: Colors.black,
+                    fontSize: 14,
+                    height: 1,
+                  ),
                 ),
               ),
+              const SizedBox(width: 15),
               const FaIcon(
                 FontAwesomeIcons.angleDown,
                 size: 18,

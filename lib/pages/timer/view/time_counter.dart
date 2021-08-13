@@ -2,7 +2,6 @@ import 'package:cubetimer/components/time_display.dart';
 import 'package:cubetimer/pages/timer/controller/timer_page_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class TimeCounter extends StatelessWidget {
   TimeCounter({Key? key}) : super(key: key);
@@ -17,7 +16,6 @@ class TimeCounter extends StatelessWidget {
         final int rawTime = snapshot.data!;
         final double fontSize = controller.getTimeCounterFontSize(rawTime);
         controller.currentTime = rawTime;
-        print(rawTime);
         return GestureDetector(
           onTap: controller.onTimerTriggered,
           child: Center(

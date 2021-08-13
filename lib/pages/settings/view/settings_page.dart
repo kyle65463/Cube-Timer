@@ -28,7 +28,7 @@ class SettingsPage extends StatelessWidget {
                 );
               } else {
                 return Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 25),
+                  padding: const EdgeInsets.symmetric(vertical: 35),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
