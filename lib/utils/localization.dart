@@ -29,6 +29,12 @@ class Localization extends Translations {
           'enter': 'Enter',
           'enter title': 'Enter the title',
 
+          // Penalty
+          'penalty': 'Penalty',
+          'penalty +2 sec': '+2 sec',
+          'penalty dnf': 'DNF',
+          'penalty none': 'None',
+
           // Dialogs
           'dialog title delete record': 'Delete record',
           'dialog description delete record':
@@ -52,6 +58,12 @@ class Localization extends Translations {
           'add new track': '新增分類',
           'enter': '輸入',
           'enter title': '輸入名稱',
+
+          // Penalty
+          'penalty': '處罰',
+          'penalty +2 sec': '+2 秒',
+          'penalty dnf': 'DNF',
+          'penalty none': '無',
 
           // dialogs
           'dialog title delete record': '刪除紀錄',

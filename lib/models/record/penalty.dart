@@ -11,6 +11,11 @@ abstract class Penalty implements Selectable {
     PenaltyDNF(),
     PenaltyPlus2Sec(),
   ];
+
+  // Functions
+  int apply(int rawTime) {
+    return rawTime;
+  }
 }
 
 @HiveType(typeId: 6) // 6 - 10
@@ -52,5 +57,10 @@ class PenaltyPlus2Sec extends Penalty {
   @override
   String toString() {
     return 'penalty +2 sec';
+  }
+
+  @override
+  int apply(int rawTime) {
+    return rawTime + 2000;
   }
 }

@@ -22,10 +22,11 @@ class RecordInfoDialog {
   Future<void> show() async {
     CustomDialog(
       hasCancelButton: false,
-     body: GetBuilder<RecordInfoDialogController>(
-       init: RecordInfoDialogController(record: record),
-       builder: (controller) {
-         return Padding(
+      body: GetBuilder<RecordInfoDialogController>(
+        init: RecordInfoDialogController(record: record),
+        builder: (controller) {
+          final bool hasPenalty = record.penalty is! PenaltyNone;
+          return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 25.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -36,6 +37,7 @@ class RecordInfoDialog {
                   children: [
                     TimeDisplay(
                       rawTime: record.rawTime,
+                      penalty: record.penalty,
                       style: const TextStyle(
                         fontSize: 45,
                         fontWeight: FontWeight.bold,
@@ -74,10 +76,10 @@ class RecordInfoDialog {
                         ),
                         const SizedBox(width: 25),
                         GestureDetector(
-                          onTap: controller.showSetPenaltyDialog, 
+                          onTap: controller.showSetPenaltyDialog,
                           child: FaIcon(
                             FontAwesomeIcons.solidFlag,
-                            color: Colors.grey[600],
+                            color: hasPenalty ? Colors.blue : Colors.grey[600],
                             size: 18,
                           ),
                         ),
@@ -96,8 +98,8 @@ class RecordInfoDialog {
               ],
             ),
           );
-       }
-     ),
+        },
+      ),
     ).show();
   }
 }

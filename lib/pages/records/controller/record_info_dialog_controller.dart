@@ -37,7 +37,7 @@ class RecordInfoDialogController extends GetxController {
   Future<void> showSetPenaltyDialog() async {
     final List<Selectable> options = Penalty.penalties;
     final Selectable? selectable = await SelectionDialog(
-      title: 'Penalty',
+      title: 'penalty'.tr,
       options: options,
       originalOption: record.penalty,
     ).show();

@@ -1,7 +1,8 @@
 import 'package:cubetimer/components/time_display.dart';
+import 'package:cubetimer/models/record/penalty.dart';
 import 'package:cubetimer/models/record/record.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class RecordCard extends StatelessWidget {
   // Constructor
@@ -24,6 +25,7 @@ class RecordCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bool hasPenalty = record.penalty is! PenaltyNone;
     return Card(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(5),
@@ -32,13 +34,30 @@ class RecordCard extends StatelessWidget {
       child: InkWell(
         onTap: _onTap,
         onLongPress: onLongPress,
-        child: Center(
-          child: TimeDisplay(
-            rawTime: record.rawTime,
-            style: const TextStyle(
-              fontSize: 23,
+        child: Stack(
+          children: [
+            Center(
+              child: TimeDisplay(
+                rawTime: record.rawTime,
+                penalty: record.penalty,
+                style: const TextStyle(
+                  fontSize: 23,
+                ),
+              ),
             ),
-          ),
+            if (hasPenalty)
+              Positioned(
+                top: 5,
+                right: 5,
+                child: GestureDetector(
+                  child: FaIcon(
+                    FontAwesomeIcons.solidFlag,
+                    color: Colors.blue[700],
+                    size: 12,
+                  ),
+                ),
+              ),
+          ],
         ),
       ),
     );
