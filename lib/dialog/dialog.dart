@@ -43,7 +43,7 @@ class MyDialog {
                   ),
                 ),
                 const SizedBox(
-                  height: 10.0,
+                  height: 15.0,
                 ),
                 body!,
               ],

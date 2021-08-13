@@ -1,6 +1,7 @@
 import 'package:cubetimer/pages/timer/controller/timer_page_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class TimeCounter extends StatelessWidget {
   TimeCounter({Key? key}) : super(key: key);
@@ -23,9 +24,11 @@ class TimeCounter extends StatelessWidget {
               children: [
                 Text(
                   displayTime,
-                  style: TextStyle(
-                    fontSize: fontSize,
-                    color: Colors.black.withOpacity(0.8),
+                  style: GoogleFonts.gentiumBookBasic(
+                    textStyle: TextStyle(
+                      fontSize: fontSize,
+                      color: Colors.black.withOpacity(0.8),
+                    ),
                   ),
                 ),
                 const SizedBox(height: 60),

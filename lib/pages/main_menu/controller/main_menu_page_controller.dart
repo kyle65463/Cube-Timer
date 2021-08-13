@@ -25,6 +25,7 @@ class MainMenuPageController extends GetxController {
     SettingsPage(),
   ];
   bool showNavBar = true;
+  bool showCurrentTrackBadge = true;
   bool showTimeCounter = true;
   List<Track> get tracks => _tracks;
   Track get currentTrack => _currentTrack;
@@ -38,6 +39,11 @@ class MainMenuPageController extends GetxController {
   // Functions
   void toggleBottomNavBar() {
     showNavBar = !showNavBar;
+    update();
+  }
+
+  void toggleCurrentTrackBadge() {
+    showCurrentTrackBadge = !showCurrentTrackBadge;
     update();
   }
 

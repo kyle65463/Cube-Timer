@@ -44,6 +44,7 @@ class TimerPageController extends GetxController {
 
   void onTimerTriggered() {
     Get.find<MainMenuPageController>().toggleBottomNavBar();
+    Get.find<MainMenuPageController>().toggleCurrentTrackBadge();
     if (isRunning) {
       _stopTimer();
     } else {

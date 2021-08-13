@@ -81,7 +81,8 @@ class MainMenuPage extends StatelessWidget {
                     TimeCounter()
                   else
                     Container(),
-                  if (controller.page is! SettingsPage)
+                  if (controller.page is! SettingsPage &&
+                      controller.showCurrentTrackBadge)
                     Positioned(
                       top: 25,
                       right: 25,

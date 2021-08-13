@@ -38,7 +38,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.brown[200],
         canvasColor: Colors.white,
-        textTheme: GoogleFonts.gentiumBookBasicTextTheme(
+        textTheme: GoogleFonts.merriweatherTextTheme(
           Theme.of(context).textTheme,
         ),
       ),

@@ -74,14 +74,18 @@ class SelectionDialog {
                 },
                 title: Row(
                   children: [
-                    const FaIcon(
+                    FaIcon(
                       FontAwesomeIcons.plus,
                       size: 20,
+                      color: Colors.brown[600],
                     ),
                     const SizedBox(width: 10),
                     Text(
                       btnAddText ?? 'add'.tr,
-                      style: const TextStyle(fontSize: 17),
+                      style: TextStyle(
+                        fontSize: 17,
+                        color: Colors.brown[600],
+                      ),
                     ),
                   ],
                 ),
