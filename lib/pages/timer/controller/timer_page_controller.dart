@@ -27,6 +27,7 @@ class TimerPageController extends GetxController {
   Future get initDone => _initDone;
   Scramble get scramble => _scramble;
   Cube get cube => _cube;
+  List<Record> get records => _track.records;
 
   int currentTime = 0;
   double timerCounterFontSize = 75;

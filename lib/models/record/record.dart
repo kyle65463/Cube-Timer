@@ -39,6 +39,6 @@ class Record {
   // Functions
   @override
   String toString() {
-    return TimerUtils.parseDisplayTime(rawTime);
+    return TimerUtils.parseTime(rawTime);
   }
 }

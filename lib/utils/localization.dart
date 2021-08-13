@@ -30,6 +30,10 @@ class Localization extends Translations {
           'enter title': 'Enter the title',
           'num records selected': '@num records selected',
 
+          // Cubes
+          'cube 3x3': '3x3',
+          'cube 4x4': '4x4',
+
           // Penalty
           'penalty': 'Penalty',
           'penalty +2 sec': '+2 sec',
@@ -61,13 +65,17 @@ class Localization extends Translations {
           'enter title': '輸入名稱',
           'num records selected': '已選擇 @num 筆紀錄',
 
+          // Cubes
+          'cube 3x3' : '3x3',
+          'cube 4x4' : '4x4',
+
           // Penalty
           'penalty': '處罰',
           'penalty +2 sec': '+2 秒',
           'penalty dnf': 'DNF',
           'penalty none': '無',
 
-          // dialogs
+          // Dialogs
           'dialog title delete record': '刪除紀錄',
           'dialog description delete record': '確定要刪除紀錄嗎？這個行動無法回復。',
 

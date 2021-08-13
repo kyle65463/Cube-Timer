@@ -44,6 +44,11 @@ class PenaltyDNF extends Penalty {
   String toString() {
     return 'penalty dnf';
   }
+
+  @override
+  int apply(int rawTime) {
+    return -1;
+  }
 }
 
 @HiveType(typeId: 8)

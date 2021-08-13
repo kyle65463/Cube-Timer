@@ -2,7 +2,7 @@ import 'package:cubetimer/models/cubes/cube.dart';
 import 'package:cubetimer/models/solve/move/turn.dart';
 
 class Cube3x3 extends Cube {
-  // Constructoe
+  // Constructor
   Cube3x3()
       : super(
           scrambleMoves: [
@@ -26,4 +26,10 @@ class Cube3x3 extends Cube {
             TurnB(positive: true, count: 2),
           ],
         );
+
+  // Functions
+  @override
+  String toString() {
+    return 'cube 3x3';
+  }
 }
