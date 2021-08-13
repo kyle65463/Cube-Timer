@@ -64,11 +64,11 @@ class CurrentTrackBadge extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(width: 15),
-              const FaIcon(
+              const SizedBox(width: 12),
+              FaIcon(
                 FontAwesomeIcons.angleDown,
-                size: 18,
-                color: Colors.black,
+                size: 15,
+                color: Colors.grey[800],
               )
             ],
           ),

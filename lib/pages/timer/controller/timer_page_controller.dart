@@ -59,6 +59,7 @@ class TimerPageController extends GetxController {
       _resetTimer();
       _startTimer();
     }
+    update();
   }
 
   double getTimeCounterFontSize(int time) {
