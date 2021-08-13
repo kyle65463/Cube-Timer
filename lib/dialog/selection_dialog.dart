@@ -27,7 +27,7 @@ class SelectionDialog {
   // Functions
   Future<Selectable?> show(BuildContext context) async {
     options.sort((a, b) => a.toString().compareTo(b.toString()));
-    await MyDialog(
+    await CustomDialog(
       title: title,
       body: GetBuilder<SelectionDialogController>(
         init: SelectionDialogController(

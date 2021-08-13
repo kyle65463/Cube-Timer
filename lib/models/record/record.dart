@@ -1,5 +1,6 @@
 import 'package:cubetimer/models/record/penalty.dart';
 import 'package:cubetimer/models/solve/scramble.dart';
+import 'package:cubetimer/utils/timer_utils.dart';
 import 'package:hive/hive.dart';
 import 'package:uuid/uuid.dart';
 
@@ -34,4 +35,10 @@ class Record {
   Penalty penalty;
   @HiveField(4)
   final DateTime createTime;
+
+  // Functions
+  @override
+  String toString() {
+    return TimerUtils.parseDisplayTime(rawTime);
+  }
 }

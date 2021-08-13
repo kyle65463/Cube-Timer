@@ -13,7 +13,7 @@ class InputDialog {
 
   // Functions
   Future<String?> show(BuildContext context) async {
-    await MyDialog(
+    await CustomDialog(
       title: title,
       width: MediaQuery.of(context).size.width * 0.9,
       body: GetBuilder<InputDialogController>(

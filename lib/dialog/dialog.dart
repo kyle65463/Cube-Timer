@@ -1,10 +1,10 @@
-import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:cubetimer/dialog/components/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class MyDialog {
+class CustomDialog {
   // Constructor
-  MyDialog({
+  CustomDialog({
     required this.title,
     this.description,
     this.body,
@@ -26,7 +26,6 @@ class MyDialog {
   // Functions
   Future<dynamic> show(BuildContext context) async {
     return AwesomeDialog(
-      context: context,
       dialogType: DialogType.NO_HEADER,
       title: title,
       desc: description,

@@ -1,4 +1,5 @@
 import 'package:cubetimer/pages/records/controller/records_page_controller.dart';
+import 'package:cubetimer/pages/records/view/record_card.dart';
 import 'package:cubetimer/utils/timer_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -26,28 +27,44 @@ class RecordsPage extends StatelessWidget {
               );
             }
             return SafeArea(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 25),
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 25),
-                      child: Text(
-                        'records'.tr,
-                        style: const TextStyle(
-                          fontSize: 35,
-                          fontWeight: FontWeight.bold,
-                          height: 1,
-                        ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(height: 25),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 25),
+                    child: Text(
+                      'records'.tr,
+                      style: const TextStyle(
+                        fontSize: 35,
+                        fontWeight: FontWeight.bold,
+                        height: 1,
                       ),
                     ),
-                    const SizedBox(height: 20),
-                    ...controller.track.records
-                        .map(
-                            (e) => Text(TimerUtils.parseDisplayTime(e.rawTime)))
-                        .toList(),
-                  ],
-                ),
+                  ),
+                  const SizedBox(height: 20),
+                  Expanded(
+                    child: GridView.count(
+                      padding: const EdgeInsets.symmetric(horizontal: 15),
+                      mainAxisSpacing: 5,
+                      crossAxisSpacing: 5,
+                      crossAxisCount:
+                          ((MediaQuery.of(context).size.width - 40) / 150)
+                              .ceil(),
+                      shrinkWrap: true,
+                      childAspectRatio: 2,
+                      children: controller.track.records.reversed.map(
+                        (record) {
+                          return RecordCard(
+                            record: record,
+                            onTap: controller.showRecordInfo,
+                            onLongPress: controller.enterRecordsEditingMode,
+                          );
+                        },
+                      ).toList(),
+                    ),
+                  ),
+                ],
               ),
             );
           },
