@@ -17,6 +17,7 @@ class TimeCounter extends StatelessWidget {
         final int rawTime = snapshot.data!;
         final double fontSize = controller.getTimeCounterFontSize(rawTime);
         controller.currentTime = rawTime;
+        print(rawTime);
         return GestureDetector(
           onTap: controller.onTimerTriggered,
           child: Center(

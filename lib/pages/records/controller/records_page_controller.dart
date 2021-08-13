@@ -63,7 +63,6 @@ class RecordsPageController extends GetxController {
     CustomDialog(
       title: 'dialog title delete record'.tr,
       description: 'dialog description delete record'.tr,
-      dialogType: DialogType.QUESTION,
       onConfirm: deleteSelectedRecords,
     ).show();
     return;

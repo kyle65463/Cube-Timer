@@ -78,14 +78,15 @@ class SelectionDialog {
                     FaIcon(
                       FontAwesomeIcons.plus,
                       size: 20,
-                      color: Colors.brown[600],
+                      color: Colors.blue[600],
                     ),
                     const SizedBox(width: 10),
                     Text(
                       btnAddText ?? 'add'.tr,
                       style: TextStyle(
                         fontSize: 17,
-                        color: Colors.brown[600],
+                        color: Colors.blue[600],
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
                   ],
