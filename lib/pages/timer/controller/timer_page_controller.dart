@@ -1,5 +1,7 @@
 import 'dart:math';
 
+import 'package:cubetimer/models/cubes/cube.dart';
+import 'package:cubetimer/models/cubes/cube3x3.dart';
 import 'package:cubetimer/models/record/penalty.dart';
 import 'package:cubetimer/models/record/record.dart';
 import 'package:cubetimer/models/record/track.dart';
@@ -7,6 +9,7 @@ import 'package:cubetimer/models/solve/move/turn.dart';
 import 'package:cubetimer/models/solve/scramble.dart';
 import 'package:cubetimer/pages/main_menu/controller/main_menu_page_controller.dart';
 import 'package:cubetimer/repositories/tracks_repository.dart';
+import 'package:cubetimer/utils/scramble_generator.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:stop_watch_timer/stop_watch_timer.dart';
@@ -22,12 +25,16 @@ class TimerPageController extends GetxController {
   final StopWatchTimer timer = StopWatchTimer();
   bool get isRunning => timer.isRunning;
   Future get initDone => _initDone;
+  Scramble get scramble => _scramble;
+  Cube get cube => _cube;
 
   int currentTime = 0;
   double timerCounterFontSize = 75;
   final TracksRepository _repository = Get.find<TracksRepository>();
   late Future _initDone;
   late Track _track;
+  late Cube _cube;
+  late Scramble _scramble;
 
   // Functions
   @override
@@ -39,6 +46,8 @@ class TimerPageController extends GetxController {
   Future<void> _init() async {
     await _loadCurrentTrack();
     _listenCurrentTrackStream();
+    _cube = Cube3x3();
+    _scramble = ScrambleGenerator.generate(_cube);
   }
 
   void onTimerTriggered() {
@@ -79,33 +88,11 @@ class TimerPageController extends GetxController {
       Record.createNew(
         rawTime: rawTime,
         penalty: PenaltyNone(),
-        scramble: Scramble(moves: [
-          TurnU(positive: true),
-          TurnR(positive: true),
-          TurnU(positive: true),
-          TurnR(positive: true),
-          TurnU(positive: true),
-          TurnR(positive: true),
-          TurnU(positive: true),
-          TurnR(positive: true),
-          TurnU(positive: true),
-          TurnR(positive: true),
-          TurnU(positive: true),
-          TurnR(positive: true),
-          TurnU(positive: true),
-          TurnR(positive: true),
-          TurnU(positive: true),
-          TurnR(positive: true),
-          TurnU(positive: true),
-          TurnR(positive: true),
-          TurnU(positive: true),
-          TurnR(positive: true),
-          TurnU(positive: true),
-          TurnR(positive: true),
-        ]),
+        scramble: scramble,
       ),
       _track,
     );
+    _scramble = ScrambleGenerator.generate(Cube3x3());
   }
 
   void _resetTimer() {
