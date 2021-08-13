@@ -1,9 +1,9 @@
 library awesome_dialog;
 
-import 'package:cubetimer/dialog/components/animated_button.dart';
-import 'package:cubetimer/dialog/components/anims.dart';
-import 'package:cubetimer/dialog/components/flare_header.dart';
-import 'package:cubetimer/dialog/components/vertical_stack_header_dialog.dart';
+import 'package:cubetimer/dialogs/components/animated_button.dart';
+import 'package:cubetimer/dialogs/components/anims.dart';
+import 'package:cubetimer/dialogs/components/flare_header.dart';
+import 'package:cubetimer/dialogs/components/vertical_stack_header_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

@@ -1,3 +1,4 @@
+import 'package:cubetimer/components/time_display.dart';
 import 'package:cubetimer/pages/timer/controller/timer_page_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -13,22 +14,20 @@ class TimeCounter extends StatelessWidget {
       stream: controller.timer.rawTime,
       initialData: controller.currentTime,
       builder: (context, snapshot) {
-        final int time = snapshot.data!;
-        final String displayTime = controller.parseDisplayTime(time);
-        final double fontSize = controller.getTimeCounterFontSize(time);
+        final int rawTime = snapshot.data!;
+        final double fontSize = controller.getTimeCounterFontSize(rawTime);
+        controller.currentTime = rawTime;
         return GestureDetector(
           onTap: controller.onTimerTriggered,
           child: Center(
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Text(
-                  displayTime,
-                  style: GoogleFonts.gentiumBookBasic(
-                    textStyle: TextStyle(
-                      fontSize: fontSize,
-                      color: Colors.black.withOpacity(0.8),
-                    ),
+                TimeDisplay(
+                  rawTime: rawTime,
+                  style: TextStyle(
+                    fontSize: fontSize,
+                    color: Colors.black.withOpacity(0.8),
                   ),
                 ),
                 const SizedBox(height: 60),

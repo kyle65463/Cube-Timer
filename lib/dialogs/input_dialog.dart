@@ -1,5 +1,5 @@
-import 'package:cubetimer/dialog/controller/input_dialog_controller.dart';
-import 'package:cubetimer/dialog/dialog.dart';
+import 'package:cubetimer/dialogs/controller/input_dialog_controller.dart';
+import 'package:cubetimer/dialogs/dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -12,10 +12,10 @@ class InputDialog {
   final String title;
 
   // Functions
-  Future<String?> show(BuildContext context) async {
+  Future<String?> show() async {
     await CustomDialog(
       title: title,
-      width: MediaQuery.of(context).size.width * 0.9,
+      width: Get.width * 0.9,
       body: GetBuilder<InputDialogController>(
         init: InputDialogController(),
         builder: (controller) => Column(
@@ -35,13 +35,11 @@ class InputDialog {
           ],
         ),
       ),
-      btnOkOnPressed: () {
-
-      },
+      btnOkOnPressed: () {},
       btnCancelOnPressed: () {
         Get.find<InputDialogController>().cancel();
       },
-    ).show(context);
+    ).show();
 
     // Return the input text
     if (Get.find<InputDialogController>().isCanceled) return null;

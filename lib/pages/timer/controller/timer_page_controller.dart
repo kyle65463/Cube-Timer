@@ -20,11 +20,10 @@ class TimerPageController extends GetxController {
 
   // Variables
   final StopWatchTimer timer = StopWatchTimer();
-  int get currentTime => _currentTime;
   bool get isRunning => timer.isRunning;
   Future get initDone => _initDone;
 
-  int _currentTime = 0;
+  int currentTime = 0;
   double timerCounterFontSize = 75;
   final TracksRepository _repository = Get.find<TracksRepository>();
   late Future _initDone;
@@ -51,11 +50,6 @@ class TimerPageController extends GetxController {
       _resetTimer();
       _startTimer();
     }
-  }
-
-  String parseDisplayTime(int time) {
-    _currentTime = time;
-    return TimerUtils.parseDisplayTime(time);
   }
 
   double getTimeCounterFontSize(int time) {

@@ -1,5 +1,5 @@
 import 'package:badges/badges.dart';
-import 'package:cubetimer/dialog/selection_dialog.dart';
+import 'package:cubetimer/dialogs/selection_dialog.dart';
 import 'package:cubetimer/models/interfaces/selectable.dart';
 import 'package:cubetimer/models/record/track.dart';
 import 'package:flutter/material.dart';
@@ -34,7 +34,7 @@ class CurrentTrackBadge extends StatelessWidget {
           onCreate: onCreateTrack,
           btnAddText: 'add new track'.tr,
           inputDialogTitle: 'enter title'.tr,
-        ).show(context);
+        ).show();
         if (result != null) {
           final Track selectedTrack = result as Track;
           onSelectCurrentTrack(selectedTrack);

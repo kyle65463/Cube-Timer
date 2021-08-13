@@ -1,4 +1,4 @@
-import 'package:cubetimer/dialog/selection_dialog.dart';
+import 'package:cubetimer/dialogs/selection_dialog.dart';
 import 'package:cubetimer/models/interfaces/selectable.dart';
 import 'package:cubetimer/models/settings/settings_key.dart';
 import 'package:cubetimer/models/settings/settings_value.dart';
@@ -49,7 +49,7 @@ class SettingsTile extends StatelessWidget {
             title: titleText,
             options: options.map((e) => e as Selectable).toList(),
             originalOption: settingsValue as Selectable,
-          ).show(context);
+          ).show();
 
           if (result != null) {
             final SettingsValue newSettingsValue = result as SettingsValue;

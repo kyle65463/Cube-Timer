@@ -1,5 +1,5 @@
 import 'package:cubetimer/pages/records/controller/records_page_controller.dart';
-import 'package:cubetimer/pages/records/view/record_card.dart';
+import 'package:cubetimer/pages/records/view/components/record_card.dart';
 import 'package:cubetimer/utils/timer_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -57,7 +57,7 @@ class RecordsPage extends StatelessWidget {
                         (record) {
                           return RecordCard(
                             record: record,
-                            onTap: controller.showRecordInfo,
+                            showRecordInfo: controller.showRecordInfo,
                             onLongPress: controller.enterRecordsEditingMode,
                           );
                         },

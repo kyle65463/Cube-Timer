@@ -1,11 +1,11 @@
-import 'package:cubetimer/dialog/components/awesome_dialog.dart';
+import 'package:cubetimer/dialogs/components/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class CustomDialog {
   // Constructor
   CustomDialog({
-    required this.title,
+    this.title,
     this.description,
     this.body,
     this.btnOkOnPressed,
@@ -15,7 +15,7 @@ class CustomDialog {
   });
 
   // Variables
-  final String title;
+  final String? title;
   final String? description;
   final Widget? body;
   final bool hasCancelButton;
@@ -24,7 +24,7 @@ class CustomDialog {
   final double? width;
 
   // Functions
-  Future<dynamic> show(BuildContext context) async {
+  Future<dynamic> show() async {
     return AwesomeDialog(
       dialogType: DialogType.NO_HEADER,
       title: title,
@@ -33,17 +33,19 @@ class CustomDialog {
       body: body != null
           ? Column(
               children: [
-                Text(
-                  title,
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    fontSize: 25,
-                    fontWeight: FontWeight.bold,
+                if (title != null) ...[
+                  Text(
+                    title!,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      fontSize: 25,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                ),
-                const SizedBox(
-                  height: 15.0,
-                ),
+                  const SizedBox(
+                    height: 15.0,
+                  ),
+                ],
                 body!,
               ],
             )

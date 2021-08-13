@@ -1,6 +1,6 @@
-import 'package:cubetimer/dialog/controller/selection_dialog_controller.dart';
-import 'package:cubetimer/dialog/dialog.dart';
-import 'package:cubetimer/dialog/input_dialog.dart';
+import 'package:cubetimer/dialogs/controller/selection_dialog_controller.dart';
+import 'package:cubetimer/dialogs/dialog.dart';
+import 'package:cubetimer/dialogs/input_dialog.dart';
 import 'package:cubetimer/models/interfaces/selectable.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -25,7 +25,7 @@ class SelectionDialog {
   final String? inputDialogTitle;
 
   // Functions
-  Future<Selectable?> show(BuildContext context) async {
+  Future<Selectable?> show() async {
     options.sort((a, b) => a.toString().compareTo(b.toString()));
     await CustomDialog(
       title: title,
@@ -65,7 +65,7 @@ class SelectionDialog {
                 onTap: () async {
                   final String? input = await InputDialog(
                     title: inputDialogTitle ?? 'enter'.tr,
-                  ).show(context);
+                  ).show();
                   if (input != null) {
                     final Selectable newOption =
                         await onCreate!(input) as Selectable;
@@ -97,7 +97,7 @@ class SelectionDialog {
       btnCancelOnPressed: () {
         Get.find<SelectionDialogController>().cancel();
       },
-    ).show(context);
+    ).show();
 
     // Return the selected index
     if (Get.find<SelectionDialogController>().isCanceled) return null;
