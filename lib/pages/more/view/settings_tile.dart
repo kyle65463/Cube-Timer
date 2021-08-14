@@ -53,7 +53,7 @@ class SettingsTile extends StatelessWidget {
           trailText,
           style: TextStyle(
             fontSize: 17,
-            color: Colors.brown[700],
+            color: Colors.grey[700],
           ),
         ),
         tileColor: Colors.brown[100],

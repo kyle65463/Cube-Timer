@@ -70,6 +70,14 @@ class MainMenuPageController extends GetxController {
     return _repository.createTrack(title);
   }
 
+  Future<void> renameTrack(Track track) async {
+    return _repository.updateTrack(track);
+  }
+
+  Future<void> deleteTrack(Track track) async {
+    return _repository.deleteTrack(track);
+  }
+
   void selectCurrentTrack(Track track) {
     _repository.setCurrentTrack(track);
   }

@@ -44,29 +44,39 @@ class RecordsPage extends StatelessWidget {
                   ),
                   const SizedBox(height: 20),
                   Expanded(
-                    child: GridView.count(
-                      padding: const EdgeInsets.symmetric(horizontal: 15),
-                      mainAxisSpacing: 5,
-                      crossAxisSpacing: 5,
-                      crossAxisCount:
-                          ((MediaQuery.of(context).size.width - 40) / 150)
-                              .ceil(),
-                      shrinkWrap: true,
-                      childAspectRatio: 2,
-                      children: controller.track.records.reversed.map(
-                        (record) {
-                          return RecordCard(
-                            record: record,
-                            inEditMode: controller.inEditMode,
-                            isSelected:
-                                controller.selectedRecords.contains(record),
-                            showRecordInfo: controller.showRecordInfo,
-                            enterEditMode: controller.enterEditMode,
-                            editSelected: controller.editSelected,
-                          );
-                        },
-                      ).toList(),
-                    ),
+                    child: controller.track.records.isEmpty
+                        ? Center(
+                            child: Text(
+                              'no data'.tr,
+                              style: const TextStyle(
+                                fontSize: 24,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          )
+                        : GridView.count(
+                            padding: const EdgeInsets.symmetric(horizontal: 15),
+                            mainAxisSpacing: 5,
+                            crossAxisSpacing: 5,
+                            crossAxisCount:
+                                ((MediaQuery.of(context).size.width - 40) / 150)
+                                    .ceil(),
+                            shrinkWrap: true,
+                            childAspectRatio: 2,
+                            children: controller.track.records.reversed.map(
+                              (record) {
+                                return RecordCard(
+                                  record: record,
+                                  inEditMode: controller.inEditMode,
+                                  isSelected: controller.selectedRecords
+                                      .contains(record),
+                                  showRecordInfo: controller.showRecordInfo,
+                                  enterEditMode: controller.enterEditMode,
+                                  editSelected: controller.editSelected,
+                                );
+                              },
+                            ).toList(),
+                          ),
                   ),
                 ],
               ),

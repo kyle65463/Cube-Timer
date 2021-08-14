@@ -64,6 +64,8 @@ class MainMenuPage extends StatelessWidget {
                       tracks: controller.tracks,
                       currentTrack: controller.currentTrack,
                       onCreateTrack: controller.createTrack,
+                      onDeleteTrack: controller.deleteTrack,
+                      onRenameTrack: controller.renameTrack,
                       onSelectCurrentTrack: controller.selectCurrentTrack,
                     ),
                   ),

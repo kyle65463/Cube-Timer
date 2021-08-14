@@ -77,6 +77,16 @@ class TracksRepository extends Repository {
     return track;
   }
 
+  Future<void> updateTrack(Track track) async {
+    await _database.updateTrack(track);
+    _currentStreamController.sink.add(true);
+  }
+
+  Future<void> deleteTrack(Track track) async {
+    await _database.deleteTrack(track);
+    _currentStreamController.sink.add(true);
+  }
+
   Future<void> createRecord(Record record, [Track? track]) async {
     // Create record to current track if not specified
     track ??= await loadCurrentTrack();

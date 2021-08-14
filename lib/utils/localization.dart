@@ -37,6 +37,10 @@ class Localization extends Translations {
           'stat record count 500': 'Recent 500',
           'stat record count 1000': 'Recent 1000',
           'no data': 'No data',
+          'random': 'Random',
+
+          'rename': 'Rename',
+          'delete': 'Delete',
 
           // Stats
           'stat dnf count': 'DNF',
@@ -93,6 +97,9 @@ class Localization extends Translations {
           'stat record count 500': '最近 500 筆',
           'stat record count 1000': '最近 1000 筆',
           'no data': '無資料',
+          'rename': '重新命名',
+          'delete': '刪除',
+          'random': '隨機',
 
           // Stats
           'stat count': '總計',

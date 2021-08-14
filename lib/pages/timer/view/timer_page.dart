@@ -48,7 +48,7 @@ class TimerPage extends StatelessWidget {
                               Row(
                                 children: [
                                   Text(
-                                    '${controller.cube.toString().tr} ${'timer'.tr}',
+                                    '${controller.cube.toString().tr} ${'random'.tr}',
                                     style: const TextStyle(
                                       fontSize: 25,
                                       fontWeight: FontWeight.bold,
