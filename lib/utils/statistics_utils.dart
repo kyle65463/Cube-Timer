@@ -1,7 +1,3 @@
-import 'package:cubetimer/models/record/record.dart';
-import 'package:cubetimer/models/statistics/data/table_data.dart';
-import 'package:cubetimer/utils/extension.dart';
-
 class StatUtils {
   // Return -1 if no sufficient data
   // Return -2 if DNF

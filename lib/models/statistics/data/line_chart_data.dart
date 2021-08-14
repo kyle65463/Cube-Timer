@@ -23,13 +23,20 @@ class LineChartStatData {
   late MultiStatAll _all;
 
   List<LineData> get lines => _lines;
-
-  List<LineData> _lines = [];
+  final List<LineData> _lines = [];
 
   // Functions
   void _init() {
     _all = MultiStatAll(records: records);
     _stats.add(_all);
+    MultiStat stat = MultiStatAo5(records: records);
+    _stats.add(stat);
+    stat = MultiStatAo12(records: records);
+    _stats.add(stat);
+    stat = MultiStatAo50(records: records);
+    _stats.add(stat);
+    stat = MultiStatAo100(records: records);
+    _stats.add(stat);
   }
 
   void prepare([int? numRecords]) {
@@ -46,14 +53,21 @@ class LineChartStatData {
     minY = max(0, minY - intervalY);
 
     // Prepare line data
-    _lines = _stats
-        .map((e) => LineData(
-              name: e.toString(),
-              color: Colors.blue,
-              startIndex: 1,
-              data: e.getData(numRecords),
-            ))
-        .toList();
+    _lines.clear();
+    for (final stat in _stats) {
+      final int numEffectiveRecords = numRecords ?? records.length;
+      if (stat.startIndex > numEffectiveRecords) continue;
+      if (stat.showLowerBound != null &&
+          numEffectiveRecords <= stat.showLowerBound!) continue;
+      if (stat.showUpperBound != null &&
+          numEffectiveRecords > stat.showUpperBound!) continue;
+      _lines.add(LineData(
+        name: stat.toString(),
+        color: stat.color,
+        startIndex: stat.startIndex,
+        data: stat.getData(numRecords),
+      ));
+    }
   }
 
   double calIntervalX(double x) {
@@ -63,7 +77,7 @@ class LineChartStatData {
     if (x < 3) return 0.5;
     if (x < 4) return 0.8;
     if (x < 6) return 1;
-    if (x < 8) return 1.5;
+    if (x < 8) return 2;
     return 2;
   }
 }

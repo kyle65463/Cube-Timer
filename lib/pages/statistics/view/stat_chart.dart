@@ -17,7 +17,7 @@ class StatChart extends StatelessWidget {
   // Functions
   @override
   Widget build(BuildContext context) {
-    List<LineData> lines = data.lines;
+    final List<LineData> lines = data.lines;
     return AspectRatio(
       aspectRatio: 1,
       child: Container(

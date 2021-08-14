@@ -35,10 +35,10 @@ class MorePage extends StatelessWidget {
                     TitleSection(title: 'more'.tr),
 
                     // Settings section
-                    ...controller.settings.map.entries.map((entry) {
+                    ...controller.settingsKeys.map((key) {
                       return SettingsTile(
-                        settingsKey: entry.key,
-                        settingsValue: entry.value,
+                        settingsKey: key,
+                        settingsValue: controller.settings.map[key]!,
                         saveSettings: controller.updateSettings,
                       );
                     }).toList(),

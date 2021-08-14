@@ -47,13 +47,16 @@ class StatisticsPage extends StatelessWidget {
                       // Legends
                       Row(
                         children: controller.lineChartData.lines
-                            .map((e) => ChartLegend(lineData: e))
+                            .map((e) => Padding(
+                                  padding: const EdgeInsets.only(right: 12),
+                                  child: ChartLegend(lineData: e),
+                                ))
                             .toList(),
                       ),
 
                       // Stat type selection badge
                       StatTypeSelectionBadge(
-                        statRecordCount: controller.statRecordCount, 
+                        statRecordCount: controller.statRecordCount,
                         statRecordCountKey: controller.statRecordCountKey,
                         updateSettings: controller.updateSettings,
                       ),

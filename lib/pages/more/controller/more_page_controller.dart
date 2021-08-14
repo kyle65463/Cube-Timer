@@ -15,6 +15,7 @@ class MorePageController extends GetxController {
   // Variables
   Settings get settings => _settings;
   Future get initDone => _initDone;
+  List<SettingsKey> get settingsKeys => SettingsKey.morePageKeys;
   final SettingsRepository _repository = Get.find<SettingsRepository>();
   late Settings _settings;
   late Future _initDone;

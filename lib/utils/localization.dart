@@ -29,7 +29,13 @@ class Localization extends Translations {
           'enter': 'Enter',
           'enter title': 'Enter the title',
           'num records selected': '@num records selected',
-          'stat record count': 'Recent count',
+          'stat record count': 'Range',
+          'stat record count all': 'All records',
+          'stat record count 10': 'Recent 10 records',
+          'stat record count 50': 'Recent 50  records',
+          'stat record count 100': 'Recent 100 records',
+          'stat record count 500': 'Recent 500 records',
+          'stat record count 1000': 'Recent 1000 records',
 
           // Stats
           'stat count': 'Count',
@@ -77,7 +83,13 @@ class Localization extends Translations {
           'enter': '輸入',
           'enter title': '輸入名稱',
           'num records selected': '已選擇 @num 筆紀錄',
-          'stat record count': '最近次數',
+          'stat record count': '範圍',
+          'stat record count all': '不限範圍',
+          'stat record count 10': '最近 10 筆',
+          'stat record count 50': '最近 50 筆',
+          'stat record count 100': '最近 100 筆',
+          'stat record count 500': '最近 500 筆',
+          'stat record count 1000': '最近 1000 筆',
 
           // Stats
           'stat count': '總計',

@@ -43,8 +43,8 @@ class StatRecordCount extends SettingsValue with Selectable {
   // Functions
   @override
   String toString() {
-    if (value == null) return 'all';
-    return 'recent $value';
+    if (value == null) return 'stat record count all';
+    return 'stat record count $value';
   }
 
   @override
@@ -54,7 +54,6 @@ class StatRecordCount extends SettingsValue with Selectable {
 
   @override
   int compare(Selectable other) {
-    print(value);
     if (value == null) return 0;
     final int? otherValue = (other as StatRecordCount).value;
     if (otherValue == null) return 1;
