@@ -4,8 +4,8 @@ import 'package:cubetimer/models/settings/options/stat_record_count.dart';
 import 'package:cubetimer/models/statistics/data/table_data.dart';
 import 'package:cubetimer/pages/statistics/controller/statistics_controller.dart';
 import 'package:cubetimer/pages/statistics/view/chart_legend.dart';
-import 'package:cubetimer/pages/statistics/view/stat_chart.dart';
-import 'package:cubetimer/pages/statistics/view/single_stat_table.dart';
+import 'package:cubetimer/pages/statistics/view/line_chart.dart';
+import 'package:cubetimer/pages/statistics/view/stat_table.dart';
 import 'package:cubetimer/pages/statistics/view/stat_type_selection_badge.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -34,7 +34,7 @@ class StatisticsPage extends StatelessWidget {
                 TitleSection(title: 'statistics'.tr),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: StatChart(
+                  child: StatLineChart(
                     data: controller.lineChartData,
                   ),
                 ),
@@ -63,10 +63,12 @@ class StatisticsPage extends StatelessWidget {
                     ],
                   ),
                 ),
-                const SizedBox(height: 15),
-                SingleStatTable(
-                  data: controller.singleStatTableData,
+                Flexible(
+                  child: StatTable(
+                    data: controller.singleStatTableData,
+                  ),
                 ),
+                const SizedBox(height: 10),
               ],
             ),
           ),

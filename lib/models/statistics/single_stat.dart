@@ -53,9 +53,9 @@ class SingleStatAoX extends SingleStat {
   }
 }
 
-class SingleStatCount extends SingleStat {
+class SingleStatTotalCount extends SingleStat {
   // Constructor
-  SingleStatCount({
+  SingleStatTotalCount({
     required List<Record> records,
   }) : super(records: records);
 
@@ -72,6 +72,23 @@ class SingleStatCount extends SingleStat {
   @override
   String toString() {
     return 'stat count';
+  }
+}
+
+class SingleStatDNFCount extends SingleStat {
+  // Constructor
+  SingleStatDNFCount({
+    required List<Record> records,
+  }) : super(records: records);
+
+  @override
+  String getData([int? numRecords]) {
+    return records.where((e) => e.finalTime < 0).length.toString();
+  }
+
+  @override
+  String toString() {
+    return 'stat dnf count';
   }
 }
 

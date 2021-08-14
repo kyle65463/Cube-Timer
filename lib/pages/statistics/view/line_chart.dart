@@ -5,9 +5,9 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class StatChart extends StatelessWidget {
+class StatLineChart extends StatelessWidget {
   // Constructor
-  const StatChart({
+  const StatLineChart({
     required this.data,
     Key? key,
   }) : super(key: key);

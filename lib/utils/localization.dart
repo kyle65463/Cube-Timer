@@ -31,14 +31,15 @@ class Localization extends Translations {
           'num records selected': '@num records selected',
           'stat record count': 'Range',
           'stat record count all': 'All records',
-          'stat record count 10': 'Recent 10 records',
-          'stat record count 50': 'Recent 50  records',
-          'stat record count 100': 'Recent 100 records',
-          'stat record count 500': 'Recent 500 records',
-          'stat record count 1000': 'Recent 1000 records',
+          'stat record count 10': 'Recent 10',
+          'stat record count 50': 'Recent 50',
+          'stat record count 100': 'Recent 100',
+          'stat record count 500': 'Recent 500',
+          'stat record count 1000': 'Recent 1000',
           'no data': 'No data',
 
           // Stats
+          'stat dnf count': 'DNF',
           'stat count': 'Count',
           'stat deviation': 'Deviation',
           'stat best': 'Best',
@@ -95,6 +96,7 @@ class Localization extends Translations {
 
           // Stats
           'stat count': '總計',
+          'stat dnf count': 'DNF',
           'stat deviation': '標準差',
           'stat best': '最佳',
           'stat worst': '最差',
