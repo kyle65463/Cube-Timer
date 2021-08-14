@@ -36,6 +36,8 @@ class Record {
   @HiveField(4)
   final DateTime createTime;
 
+  int get finalTime => penalty.apply(rawTime);
+
   // Functions
   @override
   String toString() {

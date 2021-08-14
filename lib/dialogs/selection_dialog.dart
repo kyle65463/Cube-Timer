@@ -35,64 +35,66 @@ class SelectionDialog {
           options: options,
           originalOption: originalOption,
         ),
-        builder: (controller) => Column(
-          children: [
-            ...controller.options.asMap().entries.map(
-              (e) {
-                final int index = e.key;
-                final String title = e.value.toString().tr;
-                return ListTile(
-                  title: Text(
-                    title,
-                    style: const TextStyle(fontSize: 17),
-                  ),
-                  dense: true,
-                  contentPadding: const EdgeInsets.symmetric(horizontal: 20),
-                  trailing: index == controller.currentIndex
-                      ? const FaIcon(
-                          FontAwesomeIcons.check,
-                          size: 20,
-                        )
-                      : null,
-                  onTap: () {
-                    controller.select(index);
-                  },
-                );
-              },
-            ).toList(),
-            if (onCreate != null)
-              ListTile(
-                dense: true,
-                onTap: () async {
-                  final String? input = await InputDialog(
-                    title: inputDialogTitle ?? 'enter'.tr,
-                  ).show();
-                  if (input != null) {
-                    final Selectable newOption =
-                        await onCreate!(input) as Selectable;
-                    controller.addOption(newOption);
-                  }
+        builder: (controller) => SingleChildScrollView(
+          child: Column(
+            children: [
+              ...controller.options.asMap().entries.map(
+                (e) {
+                  final int index = e.key;
+                  final String title = e.value.toString().tr;
+                  return ListTile(
+                    title: Text(
+                      title,
+                      style: const TextStyle(fontSize: 17),
+                    ),
+                    dense: true,
+                    contentPadding: const EdgeInsets.symmetric(horizontal: 20),
+                    trailing: index == controller.currentIndex
+                        ? const FaIcon(
+                            FontAwesomeIcons.check,
+                            size: 20,
+                          )
+                        : null,
+                    onTap: () {
+                      controller.select(index);
+                    },
+                  );
                 },
-                title: Row(
-                  children: [
-                    FaIcon(
-                      FontAwesomeIcons.plus,
-                      size: 20,
-                      color: Colors.blue[600],
-                    ),
-                    const SizedBox(width: 10),
-                    Text(
-                      btnAddText ?? 'add'.tr,
-                      style: TextStyle(
-                        fontSize: 17,
+              ).toList(),
+              if (onCreate != null)
+                ListTile(
+                  dense: true,
+                  onTap: () async {
+                    final String? input = await InputDialog(
+                      title: inputDialogTitle ?? 'enter'.tr,
+                    ).show();
+                    if (input != null) {
+                      final Selectable newOption =
+                          await onCreate!(input) as Selectable;
+                      controller.addOption(newOption);
+                    }
+                  },
+                  title: Row(
+                    children: [
+                      FaIcon(
+                        FontAwesomeIcons.plus,
+                        size: 20,
                         color: Colors.blue[600],
-                        fontWeight: FontWeight.bold,
                       ),
-                    ),
-                  ],
+                      const SizedBox(width: 10),
+                      Text(
+                        btnAddText ?? 'add'.tr,
+                        style: TextStyle(
+                          fontSize: 17,
+                          color: Colors.blue[600],
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-          ],
+            ],
+          ),
         ),
       ),
       onConfirm: () {},

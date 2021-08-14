@@ -1,21 +1,18 @@
-import 'package:cubetimer/models/statistics/statistics.dart';
-import 'package:cubetimer/pages/statistics/controller/chart_controller.dart';
+import 'package:cubetimer/models/statistics/stat_data.dart';
 import 'package:cubetimer/utils/timer_utils.dart';
+import 'package:cubetimer/utils/extension.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class StatChart extends StatelessWidget {
   // Constructor
-  StatChart({
-    required this.stats,
+  const StatChart({
+    required this.data,
     Key? key,
-  })  : controller = ChartController(stats: stats),
-        super(key: key);
+  }) : super(key: key);
 
   // Variables
-  final List<Statistics> stats;
-  final ChartController controller;
+  final LineChartStatData data;
 
   // Functions
   @override
@@ -23,28 +20,24 @@ class StatChart extends StatelessWidget {
     return AspectRatio(
       aspectRatio: 1,
       child: Container(
-        decoration: const BoxDecoration(
-          borderRadius: BorderRadius.all(
-            Radius.circular(18),
+        decoration: BoxDecoration(
+          borderRadius: const BorderRadius.all(
+            Radius.circular(10),
           ),
-          color: Color(0xff232d37),
+          color: Colors.brown[100],
         ),
         child: Padding(
-          padding: const EdgeInsets.only(
-            right: 18.0,
-            left: 12.0,
-            top: 24,
-            bottom: 12,
-          ),
+          padding: const EdgeInsets.all(20),
           child: LineChart(
             LineChartData(
+              lineTouchData: LineTouchData(enabled: false),
               gridData: FlGridData(
                 show: true,
-                horizontalInterval: controller.yInterval,
+                horizontalInterval: data.intervalY,
                 getDrawingHorizontalLine: (value) {
                   return FlLine(
-                    color: const Color(0xff37434d),
-                    strokeWidth: 1,
+                    color: Colors.brown[200],
+                    strokeWidth: 2,
                   );
                 },
               ),
@@ -52,48 +45,53 @@ class StatChart extends StatelessWidget {
                 show: true,
                 bottomTitles: SideTitles(
                   showTitles: true,
-                  getTextStyles: (value) => const TextStyle(
-                    color: Color(0xff68737d),
+                  getTextStyles: (value) => TextStyle(
+                    color: Colors.grey[700],
                     fontWeight: FontWeight.bold,
                     fontSize: 12,
                   ),
-                  interval: controller.xInterval,
+                  interval: data.intervalX,
+                  reservedSize: 5,
                   margin: 10,
                 ),
-                leftTitles: SideTitles(
+                leftTitles: SideTitles(showTitles: false),
+                rightTitles: SideTitles(
                   showTitles: true,
-                  getTextStyles: (value) => const TextStyle(
-                    color: Color(0xff67727d),
+                  getTextStyles: (value) => TextStyle(
+                    color: Colors.grey[700],
                     fontWeight: FontWeight.bold,
                     fontSize: 12,
                   ),
-                  interval: controller.yInterval,
+                  interval: data.intervalY,
                   getTitles: (value) {
                     final String displayTime =
                         TimerUtils.parseTime(value.toInt(), milli: false);
                     return displayTime;
                   },
+                  reservedSize: 5,
                   margin: 10,
                 ),
               ),
               borderData: FlBorderData(
                 show: true,
-                border: Border.all(
-                  color: const Color(0xff37434d),
-                  width: 0,
+                border: Border(
+                  bottom: BorderSide(
+                    color: Colors.brown[200]!,
+                    width: 2,
+                  ),
                 ),
               ),
-              maxY: controller.maxYVal.toDouble(),
-              minY: controller.minYVal.toDouble(),
+              maxY: data.maxY,
+              minY: data.minY,
               minX: 0,
               lineBarsData: [
                 LineChartBarData(
-                  spots: controller.data
-                      .map((e) =>
-                          FlSpot(e.index.toDouble() + 1, e.rawTime.toDouble()))
+                  spots: data.everthing.getData()
+                      .mapIndexed((e, i) =>
+                          FlSpot(i.toDouble() + 1, e))
                       .toList(),
                   isCurved: false,
-                  colors: [Colors.blue],
+                  colors: [Colors.lightBlue[800]!],
                   barWidth: 2,
                   isStrokeCapRound: true,
                   dotData: FlDotData(

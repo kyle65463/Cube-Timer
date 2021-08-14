@@ -1,8 +1,7 @@
-import 'package:cubetimer/models/record/record.dart';
 import 'package:cubetimer/models/record/track.dart';
-import 'package:cubetimer/models/statistics/statistics.dart';
+import 'package:cubetimer/models/statistics/multi_stat.dart';
+import 'package:cubetimer/models/statistics/stat_data.dart';
 import 'package:cubetimer/repositories/tracks_repository.dart';
-import 'package:cubetimer/utils/statistics_utils.dart';
 import 'package:get/get.dart';
 
 class StatisticsController extends GetxController {
@@ -13,12 +12,14 @@ class StatisticsController extends GetxController {
 
   // Variables
   Future get initDone => _initDone;
-  List<Statistics> get stats =>
-      [PlainRecords(data: StatUtils.fromRecords(_track.records))];
+  LineChartStatData get lineChartData => _lineChartData;
+  SingleStatTableData get singleStatTableData => _singleStatTableData;
 
   final TracksRepository _repository = Get.find<TracksRepository>();
   late Future _initDone;
   late Track _track;
+  late LineChartStatData _lineChartData;
+  late SingleStatTableData _singleStatTableData;
 
   Future<void> _init() async {
     await _loadCurrentTrack();
@@ -27,6 +28,12 @@ class StatisticsController extends GetxController {
 
   Future<void> _loadCurrentTrack() async {
     _track = await _repository.loadCurrentTrack();
+    _lineChartData = LineChartStatData(
+      everthing: MultiStatEverything(records: _track.records),
+    );
+    _lineChartData.prepare();
+    _singleStatTableData = SingleStatTableData(records: _track.records);
+    _singleStatTableData.prepare();
     update();
   }
 

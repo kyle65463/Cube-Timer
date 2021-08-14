@@ -54,10 +54,4 @@ class StatUtils {
     return -2; // DNF
   }
 
-  static List<StatData> fromRecords(List<Record> records) {
-    return records
-        .mapIndexed(
-            (record, index) => StatData(index: index, rawTime: record.rawTime))
-        .toList();
-  }
 }

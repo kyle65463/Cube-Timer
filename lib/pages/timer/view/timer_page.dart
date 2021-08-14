@@ -24,8 +24,8 @@ class TimerPage extends StatelessWidget {
         final List<int> times =
             controller.records.map((e) => e.penalty.apply(e.rawTime)).toList();
         final int ao5 = StatUtils.ao5(times);
-        final int ao12 = StatUtils.ao12(times); 
-        final int best = StatUtils.best(times); 
+        final int ao12 = StatUtils.ao12(times);
+        final int best = StatUtils.best(times);
         final String ao5Str = TimerUtils.parseTime(ao5);
         final String ao12Str = TimerUtils.parseTime(ao12);
         final String bestStr = TimerUtils.parseTime(best);
@@ -80,7 +80,7 @@ class TimerPage extends StatelessWidget {
                                   Text('Ao5: $ao5Str'),
                                   Text('Ao12: $ao12Str'),
                                   Text('Best: $bestStr'),
-                                  Text('Count: 15'),
+                                  Text('Count: ${times.length}'),
                                   const SizedBox(height: 20),
                                 ],
                               )

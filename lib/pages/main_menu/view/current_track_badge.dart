@@ -1,4 +1,5 @@
 import 'package:badges/badges.dart';
+import 'package:cubetimer/components/selection_badge.dart';
 import 'package:cubetimer/dialogs/selection_dialog.dart';
 import 'package:cubetimer/models/interfaces/selectable.dart';
 import 'package:cubetimer/models/record/track.dart';
@@ -23,57 +24,26 @@ class CurrentTrackBadge extends StatelessWidget {
   final Function onSelectCurrentTrack;
 
   // Functions
+  Future<void> _onTap() async {
+    final Selectable? result = await SelectionDialog(
+      title: 'select track'.tr,
+      options: tracks,
+      originalOption: currentTrack,
+      onCreate: onCreateTrack,
+      btnAddText: 'add new track'.tr,
+      inputDialogTitle: 'enter title'.tr,
+    ).show();
+    if (result != null) {
+      final Track selectedTrack = result as Track;
+      onSelectCurrentTrack(selectedTrack);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () async {
-        final Selectable? result = await SelectionDialog(
-          title: 'select track'.tr,
-          options: tracks,
-          originalOption: currentTrack,
-          onCreate: onCreateTrack,
-          btnAddText: 'add new track'.tr,
-          inputDialogTitle: 'enter title'.tr,
-        ).show();
-        if (result != null) {
-          final Track selectedTrack = result as Track;
-          onSelectCurrentTrack(selectedTrack);
-        }
-      },
-      child: Badge(
-        toAnimate: false,
-        shape: BadgeShape.square,
-        badgeColor: Colors.brown[100]!,
-        borderRadius: BorderRadius.circular(8),
-        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-        badgeContent: Container(
-          constraints: const BoxConstraints(maxWidth: 150),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Flexible(
-                child: Text(
-                  currentTrack.title,
-                  overflow: TextOverflow.ellipsis,
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    color: Colors.black,
-                    fontSize: 14,
-                    height: 1,
-                  ),
-                ),
-              ),
-              const SizedBox(width: 12),
-              FaIcon(
-                FontAwesomeIcons.angleDown,
-                size: 15,
-                color: Colors.grey[800],
-              )
-            ],
-          ),
-        ),
-      ),
+    return SelectionBadge(
+      title: currentTrack.title,
+      onTap: _onTap,
     );
   }
 }

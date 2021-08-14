@@ -30,6 +30,13 @@ class Localization extends Translations {
           'enter title': 'Enter the title',
           'num records selected': '@num records selected',
 
+          // Stats
+          'stat count': 'Count',
+          'stat deviation': 'Deviation',
+          'stat best': 'Best',
+          'stat worst': 'Worst',
+          'stat mean': 'Mean',
+
           // Cubes
           'cube 3x3': '3x3',
           'cube 4x4': '4x4',
@@ -65,9 +72,16 @@ class Localization extends Translations {
           'enter title': '輸入名稱',
           'num records selected': '已選擇 @num 筆紀錄',
 
+          // Stats
+          'stat count': '總計',
+          'stat deviation': '標準差',
+          'stat best': '最佳',
+          'stat worst': '最差',
+          'stat mean': '平均',
+
           // Cubes
-          'cube 3x3' : '3x3',
-          'cube 4x4' : '4x4',
+          'cube 3x3': '3x3',
+          'cube 4x4': '4x4',
 
           // Penalty
           'penalty': '處罰',
