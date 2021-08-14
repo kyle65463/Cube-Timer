@@ -86,10 +86,16 @@ class StatChart extends StatelessWidget {
               minX: 0,
               lineBarsData: [
                 LineChartBarData(
-                  spots: data.everthing.getData()
-                      .mapIndexed((e, i) =>
-                          FlSpot(i.toDouble() + 1, e))
-                      .toList(),
+                  spots: data.everthing
+                          .getData()
+                          .mapIndexed((e, i) => FlSpot(i.toDouble() + 1, e))
+                          .toList()
+                          .isEmpty
+                      ? [FlSpot(0, 0)]
+                      : data.everthing
+                          .getData()
+                          .mapIndexed((e, i) => FlSpot(i.toDouble() + 1, e))
+                          .toList(),
                   isCurved: false,
                   colors: [Colors.lightBlue[800]!],
                   barWidth: 2,

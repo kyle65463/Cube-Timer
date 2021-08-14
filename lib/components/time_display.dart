@@ -33,8 +33,7 @@ class TimeDisplay extends StatelessWidget {
       );
     } else {
       final int time = penalty?.apply(rawTime) ?? rawTime;
-      final List<String> displayTime =
-          TimerUtils.parseTime(time).split('.');
+      final List<String> displayTime = TimerUtils.parseTime(time).split('.');
       final String seconds = displayTime.first;
       final String milliseconds = displayTime.last;
       return Row(

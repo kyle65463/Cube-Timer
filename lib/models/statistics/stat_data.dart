@@ -19,7 +19,7 @@ class LineChartStatData {
   double intervalY = 1000;
   final int _numHorizontalLines = 6;
 
-  void prepare([int numRecords = -1]) {
+  void prepare([int? numRecords]) {
     maxY = 0;
     minY = double.infinity;
     for (final data in everthing.getData(numRecords)) {
@@ -62,13 +62,13 @@ class SingleStatTableData {
   // Functions
   void _init() {
     _stats.add(SingleStatCount(records: records));
-    // _stats.add(SingleStatBest(records: records));
-    // _stats.add(SingleStatWorst(records: records));
-    // _stats.add(SingleStatMean(records: records));
-    // _stats.add(SingleStatDeviation(records: records));
+    _stats.add(SingleStatBest(records: records));
+    _stats.add(SingleStatWorst(records: records));
+    _stats.add(SingleStatMean(records: records));
+    _stats.add(SingleStatDeviation(records: records));
   }
 
-  void prepare([int numRecords = -1]) {
+  void prepare([int? numRecords]) {
     for (final stat in _stats) {
       _data[stat.toString()] = stat.getData(numRecords);
     }

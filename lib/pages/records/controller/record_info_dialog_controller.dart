@@ -1,4 +1,3 @@
-import 'package:cubetimer/dialogs/components/awesome_dialog.dart';
 import 'package:cubetimer/dialogs/dialog.dart';
 import 'package:cubetimer/dialogs/selection_dialog.dart';
 import 'package:cubetimer/models/interfaces/selectable.dart';

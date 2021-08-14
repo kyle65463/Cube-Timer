@@ -11,7 +11,7 @@ abstract class MultiStat extends Stat {
   final List<Record> records;
 
   // Functions
-  List<double> getData([int numRecords]);
+  List<double> getData([int? numRecords]);
 }
 
 class MultiStatEverything extends MultiStat {
@@ -21,14 +21,8 @@ class MultiStatEverything extends MultiStat {
   }) : super(records: records);
 
   @override
-  List<double> getData([int numRecords = -1]) {
-    records.removeWhere((e) => e.finalTime < 0); // Do not count DNF
-    List<Record> effectiveRecords = [];
-    if (numRecords == -1) {
-      effectiveRecords = List.from(records);
-    } else {
-      effectiveRecords = records.sublist(records.length - numRecords);
-    }
+  List<double> getData([int? numRecords]) {
+    final List<Record> effectiveRecords = super.filter(records, numRecords);
     return effectiveRecords.map((e) => e.finalTime.toDouble()).toList();
   }
 }

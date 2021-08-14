@@ -99,6 +99,7 @@ class TracksRepository extends Repository {
       // Shouldn't happen
       throw Exception('Record not found in the track!');
     }
+
     await _database.updateTrack(track);
     _currentStreamController.sink.add(true);
   }
