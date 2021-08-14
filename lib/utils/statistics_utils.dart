@@ -1,5 +1,5 @@
 import 'package:cubetimer/models/record/record.dart';
-import 'package:cubetimer/models/statistics/stat_data.dart';
+import 'package:cubetimer/models/statistics/data/table_data.dart';
 import 'package:cubetimer/utils/extension.dart';
 
 class StatUtils {

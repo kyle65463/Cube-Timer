@@ -36,6 +36,11 @@ class Localization extends Translations {
           'stat best': 'Best',
           'stat worst': 'Worst',
           'stat mean': 'Mean',
+          'stat all': 'All',
+          'stat ao5': 'Ao5',
+          'stat ao12': 'Ao12',
+          'stat ao50': 'Ao50',
+          'stat ao100': 'Ao100',
 
           // Cubes
           'cube 3x3': '3x3',
@@ -78,6 +83,11 @@ class Localization extends Translations {
           'stat best': '最佳',
           'stat worst': '最差',
           'stat mean': '平均',
+          'stat all': '全部',
+          'stat ao5': 'Ao5',
+          'stat ao12': 'Ao12',
+          'stat ao50': 'Ao50',
+          'stat ao100': 'Ao100',
 
           // Cubes
           'cube 3x3': '3x3',

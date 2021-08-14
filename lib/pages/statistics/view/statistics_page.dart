@@ -1,14 +1,11 @@
 import 'package:badges/badges.dart';
 import 'package:cubetimer/components/title_section.dart';
-import 'package:cubetimer/models/statistics/stat_data.dart';
+import 'package:cubetimer/models/statistics/data/table_data.dart';
 import 'package:cubetimer/pages/statistics/controller/statistics_controller.dart';
 import 'package:cubetimer/pages/statistics/view/chart_legend.dart';
 import 'package:cubetimer/pages/statistics/view/stat_chart.dart';
 import 'package:cubetimer/pages/statistics/view/single_stat_table.dart';
 import 'package:cubetimer/pages/statistics/view/stat_type_selection_badge.dart';
-import 'package:cubetimer/utils/statistics_utils.dart';
-import 'package:cubetimer/utils/timer_utils.dart';
-import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -46,13 +43,20 @@ class StatisticsPage extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
+                      Row(
+                        children: controller.lineChartData.lines
+                            .map((e) => ChartLegend(lineData: e))
+                            .toList(),
+                      ),
                       // ChartLegend(otherStats: controller.stats),
                       StatTypeSelectionBadge(),
                     ],
                   ),
                 ),
                 const SizedBox(height: 15),
-                SingleStatTable(data: controller.singleStatTableData,),
+                SingleStatTable(
+                  data: controller.singleStatTableData,
+                ),
               ],
             ),
           ),

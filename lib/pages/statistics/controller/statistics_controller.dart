@@ -1,6 +1,7 @@
 import 'package:cubetimer/models/record/track.dart';
+import 'package:cubetimer/models/statistics/data/line_chart_data.dart';
 import 'package:cubetimer/models/statistics/multi_stat.dart';
-import 'package:cubetimer/models/statistics/stat_data.dart';
+import 'package:cubetimer/models/statistics/data/table_data.dart';
 import 'package:cubetimer/repositories/tracks_repository.dart';
 import 'package:get/get.dart';
 
@@ -28,9 +29,7 @@ class StatisticsController extends GetxController {
 
   Future<void> _loadCurrentTrack() async {
     _track = await _repository.loadCurrentTrack();
-    _lineChartData = LineChartStatData(
-      everthing: MultiStatEverything(records: _track.records),
-    );
+    _lineChartData = LineChartStatData(records: _track.records);
     _lineChartData.prepare();
     _singleStatTableData = SingleStatTableData(records: _track.records);
     _singleStatTableData.prepare();

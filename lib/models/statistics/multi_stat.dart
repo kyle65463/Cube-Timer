@@ -14,9 +14,9 @@ abstract class MultiStat extends Stat {
   List<double> getData([int? numRecords]);
 }
 
-class MultiStatEverything extends MultiStat {
+class MultiStatAll extends MultiStat {
   // Constructor
-  MultiStatEverything({
+  MultiStatAll({
     required List<Record> records,
   }) : super(records: records);
 
@@ -24,5 +24,10 @@ class MultiStatEverything extends MultiStat {
   List<double> getData([int? numRecords]) {
     final List<Record> effectiveRecords = super.filter(records, numRecords);
     return effectiveRecords.map((e) => e.finalTime.toDouble()).toList();
+  }
+
+  @override
+  String toString() {
+    return 'stat all';
   }
 }

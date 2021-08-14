@@ -1,4 +1,4 @@
-import 'package:cubetimer/models/statistics/stat_data.dart';
+import 'package:cubetimer/models/statistics/data/line_chart_data.dart';
 import 'package:cubetimer/utils/timer_utils.dart';
 import 'package:cubetimer/utils/extension.dart';
 import 'package:fl_chart/fl_chart.dart';
@@ -17,6 +17,7 @@ class StatChart extends StatelessWidget {
   // Functions
   @override
   Widget build(BuildContext context) {
+    List<LineData> lines = data.lines;
     return AspectRatio(
       aspectRatio: 1,
       child: Container(
@@ -84,27 +85,22 @@ class StatChart extends StatelessWidget {
               maxY: data.maxY,
               minY: data.minY,
               minX: 0,
-              lineBarsData: [
-                LineChartBarData(
-                  spots: data.everthing
-                          .getData()
-                          .mapIndexed((e, i) => FlSpot(i.toDouble() + 1, e))
-                          .toList()
-                          .isEmpty
-                      ? [FlSpot(0, 0)]
-                      : data.everthing
-                          .getData()
-                          .mapIndexed((e, i) => FlSpot(i.toDouble() + 1, e))
-                          .toList(),
+              lineBarsData: lines.map((line) {
+                final List<FlSpot> spots = line.data
+                    .mapIndexed(
+                        (e, i) => FlSpot(line.startIndex + i.toDouble(), e))
+                    .toList();
+                return LineChartBarData(
+                  spots: spots.isEmpty ? [FlSpot(0, 0)] : spots,
                   isCurved: false,
-                  colors: [Colors.lightBlue[800]!],
+                  colors: [line.color],
                   barWidth: 2,
                   isStrokeCapRound: true,
                   dotData: FlDotData(
                     show: false,
                   ),
-                ),
-              ],
+                );
+              }).toList(),
             ),
           ),
         ),

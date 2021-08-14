@@ -1,16 +1,16 @@
+import 'package:cubetimer/models/statistics/data/line_chart_data.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ChartLegend extends StatelessWidget {
   // Constructor
   const ChartLegend({
-    required this.name,
-    required this.color,
+    required this.lineData,
     Key? key,
   }) : super(key: key);
 
   // Variables
-  final String name;
-  final Color? color;
+  final LineData lineData;
 
   // Functions
   @override
@@ -19,13 +19,10 @@ class ChartLegend extends StatelessWidget {
       Container(
         width: 15,
         height: 3,
-        color: Colors.lightBlue[800],
-        // decoration: const BoxDecoration(
-        //   color: Colors.orange,
-        //   shape: BoxShape.circle,
-        // ),
+        color: lineData.color,
       ),
-      Text('全部'),
+      const SizedBox(width: 5),
+      Text(lineData.name.tr),
     ]);
   }
 }
