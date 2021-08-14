@@ -1,3 +1,5 @@
 abstract class SettingsValue {
-  void apply();
+  void apply() {
+    
+  }
 }

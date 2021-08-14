@@ -2,6 +2,7 @@ import 'package:cubetimer/models/record/penalty.dart';
 import 'package:cubetimer/models/record/record.dart';
 import 'package:cubetimer/models/record/track.dart';
 import 'package:cubetimer/models/settings/options/language.dart';
+import 'package:cubetimer/models/settings/options/stat_record_count.dart';
 import 'package:cubetimer/models/settings/options/theme.dart';
 import 'package:cubetimer/models/settings/settings_key.dart';
 import 'package:cubetimer/models/settings/settings_value.dart';
@@ -25,6 +26,7 @@ class HiveDatabase extends Database {
     Hive.registerAdapter(ZhTWAdapter());
     Hive.registerAdapter(BrownThemeAdapter());
     Hive.registerAdapter(WhiteThemeAdapter());
+    Hive.registerAdapter(StatRecordCountAdapter());
     Hive.registerAdapter(RecordAdapter());
     Hive.registerAdapter(TrackAdapter());
     Hive.registerAdapter(TurnRAdapter());

@@ -6,7 +6,7 @@ import 'package:uuid/uuid.dart';
 part 'track.g.dart';
 
 @HiveType(typeId: 1)
-class Track extends HiveObject implements Selectable {
+class Track extends HiveObject with Selectable {
   // Constructors
   Track({
     required this.id,

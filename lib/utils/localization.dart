@@ -29,6 +29,7 @@ class Localization extends Translations {
           'enter': 'Enter',
           'enter title': 'Enter the title',
           'num records selected': '@num records selected',
+          'stat record count': 'Recent count',
 
           // Stats
           'stat count': 'Count',
@@ -76,6 +77,7 @@ class Localization extends Translations {
           'enter': '輸入',
           'enter title': '輸入名稱',
           'num records selected': '已選擇 @num 筆紀錄',
+          'stat record count': '最近次數',
 
           // Stats
           'stat count': '總計',

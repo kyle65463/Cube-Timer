@@ -29,7 +29,7 @@ class SettingsKeyLanguage extends SettingsSelectionKey {
 }
 
 // Settings Value
-abstract class Language extends SettingsValue implements Selectable {
+abstract class Language extends SettingsValue with Selectable {
   // Constructor
   Language({
     required this.languageCode,

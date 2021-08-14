@@ -3,7 +3,7 @@ import 'package:hive/hive.dart';
 
 part 'penalty.g.dart';
 
-abstract class Penalty implements Selectable {
+abstract class Penalty with Selectable {
   const Penalty();
 
   static List<Penalty> penalties = [

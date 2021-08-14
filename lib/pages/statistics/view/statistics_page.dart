@@ -1,5 +1,6 @@
 import 'package:badges/badges.dart';
 import 'package:cubetimer/components/title_section.dart';
+import 'package:cubetimer/models/settings/options/stat_record_count.dart';
 import 'package:cubetimer/models/statistics/data/table_data.dart';
 import 'package:cubetimer/pages/statistics/controller/statistics_controller.dart';
 import 'package:cubetimer/pages/statistics/view/chart_legend.dart';
@@ -43,13 +44,19 @@ class StatisticsPage extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
+                      // Legends
                       Row(
                         children: controller.lineChartData.lines
                             .map((e) => ChartLegend(lineData: e))
                             .toList(),
                       ),
-                      // ChartLegend(otherStats: controller.stats),
-                      StatTypeSelectionBadge(),
+
+                      // Stat type selection badge
+                      StatTypeSelectionBadge(
+                        statRecordCount: controller.statRecordCount, 
+                        statRecordCountKey: controller.statRecordCountKey,
+                        updateSettings: controller.updateSettings,
+                      ),
                     ],
                   ),
                 ),

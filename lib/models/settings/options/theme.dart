@@ -24,7 +24,7 @@ class SettingsKeyTheme extends SettingsSelectionKey {
 }
 
 // Settings value
-abstract class Theme extends SettingsValue implements Selectable {
+abstract class Theme extends SettingsValue with Selectable {
   // Functions
   @override
   void apply() {

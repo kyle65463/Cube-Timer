@@ -1,4 +1,5 @@
 import 'package:cubetimer/models/settings/options/language.dart';
+import 'package:cubetimer/models/settings/options/stat_record_count.dart';
 import 'package:cubetimer/models/settings/options/theme.dart';
 import 'package:cubetimer/models/settings/settings_value.dart';
 import 'package:hive/hive.dart';
@@ -15,6 +16,12 @@ abstract class SettingsKey extends HiveObject {
   final SettingsValue defaultValue;
 
   static List<SettingsKey> keys = [
+    SettingsKeyLanguage(),
+    SettingsKeyTheme(),
+    SettingsKeyStatRecordCount(),
+  ];
+
+  static List<SettingsKey> morePageKeys = [
     SettingsKeyLanguage(),
     SettingsKeyTheme(),
   ];

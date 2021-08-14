@@ -20,6 +20,23 @@ class SettingsTile extends StatelessWidget {
   final Function saveSettings;
 
   // Functions
+  void _onTap() async {
+    final String titleText = settingsKey.name.tr;
+    final List<SettingsValue> options =
+        (settingsKey as SettingsSelectionKey).options;
+    final Selectable? result = await SelectionDialog(
+      title: titleText,
+      options: options.map((e) => e as Selectable).toList(),
+      originalOption: settingsValue as Selectable,
+    ).show();
+
+    if (result != null) {
+      final SettingsValue newSettingsValue = result as SettingsValue;
+      newSettingsValue.apply();
+      saveSettings(settingsKey, newSettingsValue);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final String titleText = settingsKey.name.tr;
@@ -42,21 +59,7 @@ class SettingsTile extends StatelessWidget {
         tileColor: Colors.brown[100],
         contentPadding: const EdgeInsets.symmetric(horizontal: 25),
         dense: true,
-        onTap: () async {
-          final List<SettingsValue> options =
-              (settingsKey as SettingsSelectionKey).options;
-          final Selectable? result = await SelectionDialog(
-            title: titleText,
-            options: options.map((e) => e as Selectable).toList(),
-            originalOption: settingsValue as Selectable,
-          ).show();
-
-          if (result != null) {
-            final SettingsValue newSettingsValue = result as SettingsValue;
-            newSettingsValue.apply();
-            saveSettings(settingsKey, newSettingsValue);
-          }
-        },
+        onTap: _onTap,
       );
     } else if (settingsKey is SettingsSelectionKey) {
       return Container();

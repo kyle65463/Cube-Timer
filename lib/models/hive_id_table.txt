@@ -8,3 +8,4 @@
 // Settings
 101 - 130 Language
 131 - 140 Theme
+141 StatTime

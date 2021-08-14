@@ -6,17 +6,29 @@ class SelectionDialogController extends GetxController {
   SelectionDialogController({
     required this.options,
     required this.originalOption,
-  }) : _currentIndex = options.indexOf(originalOption);
+  }) {
+    _init();
+  }
 
   // Variables
   final List<Selectable> options;
   final Selectable originalOption;
   int get currentIndex => _currentIndex;
   bool get isCanceled => _isCanceled;
-  int _currentIndex = 0;
+  int _currentIndex = -1;
   bool _isCanceled = false;
 
   // Functions
+  void _init() {
+    for (int i = 0; i < options.length; i++) {
+      options.sort((a, b) => a.compare(b));
+      if (options[i].isEqual(originalOption)) {
+        _currentIndex = i;
+        return;
+      }
+    }
+  }
+
   void select(int index) {
     _currentIndex = index;
     update();
@@ -32,7 +44,7 @@ class SelectionDialogController extends GetxController {
 
   void addOption(Selectable option) {
     options.add(option);
-    options.sort((a, b) => a.toString().compareTo(b.toString()));
+    options.sort((a, b) => a.compare(b));
     _currentIndex = options.indexOf(option);
     update();
   }
