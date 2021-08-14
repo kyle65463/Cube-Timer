@@ -1,5 +1,6 @@
 import 'package:cubetimer/components/scramble_wrap.dart';
 import 'package:cubetimer/models/record/record.dart';
+import 'package:cubetimer/pages/statistics/view/table_entry.dart';
 import 'package:cubetimer/pages/timer/controller/timer_page_controller.dart';
 import 'package:cubetimer/utils/statistics_utils.dart';
 import 'package:cubetimer/utils/timer_utils.dart';
@@ -77,10 +78,26 @@ class TimerPage extends StatelessWidget {
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text('Ao5: $ao5Str'),
-                                  Text('Ao12: $ao12Str'),
-                                  Text('Best: $bestStr'),
-                                  Text('Count: ${times.length}'),
+                                  TableEntry(
+                                    title: 'stat ao5'.tr,
+                                    value: ao5Str,
+                                    dense: true,
+                                  ),
+                                  TableEntry(
+                                    title: 'stat ao12'.tr,
+                                    value: ao12Str,
+                                    dense: true,
+                                  ),
+                                  TableEntry(
+                                    title: 'stat best'.tr,
+                                    value: bestStr,
+                                    dense: true,
+                                  ),
+                                  TableEntry(
+                                    title: 'stat count'.tr,
+                                    value: times.length.toString(),
+                                    dense: true,
+                                  ),
                                   const SizedBox(height: 20),
                                 ],
                               )

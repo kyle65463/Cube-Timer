@@ -5,12 +5,14 @@ class TableEntry extends StatelessWidget {
   const TableEntry({
     required this.title,
     required this.value,
+    this.dense = false,
     Key? key,
   }) : super(key: key);
 
   // Variables
   final String title;
   final String value;
+  final bool dense;
 
   // Functions
   @override
@@ -20,9 +22,9 @@ class TableEntry extends StatelessWidget {
       children: [
         Text(
           '$title: ',
-          style: const TextStyle(
+          style: TextStyle(
             fontSize: 16,
-            height: 1.5,
+            height: dense == false ? 1.5 : null,
             wordSpacing: 3,
           ),
         ),
@@ -30,7 +32,7 @@ class TableEntry extends StatelessWidget {
           value,
           style: TextStyle(
             fontSize: 16,
-            color: Colors.grey[700],
+            color: Colors.grey[800]?.withOpacity(0.85),
           ),
         ),
       ],
