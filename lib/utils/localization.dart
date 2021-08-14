@@ -36,6 +36,7 @@ class Localization extends Translations {
           'stat record count 100': 'Recent 100 records',
           'stat record count 500': 'Recent 500 records',
           'stat record count 1000': 'Recent 1000 records',
+          'no data': 'No data',
 
           // Stats
           'stat count': 'Count',
@@ -90,6 +91,7 @@ class Localization extends Translations {
           'stat record count 100': '最近 100 筆',
           'stat record count 500': '最近 500 筆',
           'stat record count 1000': '最近 1000 筆',
+          'no data': '無資料',
 
           // Stats
           'stat count': '總計',

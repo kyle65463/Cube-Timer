@@ -31,7 +31,7 @@ class MultiStatAll extends MultiStat {
     required List<Record> records,
   }) : super(
           records: records,
-          color: Colors.blue[600]!,
+          color: Colors.blue[700]!,
           startIndex: 1,
         );
 
@@ -107,7 +107,7 @@ class MultiStatAo5 extends MultiStatAoX {
     required List<Record> records,
   }) : super(
           records: records,
-          color: Colors.red[600]!,
+          color: Colors.red[700]!,
           startIndex: 5,
           numEffectiveTimes: 3,
           numWorse: 1,
@@ -127,7 +127,7 @@ class MultiStatAo12 extends MultiStatAoX {
     required List<Record> records,
   }) : super(
           records: records,
-          color: Colors.red[600]!,
+          color: Colors.orange[700]!,
           startIndex: 12,
           numEffectiveTimes: 9,
           numWorse: 2,
@@ -166,7 +166,7 @@ class MultiStatAo100 extends MultiStatAoX {
     required List<Record> records,
   }) : super(
           records: records,
-          color: Colors.orange[600]!,
+          color: Colors.red[700]!,
           startIndex: 100,
           numEffectiveTimes: 60,
           numWorse: 20,

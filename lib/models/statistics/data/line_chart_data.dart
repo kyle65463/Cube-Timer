@@ -55,8 +55,9 @@ class LineChartStatData {
     // Prepare line data
     _lines.clear();
     for (final stat in _stats) {
-      final int numEffectiveRecords = numRecords ?? records.length;
-      if (stat.startIndex > numEffectiveRecords) continue;
+      final int numEffectiveRecords =
+          numRecords == null ? records.length : min(numRecords, records.length);
+      if (stat.startIndex + 1 > numEffectiveRecords) continue;
       if (stat.showLowerBound != null &&
           numEffectiveRecords <= stat.showLowerBound!) continue;
       if (stat.showUpperBound != null &&
