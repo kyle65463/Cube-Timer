@@ -1,7 +1,7 @@
 import 'package:cubetimer/models/record/track.dart';
+import 'package:cubetimer/pages/more/view/more_page.dart';
 import 'package:cubetimer/pages/records/view/records_page.dart';
-import 'package:cubetimer/pages/settings/view/settings_page.dart';
-import 'package:cubetimer/pages/statistics/statistics_page.dart';
+import 'package:cubetimer/pages/statistics/view/statistics_page.dart';
 import 'package:cubetimer/pages/timer/view/timer_page.dart';
 import 'package:cubetimer/repositories/database/database.dart';
 import 'package:cubetimer/repositories/tracks_repository.dart';
@@ -21,8 +21,8 @@ class MainMenuPageController extends GetxController {
   List<Widget> pages = [
     TimerPage(),
     RecordsPage(),
-    const StatisticsPage(),
-    SettingsPage(),
+    StatisticsPage(),
+    MorePage(),
   ];
   bool showNavBar = true;
   bool showCurrentTrackBadge = true;

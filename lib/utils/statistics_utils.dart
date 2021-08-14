@@ -1,4 +1,8 @@
-class StatisticsUtils {
+import 'package:cubetimer/models/record/record.dart';
+import 'package:cubetimer/models/statistics/stat_data.dart';
+import 'package:cubetimer/utils/extension.dart';
+
+class StatUtils {
   // Return -1 if no sufficient data
   // Return -2 if DNF
   // A number < 0 represents a DNF
@@ -48,5 +52,12 @@ class StatisticsUtils {
       return time;
     }
     return -2; // DNF
+  }
+
+  static List<StatData> fromRecords(List<Record> records) {
+    return records
+        .mapIndexed(
+            (record, index) => StatData(index: index, rawTime: record.rawTime))
+        .toList();
   }
 }

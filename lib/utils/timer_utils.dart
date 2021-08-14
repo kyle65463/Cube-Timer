@@ -1,7 +1,7 @@
 import 'package:stop_watch_timer/stop_watch_timer.dart';
 
 class TimerUtils {
-  static String parseTime(int time) {
+  static String parseTime(int time, {bool milli = true}) {
     if (time == -1) return '-';
     if (time == -2) return 'DNF';
     final displayTime = StopWatchTimer.getDisplayTime(time);
@@ -19,6 +19,7 @@ class TimerUtils {
             ? '0$minute:'
             : '$minute:';
     result += second;
+    if (!milli) return result.split('.').first;
     return result;
   }
 }

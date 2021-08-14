@@ -1,11 +1,10 @@
 import 'package:cubetimer/pages/main_menu/controller/main_menu_page_controller.dart';
 import 'package:cubetimer/pages/main_menu/view/bottom_nav_bar.dart';
 import 'package:cubetimer/pages/main_menu/view/current_track_badge.dart';
-import 'package:cubetimer/pages/settings/view/settings_page.dart';
+import 'package:cubetimer/pages/more/view/more_page.dart';
 import 'package:cubetimer/pages/timer/view/time_counter.dart';
 import 'package:cubetimer/pages/timer/view/timer_page.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/instance_manager.dart';
 import 'package:get/get.dart';
 
@@ -55,7 +54,7 @@ class MainMenuPage extends StatelessWidget {
                 // Current track badge
                 else
                   Container(),
-                if (controller.page is! SettingsPage &&
+                if (controller.page is! MorePage &&
                     controller.showCurrentTrackBadge &&
                     controller.appBar == null)
                   Positioned(

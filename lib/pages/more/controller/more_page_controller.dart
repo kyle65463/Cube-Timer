@@ -5,9 +5,9 @@ import 'package:cubetimer/repositories/settings_repository.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 
-class SettingsPageController extends GetxController {
+class MorePageController extends GetxController {
   // Constructor
-  SettingsPageController() {
+  MorePageController() {
     _initDone = _loadSettings();
     _listenSettingsStream();
   }

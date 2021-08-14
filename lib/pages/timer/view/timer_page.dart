@@ -23,9 +23,9 @@ class TimerPage extends StatelessWidget {
       builder: (controller) {
         final List<int> times =
             controller.records.map((e) => e.penalty.apply(e.rawTime)).toList();
-        final int ao5 = StatisticsUtils.ao5(times);
-        final int ao12 = StatisticsUtils.ao12(times); 
-        final int best = StatisticsUtils.best(times); 
+        final int ao5 = StatUtils.ao5(times);
+        final int ao12 = StatUtils.ao12(times); 
+        final int best = StatUtils.best(times); 
         final String ao5Str = TimerUtils.parseTime(ao5);
         final String ao12Str = TimerUtils.parseTime(ao12);
         final String bestStr = TimerUtils.parseTime(best);
