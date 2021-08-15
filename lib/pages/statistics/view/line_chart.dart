@@ -80,7 +80,7 @@ class StatLineChart extends StatelessWidget {
                               TimerUtils.parseTime(value.toInt(), milli: false);
                           return displayTime;
                         },
-                        reservedSize: 5,
+                        reservedSize: data.maxY >= 60000 ? 25 : 10,
                         margin: 10,
                       ),
                     ),

@@ -1,7 +1,10 @@
 import 'dart:math';
 
+import 'package:cubetimer/dialogs/dialog.dart';
+import 'package:cubetimer/dialogs/selection_dialog.dart';
 import 'package:cubetimer/models/cubes/cube.dart';
 import 'package:cubetimer/models/cubes/cube3x3.dart';
+import 'package:cubetimer/models/interfaces/selectable.dart';
 import 'package:cubetimer/models/record/penalty.dart';
 import 'package:cubetimer/models/record/record.dart';
 import 'package:cubetimer/models/record/track.dart';
@@ -16,7 +19,7 @@ import 'package:stop_watch_timer/stop_watch_timer.dart';
 class TimerPageController extends GetxController {
   // Constructor
   TimerPageController() {
-    timer.records.listen(_saveRecord);
+    timer.records.listen(_solveDone);
     _initDone = _init();
   }
 
@@ -27,6 +30,7 @@ class TimerPageController extends GetxController {
   Scramble get scramble => _scramble;
   Cube get cube => _cube;
   List<Record> get records => _track.records;
+  Penalty? get penalty => _lastRecord?.penalty;
 
   int currentTime = 0;
   double timerCounterFontSize = 75;
@@ -35,6 +39,7 @@ class TimerPageController extends GetxController {
   late Track _track;
   late Cube _cube;
   late Scramble _scramble;
+  Record? _lastRecord;
 
   // Functions
   @override
@@ -71,6 +76,11 @@ class TimerPageController extends GetxController {
     }
   }
 
+  void generateScramble() {
+    _scramble = ScrambleGenerator.generate(Cube3x3());
+    update();
+  }
+
   void _startTimer() {
     timer.onExecute.add(StopWatchExecute.start);
     timerCounterFontSize = 95;
@@ -82,21 +92,60 @@ class TimerPageController extends GetxController {
     timerCounterFontSize = 75;
   }
 
+  void _solveDone(List<StopWatchRecord> records) {
+    _saveRecord(records);
+    generateScramble();
+  }
+
   void _saveRecord(List<StopWatchRecord> records) {
     if (records.isEmpty) return;
     final int rawTime = records.first.rawValue ?? 0;
+    _lastRecord = Record.createNew(
+      rawTime: rawTime,
+      penalty: PenaltyNone(),
+      scramble: scramble,
+    );
     _repository.createRecord(
-      Record.createNew(
-        rawTime: rawTime,
-        penalty: PenaltyNone(),
-        scramble: scramble,
-      ),
+      _lastRecord!,
       _track,
     );
-    _scramble = ScrambleGenerator.generate(Cube3x3());
+  }
+
+  void showDeleteRecordDialog() {
+    if (_lastRecord == null) return;
+    CustomDialog(
+      title: 'dialog title delete record'.tr,
+      description: 'dialog description delete record'.tr,
+      onConfirm: deleteRecord,
+    ).show();
+    return;
+  }
+
+  Future<void> showSetPenaltyDialog() async {
+    if (_lastRecord == null) return;
+    final List<Selectable> options = Penalty.penalties;
+    final Selectable? selectable = await SelectionDialog(
+      title: 'penalty'.tr,
+      options: options,
+      originalOption: _lastRecord!.penalty,
+    ).show();
+    if (selectable != null) {
+      final Penalty penalty = selectable as Penalty;
+      _lastRecord!.penalty = penalty;
+      _repository.updateRecord(_lastRecord!);
+      update();
+    }
+  }
+
+  void deleteRecord() {
+    _repository.deleteRecord(_lastRecord!);
+    Get.back();
+    _resetTimer();
+    update();
   }
 
   void _resetTimer() {
+    _lastRecord = null;
     timer.onExecute.add(StopWatchExecute.reset);
   }
 
