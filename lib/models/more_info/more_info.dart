@@ -1,5 +1,6 @@
 import 'package:cubetimer/models/more_info/about.dart';
 import 'package:cubetimer/models/more_info/feedback.dart';
+import 'package:cubetimer/models/more_info/help.dart';
 import 'package:cubetimer/models/more_info/rate_us.dart';
 import 'package:cubetimer/models/more_info/version.dart';
 
@@ -15,8 +16,9 @@ abstract class MoreInfo {
   final String? trailText;
 
   static final List<MoreInfo> info = [
-    RateUs(),
+    Help(),
     Feedback(),
+    RateUs(),
     About(),
     Version(),
   ];

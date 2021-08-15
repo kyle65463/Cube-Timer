@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:cubetimer/models/record/penalty.dart';
 import 'package:cubetimer/models/record/record.dart';
 import 'package:cubetimer/models/record/track.dart';
 import 'package:cubetimer/repositories/database/database.dart';

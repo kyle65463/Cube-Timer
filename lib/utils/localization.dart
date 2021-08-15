@@ -43,6 +43,7 @@ class Localization extends Translations {
           'delete': 'Delete',
           'close': 'Close',
           'version': 'Version',
+          'help': 'Gesture Shortcut',
 
           // Stats
           'stat dnf count': 'DNF',
@@ -83,6 +84,11 @@ class Localization extends Translations {
           'theme brown': 'Brown',
           'theme white': 'White',
           'email subject app feeback': '@appname Feedback',
+
+          // Tutorial
+          'tutorial swipe left': 'Swipe left to delete record',
+          'tutorial swipe right': 'Swipe right to generate a new scramble',
+          'tutorial swipe up': 'Swipe up to set a penalty',
         },
         'zh_TW': {
           'timer': '計時器',
@@ -134,8 +140,8 @@ class Localization extends Translations {
           'dialog title delete record': '刪除紀錄',
           'dialog description delete record': '確定要刪除紀錄嗎？這個行動無法回復。',
           'dialog title about': '關於',
-          'dialog description about': '此 app 由 Twisty Timer 為靈感，目前還在持續增加新功能，如果你有什麼建議也歡迎跟我們說！\n\n開發者: kyle65463',
-          'version': '版本',
+          'dialog description about':
+              '此 app 由 Twisty Timer 為靈感，目前還在持續增加新功能，如果你有什麼建議也歡迎跟我們說！\n\n開發者: kyle65463',
 
           // More
           'settings': '設定',
@@ -145,6 +151,8 @@ class Localization extends Translations {
           'rate us': '評分',
           'feedback': '意見與回饋',
           'about': '關於',
+          'help': '快捷手勢教學',
+          'version': '版本',
 
           // Languages
           'language en-us': '英文',
@@ -158,6 +166,10 @@ class Localization extends Translations {
           'cancel': '取消',
           'email subject app feeback': '@appname 意見回饋',
           'close': '關閉',
+
+          'tutorial swipe left': '向左滑刪除紀錄',
+          'tutorial swipe right': '向右滑生成新的打亂步驟',
+          'tutorial swipe up': '向上滑設定懲罰',
         }
       };
 }

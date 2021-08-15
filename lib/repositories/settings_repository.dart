@@ -18,6 +18,7 @@ class SettingsRepository extends Repository {
       final SettingsValue value = await _database.loadSettingsValue(key);
       map[key] = value;
     }
+    
     return Settings(map: map);
   }
 

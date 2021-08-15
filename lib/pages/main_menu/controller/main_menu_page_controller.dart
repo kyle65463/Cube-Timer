@@ -1,9 +1,12 @@
+import 'package:cubetimer/components/tutorial_swipe_overlay.dart';
+import 'package:cubetimer/models/disposable/tutorial.dart';
 import 'package:cubetimer/models/record/track.dart';
 import 'package:cubetimer/pages/more/view/more_page.dart';
 import 'package:cubetimer/pages/records/view/records_page.dart';
 import 'package:cubetimer/pages/statistics/view/statistics_page.dart';
 import 'package:cubetimer/pages/timer/view/timer_page.dart';
 import 'package:cubetimer/repositories/database/database.dart';
+import 'package:cubetimer/repositories/disposable_repository.dart';
 import 'package:cubetimer/repositories/tracks_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -33,6 +36,8 @@ class MainMenuPageController extends GetxController {
   Future get initDone => _initDone;
 
   final TracksRepository _repository = Get.find<TracksRepository>();
+  final DisposableRepository _disposableRepository =
+      Get.find<DisposableRepository>();
   late List<Track> _tracks;
   late Track _currentTrack;
   late Future _initDone;
@@ -93,6 +98,7 @@ class MainMenuPageController extends GetxController {
     await _loadCurrentTrack();
     _listenTrackStream();
     _listenCurrentTrackStream();
+    _showSwipeTutorial();
   }
 
   Future<void> _loadTracks() async {
@@ -111,5 +117,13 @@ class MainMenuPageController extends GetxController {
 
   void _listenCurrentTrackStream() {
     _repository.currentTrackStream.listen((e) => _loadCurrentTrack());
+  }
+
+  Future<void> _showSwipeTutorial() async {
+    final bool show = await _disposableRepository.loadTutorial(TutorialSwipe());
+    if (show) {
+      TutorialSwipeOverlay.show();
+      _disposableRepository.disposeTutorial(TutorialSwipe());
+    }
   }
 }

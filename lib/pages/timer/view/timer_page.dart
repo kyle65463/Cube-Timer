@@ -22,99 +22,113 @@ class TimerPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<TimerPageController>(
       builder: (controller) {
-        final List<int> times =
-            controller.records.map((e) => e.penalty.apply(e.rawTime)).toList();
-        final int ao5 = StatUtils.ao5(times);
-        final int ao12 = StatUtils.ao12(times);
-        final int best = StatUtils.best(times);
-        final String ao5Str = TimerUtils.parseTime(ao5);
-        final String ao12Str = TimerUtils.parseTime(ao12);
-        final String bestStr = TimerUtils.parseTime(best);
-        return Swipe(
-          onSwipeUp: controller.showSetPenaltyDialog,
-          onSwipeLeft: controller.showDeleteRecordDialog,
-          onSwipeRight: controller.generateScramble,
-          child: Scaffold(
-            body: SafeArea(
-              bottom: false,
-              child: GestureDetector(
-                behavior: HitTestBehavior.opaque,
-                onTap: controller.onTimerTriggered,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 25),
-                  child: !controller.isRunning
-                      ? Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Column(
-                              children: [
-                                const SizedBox(height: 38),
-                                Row(
-                                  children: [
-                                    Text(
-                                      '${controller.cube.toString().tr} ${'random'.tr}',
-                                      style: const TextStyle(
-                                        fontSize: 25,
-                                        fontWeight: FontWeight.bold,
-                                        height: 1,
+        return FutureBuilder<void>(
+            future: controller.initDone,
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              }
+              final List<int> times = controller.records
+                  .map((e) => e.penalty.apply(e.rawTime))
+                  .toList();
+              final int ao5 = StatUtils.ao5(times);
+              final int ao12 = StatUtils.ao12(times);
+              final int best = StatUtils.best(times);
+              final String ao5Str = TimerUtils.parseTime(ao5);
+              final String ao12Str = TimerUtils.parseTime(ao12);
+              final String bestStr = TimerUtils.parseTime(best);
+              return Swipe(
+                verticalMinDisplacement: 30,
+                horizontalMinDisplacement: 30,
+                onSwipeUp: controller.showSetPenaltyDialog,
+                onSwipeLeft: controller.showDeleteRecordDialog,
+                onSwipeRight: controller.generateScramble,
+                child: Scaffold(
+                  body: SafeArea(
+                    bottom: false,
+                    child: GestureDetector(
+                      behavior: HitTestBehavior.opaque,
+                      onTap: controller.onTimerTriggered,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 25),
+                        child: !controller.isRunning
+                            ? Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Column(
+                                    children: [
+                                      const SizedBox(height: 38),
+                                      Row(
+                                        children: [
+                                          Text(
+                                            '${controller.cube.toString().tr} ${'random'.tr}',
+                                            style: const TextStyle(
+                                              fontSize: 25,
+                                              fontWeight: FontWeight.bold,
+                                              height: 1,
+                                            ),
+                                          ),
+                                          const SizedBox(width: 10),
+                                          FaIcon(
+                                            FontAwesomeIcons.angleDown,
+                                            size: 20,
+                                            color: Colors.grey[800],
+                                          )
+                                        ],
                                       ),
-                                    ),
-                                    const SizedBox(width: 10),
-                                    FaIcon(
-                                      FontAwesomeIcons.angleDown,
-                                      size: 20,
-                                      color: Colors.grey[800],
-                                    )
-                                  ],
-                                ),
-                                const SizedBox(height: 35),
-                                Container(
-                                  alignment: Alignment.center,
-                                  child: ScrambleWrap(
-                                    scramble: controller.scramble,
-                                    alignment: WrapAlignment.center,
+                                      const SizedBox(height: 35),
+                                      Container(
+                                        alignment: Alignment.center,
+                                        child: ScrambleWrap(
+                                          scramble: controller.scramble,
+                                          alignment: WrapAlignment.center,
+                                        ),
+                                      ),
+                                    ],
                                   ),
-                                ),
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    TableEntry(
-                                      title: 'stat ao5'.tr,
-                                      value: ao5Str,
-                                      dense: true,
-                                    ),
-                                    TableEntry(
-                                      title: 'stat ao12'.tr,
-                                      value: ao12Str,
-                                      dense: true,
-                                    ),
-                                    TableEntry(
-                                      title: 'stat best'.tr,
-                                      value: bestStr,
-                                      dense: true,
-                                    ),
-                                    TableEntry(
-                                      title: 'stat count'.tr,
-                                      value: times.length.toString(),
-                                      dense: true,
-                                    ),
-                                    const SizedBox(height: 20),
-                                  ],
-                                )
-                              ],
-                            ),
-                          ],
-                        )
-                      : Container(),
+                                  Row(
+                                    children: [
+                                      Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          TableEntry(
+                                            title: 'stat ao5'.tr,
+                                            value: ao5Str,
+                                            dense: true,
+                                          ),
+                                          TableEntry(
+                                            title: 'stat ao12'.tr,
+                                            value: ao12Str,
+                                            dense: true,
+                                          ),
+                                          TableEntry(
+                                            title: 'stat best'.tr,
+                                            value: bestStr,
+                                            dense: true,
+                                          ),
+                                          TableEntry(
+                                            title: 'stat count'.tr,
+                                            value: times.length.toString(),
+                                            dense: true,
+                                          ),
+                                          const SizedBox(height: 20),
+                                        ],
+                                      )
+                                    ],
+                                  ),
+                                ],
+                              )
+                            : Container(),
+                      ),
+                    ),
+                  ),
                 ),
-              ),
-            ),
-          ),
-        );
+              );
+            });
       },
     );
   }

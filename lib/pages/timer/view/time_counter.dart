@@ -21,6 +21,8 @@ class TimeCounter extends StatelessWidget {
             final double fontSize = controller.getTimeCounterFontSize(rawTime);
             controller.currentTime = rawTime;
             return Swipe(
+              verticalMinDisplacement: 30,
+              horizontalMinDisplacement: 30,
               onSwipeUp: controller.showSetPenaltyDialog,
               onSwipeLeft: controller.showDeleteRecordDialog,
               onSwipeRight: controller.generateScramble,

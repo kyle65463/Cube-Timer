@@ -69,7 +69,7 @@ class MainMenuPage extends StatelessWidget {
                       onSelectCurrentTrack: controller.selectCurrentTrack,
                     ),
                   ),
-                  
+
                 // App bar
                 AnimatedContainer(
                   duration: const Duration(milliseconds: 150),

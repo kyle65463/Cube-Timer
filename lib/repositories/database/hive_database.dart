@@ -1,3 +1,4 @@
+import 'package:cubetimer/models/disposable/disposable.dart';
 import 'package:cubetimer/models/record/penalty.dart';
 import 'package:cubetimer/models/record/record.dart';
 import 'package:cubetimer/models/record/track.dart';
@@ -17,6 +18,7 @@ class HiveDatabase extends Database {
   // Variables
   late Box<SettingsValue> _settingsBox;
   late Box<Track> _trackBox;
+  late Box<bool> _disposableBox;
 
   // Functions
   /* Initialize */
@@ -48,6 +50,7 @@ class HiveDatabase extends Database {
     await Hive.initFlutter();
     _settingsBox = await Hive.openBox('settings');
     _trackBox = await Hive.openBox('track');
+    _disposableBox = await Hive.openBox('disposable');
   }
 
   @override
@@ -106,5 +109,20 @@ class HiveDatabase extends Database {
   @override
   Future<void> deleteTrack(Track track) async {
     await track.delete();
+  }
+
+  @override
+  Future<bool> loadDisposable(Disposable disposable) async{
+    final bool? value = _disposableBox.get(disposable.key);
+    if (value == null) {
+      await _disposableBox.put(disposable.key, disposable.defaultValue);
+      return disposable.defaultValue;
+    }
+    return value;
+  }
+
+  @override
+  Future<void> setDisposable(Disposable disposable, bool value) async{ 
+    await _disposableBox.put(disposable.key, value);
   }
 }

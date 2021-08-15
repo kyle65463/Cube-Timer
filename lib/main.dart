@@ -3,6 +3,7 @@ import 'package:cubetimer/models/settings/settings.dart';
 import 'package:cubetimer/pages/main_menu/view/main_menu_page.dart';
 import 'package:cubetimer/repositories/database/database.dart';
 import 'package:cubetimer/repositories/database/hive_database.dart';
+import 'package:cubetimer/repositories/disposable_repository.dart';
 import 'package:cubetimer/repositories/tracks_repository.dart';
 import 'package:cubetimer/repositories/settings_repository.dart';
 import 'package:cubetimer/utils/localization.dart';
@@ -14,6 +15,7 @@ Future<void> main() async {
   await Get.put<Database>(HiveDatabase()).init();
   Get.lazyPut<SettingsRepository>(() => SettingsRepository());
   Get.lazyPut<TracksRepository>(() => TracksRepository());
+  Get.lazyPut<DisposableRepository>(() => DisposableRepository());
 
   final SettingsRepository settingsRepository = Get.find<SettingsRepository>();
   final Settings settings = await settingsRepository.loadSettings();
