@@ -2,6 +2,7 @@ import 'package:cubetimer/pages/records/controller/records_page_controller.dart'
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class RecordEditModeAppbar extends StatelessWidget {
   // Constructor
@@ -18,8 +19,10 @@ class RecordEditModeAppbar extends StatelessWidget {
           'num records selected'.trParams({
             'num': controller.selectedRecords.length.toString(),
           }),
-          style: const TextStyle(
-            color: Colors.black,
+          style: GoogleFonts.merriweather(
+            textStyle: const TextStyle(
+              color: Colors.black,
+            ),
           ),
         ),
         leading: IconButton(

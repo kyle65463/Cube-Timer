@@ -81,12 +81,17 @@ class VerticalStackDialog extends StatelessWidget {
                               if (title != null) ..._titleBody(title!, theme),
                               if (desc != null)
                                 Flexible(
-                                  fit: FlexFit.loose,
                                   child: SingleChildScrollView(
-                                    physics: BouncingScrollPhysics(),
-                                    child: Text(
-                                      desc!,
-                                      textAlign: TextAlign.center,
+                                    physics: const BouncingScrollPhysics(),
+                                    child: Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                        horizontal: 8,
+                                      ),
+                                      child: Text(
+                                        desc!,
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(height: 1.5),
+                                      ),
                                     ),
                                   ),
                                 ),

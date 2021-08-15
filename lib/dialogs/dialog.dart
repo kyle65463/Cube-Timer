@@ -1,3 +1,4 @@
+import 'package:cubetimer/components/close_icon.dart';
 import 'package:cubetimer/dialogs/components/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -13,6 +14,9 @@ class CustomDialog {
     this.hasCancelButton = true,
     this.width,
     this.dialogType,
+    this.cancelText,
+    this.confirmText,
+    this.showCloseIcon = false,
   });
 
   // Variables
@@ -24,6 +28,9 @@ class CustomDialog {
   final Function? onCancel;
   final double? width;
   final DialogType? dialogType;
+  final String? cancelText;
+  final String? confirmText;
+  final bool showCloseIcon;
 
   // Functions
   Future<void> show() async {
@@ -52,8 +59,9 @@ class CustomDialog {
               ],
             )
           : null,
-      btnOkText: 'confirm'.tr,
-      btnCancelText: 'cancel'.tr,
+          
+      btnOkText: confirmText ?? 'confirm'.tr,
+      btnCancelText: cancelText ?? 'cancel'.tr,
       btnOkOnPress: onConfirm,
       btnCancelOnPress: !hasCancelButton ? null : onCancel ?? () {},
     ).show();

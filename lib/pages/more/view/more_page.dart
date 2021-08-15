@@ -42,21 +42,17 @@ class MorePage extends StatelessWidget {
                         saveSettings: controller.updateSettings,
                       );
                     }).toList(),
-                    InfoTile(
-                      title: 'timer settings'.tr,
-                    ),
+                    // InfoTile(
+                    //   title: 'timer settings'.tr,
+                    // ),
                     const SizedBox(height: 30),
 
                     // Info section
-                    InfoTile(
-                      title: 'rate us'.tr,
-                    ),
-                    InfoTile(
-                      title: 'feedback'.tr,
-                    ),
-                    InfoTile(
-                      title: 'about'.tr,
-                    ),
+                    ...controller.moreInfo.map((info) {
+                      return InfoTile(
+                        info: info,
+                      );
+                    }).toList(),
                   ],
                 );
               }

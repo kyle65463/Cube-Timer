@@ -37,6 +37,8 @@ dependencies:
   statistics: ^1.0.4
   quds_popup_menu: ^0.0.1+1
   swipe: ^0.0.1
+  launch_review: ^3.0.1
+  flutter_email_sender: ^5.0.2
 
 dev_dependencies:
   lint: ^1.0.0

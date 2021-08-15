@@ -68,7 +68,7 @@ class TimerPageController extends GetxController {
   }
 
   double getTimeCounterFontSize(int time) {
-    const double lowerBound = 70, upperBound = 95;
+    const double lowerBound = 85, upperBound = 115;
     if (!isRunning) {
       return lowerBound;
     } else {

@@ -1,3 +1,4 @@
+import 'package:cubetimer/models/more_info/more_info.dart';
 import 'package:cubetimer/models/settings/settings.dart';
 import 'package:cubetimer/models/settings/settings_key.dart';
 import 'package:cubetimer/models/settings/settings_value.dart';
@@ -13,6 +14,7 @@ class MorePageController extends GetxController {
   }
 
   // Variables
+  List<MoreInfo> get moreInfo => MoreInfo.info;
   Settings get settings => _settings;
   Future get initDone => _initDone;
   List<SettingsKey> get settingsKeys => SettingsKey.morePageKeys;

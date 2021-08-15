@@ -41,6 +41,8 @@ class Localization extends Translations {
 
           'rename': 'Rename',
           'delete': 'Delete',
+          'close': 'Close',
+          'version': 'Version',
 
           // Stats
           'stat dnf count': 'DNF',
@@ -69,6 +71,9 @@ class Localization extends Translations {
           'dialog title delete record': 'Delete record',
           'dialog description delete record':
               'Are you sure? This action can not be recovered.',
+          'dialog title about': 'About',
+          'dialog description about':
+              "The app is inspired by Twisty Timer and still in developing, if you have any feedback, don't hesitate to tell us!\n\nDeveloper: kyle65463",
 
           // Languages
           'language en-us': 'English',
@@ -77,6 +82,7 @@ class Localization extends Translations {
           // Theme
           'theme brown': 'Brown',
           'theme white': 'White',
+          'email subject app feeback': '@appname Feedback',
         },
         'zh_TW': {
           'timer': '計時器',
@@ -127,8 +133,11 @@ class Localization extends Translations {
           // Dialogs
           'dialog title delete record': '刪除紀錄',
           'dialog description delete record': '確定要刪除紀錄嗎？這個行動無法回復。',
+          'dialog title about': '關於',
+          'dialog description about': '此 app 由 Twisty Timer 為靈感，目前還在持續增加新功能，如果你有什麼建議也歡迎跟我們說！\n\n開發者: kyle65463',
+          'version': '版本',
 
-          // Settings
+          // More
           'settings': '設定',
           'timer settings': '計時器設定',
           'language': '語言',
@@ -147,6 +156,8 @@ class Localization extends Translations {
 
           'confirm': '確認',
           'cancel': '取消',
+          'email subject app feeback': '@appname 意見回饋',
+          'close': '關閉',
         }
       };
 }

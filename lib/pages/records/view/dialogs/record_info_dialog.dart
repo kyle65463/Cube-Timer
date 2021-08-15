@@ -1,3 +1,4 @@
+import 'package:cubetimer/components/close_icon.dart';
 import 'package:cubetimer/components/scramble_wrap.dart';
 import 'package:cubetimer/components/time_display.dart';
 import 'package:cubetimer/dialogs/dialog.dart';
@@ -44,12 +45,9 @@ class RecordInfoDialog {
                       ),
                     ),
                     GestureDetector(
+                      behavior: HitTestBehavior.opaque,
                       onTap: Get.back,
-                      child: FaIcon(
-                        FontAwesomeIcons.times,
-                        color: Colors.grey[600],
-                        size: 18,
-                      ),
+                      child: const CloseIcon(),
                     ),
                   ],
                 ),
@@ -79,7 +77,7 @@ class RecordInfoDialog {
                           onTap: controller.showSetPenaltyDialog,
                           child: FaIcon(
                             FontAwesomeIcons.solidFlag,
-                            color: hasPenalty ? Colors.blue : Colors.grey[600],
+                            color: hasPenalty ? Colors.blue : Colors.grey[500],
                             size: 18,
                           ),
                         ),

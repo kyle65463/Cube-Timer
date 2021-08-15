@@ -24,7 +24,7 @@ class SelectionBadge extends StatelessWidget {
         shape: BadgeShape.square,
         badgeColor: Colors.brown[100]!,
         borderRadius: BorderRadius.circular(8),
-        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
         badgeContent: Container(
           constraints: const BoxConstraints(maxWidth: 150),
           child: Row(
