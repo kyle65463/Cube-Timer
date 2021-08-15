@@ -61,7 +61,11 @@ class SelectionDialog {
                             FontAwesomeIcons.check,
                             size: 20,
                           )
-                        : null,
+                        : const FaIcon(
+                            FontAwesomeIcons.check,
+                            color: Colors.transparent,
+                            size: 20,
+                          ),
                     onTap: () {
                       controller.select(index);
                     },

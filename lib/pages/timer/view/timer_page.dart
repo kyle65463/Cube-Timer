@@ -71,12 +71,12 @@ class TimerPage extends StatelessWidget {
                                               height: 1,
                                             ),
                                           ),
-                                          const SizedBox(width: 10),
-                                          FaIcon(
-                                            FontAwesomeIcons.angleDown,
-                                            size: 20,
-                                            color: Colors.grey[800],
-                                          )
+                                          // const SizedBox(width: 10),
+                                          // FaIcon(
+                                          //   FontAwesomeIcons.angleDown,
+                                          //   size: 20,
+                                          //   color: Colors.grey[800],
+                                          // )
                                         ],
                                       ),
                                       const SizedBox(height: 35),

@@ -36,30 +36,37 @@ class CustomDialog {
   Future<void> show() async {
     return AwesomeDialog(
       dialogType: dialogType ?? DialogType.NO_HEADER,
-      title: title,
       desc: description,
       width: width,
-      body: body != null
-          ? Column(
-              children: [
-                if (title != null) ...[
-                  Text(
-                    title!,
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 15.0,
-                  ),
-                ],
-                body!,
-              ],
-            )
-          : null,
-          
+      body: Column(
+        children: [
+          if (title != null) ...[
+            Text(
+              title!,
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                fontSize: 25,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(
+              height: 15.0,
+            ),
+          ],
+          if (description != null)
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 8,
+              ),
+              child: Text(
+                description!,
+                textAlign: TextAlign.center,
+                style: const TextStyle(height: 1.5),
+              ),
+            ),
+          if (body != null) body!,
+        ],
+      ),
       btnOkText: confirmText ?? 'confirm'.tr,
       btnCancelText: cancelText ?? 'cancel'.tr,
       btnOkOnPress: onConfirm,

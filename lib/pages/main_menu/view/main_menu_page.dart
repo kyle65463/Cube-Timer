@@ -49,7 +49,7 @@ class MainMenuPage extends StatelessWidget {
 
                 // Time counter
                 if (controller.page is TimerPage)
-                  TimeCounter()
+                  const TimeCounter()
 
                 // Current track badge
                 else
