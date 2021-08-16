@@ -230,6 +230,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "5.0.2"
+  flutter_switch:
+    dependency: "direct main"
+    description:
+      name: flutter_switch
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.3.2"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -487,20 +494,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.0"
-  quds_popup_menu:
-    dependency: "direct main"
-    description:
-      name: quds_popup_menu
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.0.1+1"
-  quds_ui_kit:
-    dependency: transitive
-    description:
-      name: quds_ui_kit
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.0.7+5"
   rxdart:
     dependency: transitive
     description:

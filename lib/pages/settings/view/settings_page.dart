@@ -1,27 +1,25 @@
 import 'package:cubetimer/components/tile.dart';
 import 'package:cubetimer/components/title_section.dart';
-import 'package:cubetimer/pages/more/controller/more_page_controller.dart';
-import 'package:cubetimer/pages/more/view/info_tile.dart';
 import 'package:cubetimer/pages/more/view/settings_tile.dart';
-import 'package:cubetimer/pages/settings/view/settings_page.dart';
+import 'package:cubetimer/pages/settings/controller/settings_page_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class MorePage extends StatelessWidget {
+class SettingsPage extends StatelessWidget {
   // Constructor
-  MorePage({
+  SettingsPage({
     Key? key,
   }) : super(key: key);
 
   // Variables
-  final MorePageController controller = Get.put(MorePageController());
+  final SettingsPageController controller = Get.put(SettingsPageController());
 
   // Functions
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: GetBuilder<MorePageController>(
+        child: GetBuilder<SettingsPageController>(
           builder: (controller) => FutureBuilder<void>(
             future: controller.initDone,
             builder: (context, snapshot) {
@@ -34,7 +32,10 @@ class MorePage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     // Title
-                    TitleSection(title: 'more'.tr),
+                    TitleSection(
+                      title: 'settings'.tr,
+                      showBackButton: true,
+                    ),
 
                     // Settings section
                     ...controller.settingsKeys.map((key) {
@@ -42,20 +43,6 @@ class MorePage extends StatelessWidget {
                         settingsKey: key,
                         settingsValue: controller.settings.map[key]!,
                         saveSettings: controller.updateSettings,
-                      );
-                    }).toList(),
-                    Tile(
-                      title: 'timer settings'.tr,
-                      onTap: () {
-                        Get.to(SettingsPage());
-                      },
-                    ),
-                    const SizedBox(height: 30),
-
-                    // Info section
-                    ...controller.moreInfo.map((info) {
-                      return InfoTile(
-                        info: info,
                       );
                     }).toList(),
                   ],

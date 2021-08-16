@@ -18,7 +18,7 @@ class SettingsKeyTheme extends SettingsSelectionKey {
           defaultValue: BrownTheme(),
           options: [
             BrownTheme(),
-            WhiteTheme(),
+            // WhiteTheme(),
           ],
         );
 }

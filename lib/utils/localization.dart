@@ -89,6 +89,10 @@ class Localization extends Translations {
           'tutorial swipe left': 'Swipe left to delete record',
           'tutorial swipe right': 'Swipe right to generate a new scramble',
           'tutorial swipe up': 'Swipe up to set a penalty',
+
+          'delete record warning': 'Delete record warning',
+          'hide timer': 'Hide timer when running',
+          'inspect time': 'Enable inspect time',
         },
         'zh_TW': {
           'timer': '計時器',
@@ -170,6 +174,10 @@ class Localization extends Translations {
           'tutorial swipe left': '向左滑刪除紀錄',
           'tutorial swipe right': '向右滑生成新的打亂步驟',
           'tutorial swipe up': '向上滑設定懲罰',
+
+          'delete record warning' : '刪除紀錄警告',
+          'hide timer': '計時時隱藏計時器',
+          'inspect time': '開啟觀察時間',
         }
       };
 }

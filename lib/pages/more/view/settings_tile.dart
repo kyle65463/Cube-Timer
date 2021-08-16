@@ -1,3 +1,4 @@
+import 'package:cubetimer/components/tile.dart';
 import 'package:cubetimer/dialogs/selection_dialog.dart';
 import 'package:cubetimer/models/interfaces/selectable.dart';
 import 'package:cubetimer/models/settings/settings_key.dart';
@@ -20,7 +21,7 @@ class SettingsTile extends StatelessWidget {
   final Function saveSettings;
 
   // Functions
-  void _onTap() async {
+  Future<void> _onTap() async {
     final String titleText = settingsKey.name.tr;
     final List<SettingsValue> options =
         (settingsKey as SettingsSelectionKey).options;
@@ -35,6 +36,12 @@ class SettingsTile extends StatelessWidget {
       newSettingsValue.apply();
       saveSettings(settingsKey, newSettingsValue);
     }
+  }
+
+  void _onToggle(bool b) {
+    final SettingsValueToggle value = settingsValue as SettingsValueToggle;
+    value.enabled = !value.enabled;
+    saveSettings(settingsKey, value);
   }
 
   @override
@@ -61,8 +68,14 @@ class SettingsTile extends StatelessWidget {
         dense: true,
         onTap: _onTap,
       );
-    } else if (settingsKey is SettingsSelectionKey) {
-      return Container();
+    } else if (settingsKey is SettingsToggleKey) {
+      final SettingsValueToggle value = settingsValue as SettingsValueToggle;
+      return Tile(
+        title: titleText,
+        // trailText: value.enabled.toString(),
+        onToggle: _onToggle,
+        toggleValue: value.enabled,
+      );
     } else {
       return Container();
     }

@@ -9,3 +9,6 @@
 101 - 130 Language
 131 - 140 Theme
 141 StatTime
+142 DeleteRecordWarning
+143 InspectTime
+144 HideTimer

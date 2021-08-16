@@ -7,6 +7,9 @@ import 'package:cubetimer/models/settings/options/stat_record_count.dart';
 import 'package:cubetimer/models/settings/options/theme.dart';
 import 'package:cubetimer/models/settings/settings_key.dart';
 import 'package:cubetimer/models/settings/settings_value.dart';
+import 'package:cubetimer/models/settings/toggle/delete_record_warning.dart';
+import 'package:cubetimer/models/settings/toggle/hide_timer.dart';
+import 'package:cubetimer/models/settings/toggle/inspect_time.dart';
 import 'package:cubetimer/models/solve/move/rotate.dart';
 import 'package:cubetimer/models/solve/move/turn.dart';
 import 'package:cubetimer/models/solve/scramble.dart';
@@ -29,6 +32,9 @@ class HiveDatabase extends Database {
     Hive.registerAdapter(BrownThemeAdapter());
     Hive.registerAdapter(WhiteThemeAdapter());
     Hive.registerAdapter(StatRecordCountAdapter());
+    Hive.registerAdapter(HideTimerAdapter());
+    Hive.registerAdapter(InspectTimeAdapter());
+    Hive.registerAdapter(DeleteRecordWarningAdapter());
     Hive.registerAdapter(RecordAdapter());
     Hive.registerAdapter(TrackAdapter());
     Hive.registerAdapter(TurnRAdapter());
@@ -112,7 +118,7 @@ class HiveDatabase extends Database {
   }
 
   @override
-  Future<bool> loadDisposable(Disposable disposable) async{
+  Future<bool> loadDisposable(Disposable disposable) async {
     final bool? value = _disposableBox.get(disposable.key);
     if (value == null) {
       await _disposableBox.put(disposable.key, disposable.defaultValue);
@@ -122,7 +128,7 @@ class HiveDatabase extends Database {
   }
 
   @override
-  Future<void> setDisposable(Disposable disposable, bool value) async{ 
+  Future<void> setDisposable(Disposable disposable, bool value) async {
     await _disposableBox.put(disposable.key, value);
   }
 }

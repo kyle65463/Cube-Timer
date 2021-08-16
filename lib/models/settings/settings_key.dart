@@ -2,6 +2,9 @@ import 'package:cubetimer/models/settings/options/language.dart';
 import 'package:cubetimer/models/settings/options/stat_record_count.dart';
 import 'package:cubetimer/models/settings/options/theme.dart';
 import 'package:cubetimer/models/settings/settings_value.dart';
+import 'package:cubetimer/models/settings/toggle/delete_record_warning.dart';
+import 'package:cubetimer/models/settings/toggle/hide_timer.dart';
+import 'package:cubetimer/models/settings/toggle/inspect_time.dart';
 import 'package:hive/hive.dart';
 
 abstract class SettingsKey extends HiveObject {
@@ -19,11 +22,20 @@ abstract class SettingsKey extends HiveObject {
     SettingsKeyLanguage(),
     SettingsKeyTheme(),
     SettingsKeyStatRecordCount(),
+    SettingsKeyDeleteRecordWarning(),
+    SettingsKeyHideTimer(),
+    SettingsKeyInspectTime(),
   ];
 
   static List<SettingsKey> morePageKeys = [
     SettingsKeyLanguage(),
     SettingsKeyTheme(),
+  ];
+
+  static List<SettingsKey> settingsPageKeys = [
+    SettingsKeyDeleteRecordWarning(),
+    SettingsKeyHideTimer(),
+    SettingsKeyInspectTime(),
   ];
 }
 

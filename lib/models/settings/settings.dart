@@ -1,4 +1,3 @@
-import 'package:cubetimer/models/settings/options/language.dart';
 import 'package:cubetimer/models/settings/settings_key.dart';
 import 'package:cubetimer/models/settings/settings_value.dart';
 
