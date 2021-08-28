@@ -9,6 +9,7 @@ class TimeDisplay extends StatelessWidget {
     required this.rawTime,
     this.style,
     this.penalty,
+    this.showTime = true,
     Key? key,
   }) : super(key: key);
 
@@ -16,10 +17,22 @@ class TimeDisplay extends StatelessWidget {
   final int rawTime;
   final TextStyle? style;
   final Penalty? penalty;
+  final bool showTime;
 
   // Functions
   @override
   Widget build(BuildContext context) {
+    if (!showTime) {
+      return Text(
+        '...',
+        style: TextStyle(
+          fontSize: (style?.fontSize ?? 30) * 0.65,
+          fontWeight: style?.fontWeight,
+          color: style?.color,
+          height: 1,
+        ),
+      );
+    }
     final bool isDNF = penalty is PenaltyDNF;
     if (isDNF) {
       return Text(
@@ -40,6 +53,7 @@ class TimeDisplay extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
+          // Minutes and seconds
           Text(
             seconds,
             style: GoogleFonts.gentiumBookBasic(
@@ -51,6 +65,8 @@ class TimeDisplay extends StatelessWidget {
               ),
             ),
           ),
+
+          // Milliseconds
           Padding(
             padding: EdgeInsets.only(bottom: (style?.fontSize ?? 30) * 0.03),
             child: Text(

@@ -10,6 +10,7 @@ import 'package:cubetimer/models/record/record.dart';
 import 'package:cubetimer/models/record/track.dart';
 import 'package:cubetimer/models/settings/settings.dart';
 import 'package:cubetimer/models/settings/toggle/delete_record_warning.dart';
+import 'package:cubetimer/models/settings/toggle/hide_timer.dart';
 import 'package:cubetimer/models/solve/scramble.dart';
 import 'package:cubetimer/pages/main_menu/controller/main_menu_page_controller.dart';
 import 'package:cubetimer/repositories/settings_repository.dart';
@@ -34,6 +35,8 @@ class TimerPageController extends GetxController {
   Cube get cube => _cube;
   List<Record> get records => _track.records;
   Penalty? get penalty => _lastRecord?.penalty;
+  bool get showTime =>
+      !(_settings.map[SettingsKeyHideTimer()]! as HideTimer).enabled;
 
   int currentTime = 0;
   double timerCounterFontSize = 75;
@@ -43,6 +46,7 @@ class TimerPageController extends GetxController {
   late Track _track;
   late Cube _cube;
   late Scramble _scramble;
+  late Settings _settings;
   Record? _lastRecord;
 
   // Functions
@@ -55,6 +59,8 @@ class TimerPageController extends GetxController {
   Future<void> _init() async {
     await _loadCurrentTrack();
     _listenCurrentTrackStream();
+    await _loadSettings();
+    _listenSettingsStream();
     _cube = Cube3x3();
     _scramble = ScrambleGenerator.generate(_cube);
   }
@@ -169,5 +175,14 @@ class TimerPageController extends GetxController {
 
   void _listenCurrentTrackStream() {
     _repository.currentTrackStream.listen((e) => _loadCurrentTrack());
+  }
+
+  Future<void> _loadSettings() async {
+    _settings = await _settingsRepository.loadSettings();
+    update();
+  }
+
+  void _listenSettingsStream() {
+    _settingsRepository.settingsStream.listen((e) => _loadSettings());
   }
 }

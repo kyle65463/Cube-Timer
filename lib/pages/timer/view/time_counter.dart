@@ -33,6 +33,7 @@ class TimeCounter extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       TimeDisplay(
+                        showTime: controller.showTime || !controller.isRunning,
                         rawTime: rawTime,
                         penalty: controller.penalty,
                         style: TextStyle(
