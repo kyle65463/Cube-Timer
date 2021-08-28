@@ -14,7 +14,9 @@ class TimeCounter extends StatelessWidget {
     return GetBuilder<TimerPageController>(
       builder: (controller) {
         return StreamBuilder<int>(
-          stream: controller.timer.rawTime,
+          stream: controller.isInspecting
+              ? controller.inspectingTimer.rawTime
+              : controller.timer.rawTime,
           initialData: controller.currentTime,
           builder: (context, snapshot) {
             final int rawTime = snapshot.data!;
@@ -41,6 +43,17 @@ class TimeCounter extends StatelessWidget {
                           color: Colors.black.withOpacity(0.8),
                         ),
                       ),
+                      if (controller.isInspecting) ...[
+                        const SizedBox(height: 15),
+                        Text(
+                          'inspection time'.tr,
+                          style: TextStyle(
+                            color: Colors.blue[700],
+                            fontSize: 22,
+                          ),
+                        ),
+                      ] else
+                        Container(),
                     ],
                   ),
                 ),

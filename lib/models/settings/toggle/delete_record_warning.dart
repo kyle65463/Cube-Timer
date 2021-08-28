@@ -13,7 +13,7 @@ class SettingsKeyDeleteRecordWarning extends SettingsToggleKey {
   // Constructor
   SettingsKeyDeleteRecordWarning._internal()
       : super(
-          name: 'delete record warning',
+          name: 'settings delete record warning',
           defaultValue: DeleteRecordWarning(enabled: true),
         );
 }

@@ -24,7 +24,7 @@ abstract class SettingsKey extends HiveObject {
     SettingsKeyStatRecordCount(),
     SettingsKeyDeleteRecordWarning(),
     SettingsKeyHideTimer(),
-    SettingsKeyInspectTime(),
+    SettingsKeyInspectionTime(),
   ];
 
   static List<SettingsKey> morePageKeys = [
@@ -35,7 +35,7 @@ abstract class SettingsKey extends HiveObject {
   static List<SettingsKey> settingsPageKeys = [
     SettingsKeyDeleteRecordWarning(),
     SettingsKeyHideTimer(),
-    SettingsKeyInspectTime(),
+    SettingsKeyInspectionTime(),
   ];
 }
 

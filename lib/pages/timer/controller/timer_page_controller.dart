@@ -11,6 +11,7 @@ import 'package:cubetimer/models/record/track.dart';
 import 'package:cubetimer/models/settings/settings.dart';
 import 'package:cubetimer/models/settings/toggle/delete_record_warning.dart';
 import 'package:cubetimer/models/settings/toggle/hide_timer.dart';
+import 'package:cubetimer/models/settings/toggle/inspect_time.dart';
 import 'package:cubetimer/models/solve/scramble.dart';
 import 'package:cubetimer/pages/main_menu/controller/main_menu_page_controller.dart';
 import 'package:cubetimer/repositories/settings_repository.dart';
@@ -23,13 +24,14 @@ import 'package:stop_watch_timer/stop_watch_timer.dart';
 class TimerPageController extends GetxController {
   // Constructor
   TimerPageController() {
-    timer.records.listen(_solveDone);
     _initDone = _init();
   }
 
   // Variables
   final StopWatchTimer timer = StopWatchTimer();
+  late StopWatchTimer inspectingTimer;
   bool get isRunning => timer.isRunning;
+  bool get isInspecting => inspectingTimer.isRunning;
   Future get initDone => _initDone;
   Scramble get scramble => _scramble;
   Cube get cube => _cube;
@@ -61,17 +63,40 @@ class TimerPageController extends GetxController {
     _listenCurrentTrackStream();
     await _loadSettings();
     _listenSettingsStream();
+    timer.records.listen(_solveDone);
+    inspectingTimer = StopWatchTimer(
+      mode: StopWatchMode.countDown,
+      onEnded: () {
+        _stopInspecting();
+        _startTimer();
+        update();
+      },
+    );
     _cube = Cube3x3();
     _scramble = ScrambleGenerator.generate(_cube);
   }
 
   void onTimerTriggered() {
-    Get.find<MainMenuPageController>().toggleBottomNavBar();
-    Get.find<MainMenuPageController>().toggleCurrentTrackBadge();
+    final bool enableInspection =
+        (_settings.map[SettingsKeyInspectionTime()]! as InspectionTime).enabled;
     if (isRunning) {
       _stopTimer();
+      Get.find<MainMenuPageController>().toggleBottomNavBar();
+      Get.find<MainMenuPageController>().toggleCurrentTrackBadge();
     } else {
-      _resetTimer();
+      if (!isInspecting && enableInspection) {
+        Get.find<MainMenuPageController>().toggleBottomNavBar();
+        Get.find<MainMenuPageController>().toggleCurrentTrackBadge();
+        _startInspecting();
+        update();
+        return;
+      } else {
+        _stopInspecting();
+      }
+      if (!enableInspection) {
+        Get.find<MainMenuPageController>().toggleBottomNavBar();
+        Get.find<MainMenuPageController>().toggleCurrentTrackBadge();
+      }
       _startTimer();
     }
     update();
@@ -92,6 +117,7 @@ class TimerPageController extends GetxController {
   }
 
   void _startTimer() {
+    _resetTimer();
     timer.onExecute.add(StopWatchExecute.start);
     timerCounterFontSize = 95;
   }
@@ -163,7 +189,20 @@ class TimerPageController extends GetxController {
     update();
   }
 
+  void _startInspecting() {
+    inspectingTimer.clearPresetTime();
+    inspectingTimer.setPresetSecondTime(15);
+    inspectingTimer.onExecute.add(StopWatchExecute.start);
+  }
+
+  void _stopInspecting() {
+    inspectingTimer.onExecute.add(StopWatchExecute.stop);
+    inspectingTimer.onExecute.add(StopWatchExecute.reset);
+    inspectingTimer.clearPresetTime();
+  }
+
   void _resetTimer() {
+    print('reset');
     _lastRecord = null;
     timer.onExecute.add(StopWatchExecute.reset);
   }

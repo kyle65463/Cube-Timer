@@ -90,9 +90,11 @@ class Localization extends Translations {
           'tutorial swipe right': 'Swipe right to generate a new scramble',
           'tutorial swipe up': 'Swipe up to set a penalty',
 
-          'delete record warning': 'Delete record warning',
-          'hide timer': 'Hide timer when running',
-          'inspect time': 'Enable inspect time',
+          'settings delete record warning': 'Delete record warning',
+          'settings hide timer': 'Hide timer when running',
+          'settings inspection time': 'Enable inspection time',
+
+          'inspection time': 'Inspection Time',
         },
         'zh_TW': {
           'timer': '計時器',
@@ -175,9 +177,11 @@ class Localization extends Translations {
           'tutorial swipe right': '向右滑生成新的打亂步驟',
           'tutorial swipe up': '向上滑設定懲罰',
 
-          'delete record warning' : '刪除紀錄警告',
-          'hide timer': '計時時隱藏計時器',
-          'inspect time': '開啟觀察時間',
+          'settings delete record warning': '刪除紀錄警告',
+          'settings hide timer': '計時時隱藏計時器',
+          'settings inspection time': '開啟觀察時間',
+
+          'inspection time': '觀察時間',
         }
       };
 }

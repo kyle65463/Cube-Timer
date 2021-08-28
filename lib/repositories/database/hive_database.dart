@@ -33,7 +33,7 @@ class HiveDatabase extends Database {
     Hive.registerAdapter(WhiteThemeAdapter());
     Hive.registerAdapter(StatRecordCountAdapter());
     Hive.registerAdapter(HideTimerAdapter());
-    Hive.registerAdapter(InspectTimeAdapter());
+    Hive.registerAdapter(InspectionTimeAdapter());
     Hive.registerAdapter(DeleteRecordWarningAdapter());
     Hive.registerAdapter(RecordAdapter());
     Hive.registerAdapter(TrackAdapter());

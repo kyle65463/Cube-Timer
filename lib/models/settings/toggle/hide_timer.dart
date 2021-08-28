@@ -14,7 +14,7 @@ class SettingsKeyHideTimer extends SettingsToggleKey {
   // Constructor
   SettingsKeyHideTimer._internal()
       : super(
-          name: 'hide timer',
+          name: 'settings hide timer',
           defaultValue: HideTimer(enabled: false),
         );
 }

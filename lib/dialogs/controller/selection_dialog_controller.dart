@@ -49,7 +49,9 @@ class SelectionDialogController extends GetxController {
           _currentIndex = 0;
         }
         options.remove(option);
-
+        if (_currentIndex >= options.length || _currentIndex < 0) {
+          _currentIndex = 0;
+        }
         update();
       },
     ).show();
