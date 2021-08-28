@@ -47,7 +47,7 @@ class MorePage extends StatelessWidget {
                     Tile(
                       title: 'timer settings'.tr,
                       onTap: () {
-                        Get.to(SettingsPage());
+                        Get.to(() => SettingsPage());
                       },
                     ),
                     const SizedBox(height: 30),

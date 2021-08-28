@@ -2,9 +2,12 @@ import 'package:cubetimer/dialogs/components/awesome_dialog.dart';
 import 'package:cubetimer/dialogs/dialog.dart';
 import 'package:cubetimer/models/record/record.dart';
 import 'package:cubetimer/models/record/track.dart';
+import 'package:cubetimer/models/settings/settings.dart';
+import 'package:cubetimer/models/settings/toggle/delete_record_warning.dart';
 import 'package:cubetimer/pages/main_menu/controller/main_menu_page_controller.dart';
 import 'package:cubetimer/pages/records/view/components/record_edit_mode_appbar.dart';
 import 'package:cubetimer/pages/records/view/dialogs/record_info_dialog.dart';
+import 'package:cubetimer/repositories/settings_repository.dart';
 import 'package:cubetimer/repositories/tracks_repository.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
@@ -21,6 +24,7 @@ class RecordsPageController extends GetxController {
   Future get initDone => _initDone;
   List<Record> get selectedRecords => _selectedRecords;
   final TracksRepository _repository = Get.find<TracksRepository>();
+  final SettingsRepository _settingsRepository = Get.find<SettingsRepository>();
   bool _inEditMode = false;
   late Track _track;
   late Future _initDone;
@@ -59,12 +63,21 @@ class RecordsPageController extends GetxController {
     update();
   }
 
-  void showDeleteRecordsDialog() {
-    CustomDialog(
-      title: 'dialog title delete record'.tr,
-      description: 'dialog description delete record'.tr,
-      onConfirm: deleteSelectedRecords,
-    ).show();
+  Future<void> showDeleteRecordsDialog() async {
+    final Settings settings = await _settingsRepository.loadSettings();
+    final DeleteRecordWarning value =
+        settings.map[SettingsKeyDeleteRecordWarning()]! as DeleteRecordWarning;
+    final bool showWarning = value.enabled;
+
+    if (showWarning) {
+      CustomDialog(
+        title: 'dialog title delete record'.tr,
+        description: 'dialog description delete record'.tr,
+        onConfirm: deleteSelectedRecords,
+      ).show();
+    } else {
+      deleteSelectedRecords();
+    }
     return;
   }
 

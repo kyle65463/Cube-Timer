@@ -8,8 +8,11 @@ import 'package:cubetimer/models/interfaces/selectable.dart';
 import 'package:cubetimer/models/record/penalty.dart';
 import 'package:cubetimer/models/record/record.dart';
 import 'package:cubetimer/models/record/track.dart';
+import 'package:cubetimer/models/settings/settings.dart';
+import 'package:cubetimer/models/settings/toggle/delete_record_warning.dart';
 import 'package:cubetimer/models/solve/scramble.dart';
 import 'package:cubetimer/pages/main_menu/controller/main_menu_page_controller.dart';
+import 'package:cubetimer/repositories/settings_repository.dart';
 import 'package:cubetimer/repositories/tracks_repository.dart';
 import 'package:cubetimer/utils/scramble_generator.dart';
 import 'package:get/get.dart';
@@ -34,6 +37,7 @@ class TimerPageController extends GetxController {
 
   int currentTime = 0;
   double timerCounterFontSize = 75;
+  final SettingsRepository _settingsRepository = Get.find<SettingsRepository>();
   final TracksRepository _repository = Get.find<TracksRepository>();
   late Future _initDone;
   late Track _track;
@@ -111,13 +115,22 @@ class TimerPageController extends GetxController {
     );
   }
 
-  void showDeleteRecordDialog() {
+  Future<void> showDeleteRecordDialog() async {
     if (_lastRecord == null) return;
-    CustomDialog(
-      title: 'dialog title delete record'.tr,
-      description: 'dialog description delete record'.tr,
-      onConfirm: deleteRecord,
-    ).show();
+    final Settings settings = await _settingsRepository.loadSettings();
+    final DeleteRecordWarning value =
+        settings.map[SettingsKeyDeleteRecordWarning()]! as DeleteRecordWarning;
+    final bool showWarning = value.enabled;
+
+    if (showWarning) {
+      CustomDialog(
+        title: 'dialog title delete record'.tr,
+        description: 'dialog description delete record'.tr,
+        onConfirm: deleteRecord,
+      ).show();
+    } else {
+      deleteRecord();
+    }
     return;
   }
 
