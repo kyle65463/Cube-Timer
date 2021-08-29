@@ -202,7 +202,6 @@ class TimerPageController extends GetxController {
   }
 
   void _resetTimer() {
-    print('reset');
     _lastRecord = null;
     timer.onExecute.add(StopWatchExecute.reset);
   }
