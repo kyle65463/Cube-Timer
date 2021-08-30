@@ -23,7 +23,7 @@ class SessionAdapter extends TypeAdapter<Session> {
       createTime: fields[3] as DateTime,
       lastUpdateTime: fields[4] as DateTime,
       isArchived: fields[5] as bool,
-      isCurrentTrack: fields[6] as bool,
+      isCurrentSession: fields[6] as bool,
     );
   }
 
@@ -44,7 +44,7 @@ class SessionAdapter extends TypeAdapter<Session> {
       ..writeByte(5)
       ..write(obj.isArchived)
       ..writeByte(6)
-      ..write(obj.isCurrentTrack);
+      ..write(obj.isCurrentSession);
   }
 
   @override

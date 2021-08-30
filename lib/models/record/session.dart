@@ -17,7 +17,7 @@ class Session extends HiveObject with Selectable, Renameable {
     required this.createTime,
     required this.lastUpdateTime,
     required this.isArchived,
-    required this.isCurrentTrack,
+    required this.isCurrentSession,
   });
 
   Session.createNew({
@@ -27,7 +27,7 @@ class Session extends HiveObject with Selectable, Renameable {
         createTime = DateTime.now(),
         lastUpdateTime = DateTime.now(),
         isArchived = false,
-        isCurrentTrack = false;
+        isCurrentSession = false;
 
   Session.defaultValue()
       : id = const Uuid().v4(),
@@ -36,7 +36,7 @@ class Session extends HiveObject with Selectable, Renameable {
         createTime = DateTime.now(),
         lastUpdateTime = DateTime.now(),
         isArchived = false,
-        isCurrentTrack = false;
+        isCurrentSession = false;
 
   // Variables
   @HiveField(0)
@@ -52,7 +52,7 @@ class Session extends HiveObject with Selectable, Renameable {
   @HiveField(5)
   bool isArchived;
   @HiveField(6)
-  bool isCurrentTrack;
+  bool isCurrentSession;
 
   // Functions
   @override

@@ -28,13 +28,13 @@ class CurrentSessionBadge extends StatelessWidget {
   // Functions
   Future<void> _onTap(BuildContext context) async {
     final Selectable? result = await SelectionDialog(
-      title: 'select track'.tr,
+      title: 'select session'.tr,
       options: sessions,
       originalOption: currentSession,
       onCreate: onCreate,
       onRename: onRename,
       onDelete: onDelete,
-      btnAddText: 'add new track'.tr,
+      btnAddText: 'add new session'.tr,
       inputDialogTitle: 'enter title'.tr,
     ).show(context);
     if (result != null) {
