@@ -95,7 +95,7 @@ class Localization extends Translations {
           'settings inspection time': 'Enable inspection time',
 
           'inspection time': 'Inspection Time',
-          'default session': 'Default Session',
+          'default session': 'default session',
         },
         'zh_TW': {
           'timer': '計時器',
