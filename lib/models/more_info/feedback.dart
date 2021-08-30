@@ -1,4 +1,5 @@
 import 'package:cubetimer/models/more_info/more_info.dart';
+import 'package:cubetimer/utils/analytics.dart';
 import 'package:cubetimer/utils/constants.dart';
 import 'package:flutter_email_sender/flutter_email_sender.dart';
 import 'package:get/get.dart';
@@ -21,6 +22,7 @@ class Feedback extends MoreInfo {
         }),
         recipients: [Constants.email],
       );
+      Analytics.log(AnalyticsFlag.showFeedback);
       await FlutterEmailSender.send(email);
     } catch (e) {
       // Something went wrong

@@ -6,6 +6,7 @@ import 'package:cubetimer/repositories/database/hive_database.dart';
 import 'package:cubetimer/repositories/disposable_repository.dart';
 import 'package:cubetimer/repositories/sessions_repository.dart';
 import 'package:cubetimer/repositories/settings_repository.dart';
+import 'package:cubetimer/utils/analytics.dart';
 import 'package:cubetimer/utils/localization.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -23,6 +24,7 @@ Future<void> main() async {
 
   final SettingsRepository settingsRepository = Get.find<SettingsRepository>();
   final Settings settings = await settingsRepository.loadSettings();
+  Analytics.log(AnalyticsFlag.appOpened);
   runApp(MyApp(settings: settings));
 }
 

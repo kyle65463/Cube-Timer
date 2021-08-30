@@ -8,6 +8,7 @@ import 'package:cubetimer/pages/timer/view/timer_page.dart';
 import 'package:cubetimer/repositories/database/database.dart';
 import 'package:cubetimer/repositories/disposable_repository.dart';
 import 'package:cubetimer/repositories/sessions_repository.dart';
+import 'package:cubetimer/utils/analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
@@ -72,18 +73,22 @@ class MainMenuPageController extends GetxController {
   }
 
   Future<Session> createSession(String title) async {
+    Analytics.log(AnalyticsFlag.sessionCreated);
     return _repository.createSession(title);
   }
 
   Future<void> renameSession(Session session) async {
+    Analytics.log(AnalyticsFlag.sessionRenamed);
     return _repository.updateSession(session);
   }
 
   Future<void> deleteSession(Session session) async {
+    Analytics.log(AnalyticsFlag.sessionDeleted);
     return _repository.deleteSession(session);
   }
 
   void selectCurrentSession(Session session) {
+    Analytics.log(AnalyticsFlag.sessionSelected);
     _repository.setCurrentSession(session);
   }
 
@@ -124,6 +129,7 @@ class MainMenuPageController extends GetxController {
     if (show) {
       TutorialSwipeOverlay.show();
       _disposableRepository.disposeTutorial(TutorialSwipe());
+      Analytics.log(AnalyticsFlag.completeTutorials);
     }
   }
 }

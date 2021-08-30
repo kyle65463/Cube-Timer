@@ -9,7 +9,7 @@ class DisposableRepository extends Repository {
 
   // Functions
   Future<bool> loadTutorial(Tutorial tutorial) async {
-    bool value = await _database.loadDisposable(tutorial);
+    final bool value = await _database.loadDisposable(tutorial);
     return value;
   }
 

@@ -7,6 +7,7 @@ import 'package:cubetimer/models/settings/settings.dart';
 import 'package:cubetimer/models/settings/toggle/delete_record_warning.dart';
 import 'package:cubetimer/repositories/settings_repository.dart';
 import 'package:cubetimer/repositories/sessions_repository.dart';
+import 'package:cubetimer/utils/analytics.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 
@@ -41,6 +42,7 @@ class RecordInfoDialogController extends GetxController {
   }
 
   void deleteRecord() {
+    Analytics.log(AnalyticsFlag.recordDeleted);
     _repository.deleteRecord(record);
     Get.back();
   }
@@ -55,6 +57,7 @@ class RecordInfoDialogController extends GetxController {
     if (selectable != null) {
       final Penalty penalty = selectable as Penalty;
       record.penalty = penalty;
+      Analytics.log(AnalyticsFlag.penaltySet);
       _repository.updateRecord(record);
       update();
     }

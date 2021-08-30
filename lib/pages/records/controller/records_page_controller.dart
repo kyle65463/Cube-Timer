@@ -9,6 +9,7 @@ import 'package:cubetimer/pages/records/view/components/record_edit_mode_appbar.
 import 'package:cubetimer/pages/records/view/dialogs/record_info_dialog.dart';
 import 'package:cubetimer/repositories/settings_repository.dart';
 import 'package:cubetimer/repositories/sessions_repository.dart';
+import 'package:cubetimer/utils/analytics.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 
@@ -38,6 +39,7 @@ class RecordsPageController extends GetxController {
   }
 
   void enterEditMode(Record record) {
+    Analytics.log(AnalyticsFlag.enterRecordsEditMode);
     _inEditMode = true;
     _selectedRecords.clear();
     _selectedRecords.add(record);

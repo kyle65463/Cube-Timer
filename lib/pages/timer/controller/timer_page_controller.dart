@@ -16,6 +16,7 @@ import 'package:cubetimer/models/solve/scramble.dart';
 import 'package:cubetimer/pages/main_menu/controller/main_menu_page_controller.dart';
 import 'package:cubetimer/repositories/settings_repository.dart';
 import 'package:cubetimer/repositories/sessions_repository.dart';
+import 'package:cubetimer/utils/analytics.dart';
 import 'package:cubetimer/utils/scramble_generator.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
@@ -141,6 +142,7 @@ class TimerPageController extends GetxController {
       penalty: PenaltyNone(),
       scramble: scramble,
     );
+    Analytics.log(AnalyticsFlag.recordSaved);
     _repository.createRecord(
       _lastRecord!,
       _session,
@@ -177,12 +179,14 @@ class TimerPageController extends GetxController {
     if (selectable != null) {
       final Penalty penalty = selectable as Penalty;
       _lastRecord!.penalty = penalty;
+      Analytics.log(AnalyticsFlag.penaltySet);
       _repository.updateRecord(_lastRecord!);
       update();
     }
   }
 
   void deleteRecord() {
+    Analytics.log(AnalyticsFlag.recordDeleted);
     _repository.deleteRecord(_lastRecord!);
     Get.back();
     _resetTimer();
