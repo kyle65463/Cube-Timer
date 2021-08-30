@@ -95,7 +95,6 @@ class Localization extends Translations {
           'settings inspection time': 'Enable inspection time',
 
           'inspection time': 'Inspection Time',
-          'default session': 'default session',
         },
         'zh_TW': {
           'timer': '計時器',
@@ -183,7 +182,6 @@ class Localization extends Translations {
           'settings inspection time': '開啟觀察時間',
 
           'inspection time': '觀察時間',
-          'default session': '預設分類'
         }
       };
 }

@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "314241517113",
+    "project_id": "cube-timer-93e40",
+    "storage_bucket": "cube-timer-93e40.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:314241517113:android:4ebca63f6ea498b10a2fe8",
+        "android_client_info": {
+          "package_name": "com.kyle65463.cubetimer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "314241517113-f7fdvtrt634daksm1f57ct93r32h9rni.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDuVc83JGxBxHZRlvZE0B0ha6rb3-vgNoE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "314241517113-f7fdvtrt634daksm1f57ct93r32h9rni.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "314241517113-4pqpg6mv9t47gcpg15duneuolcgr8icv.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.afdsa.fasf"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
