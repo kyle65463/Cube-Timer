@@ -1,35 +1,35 @@
 import 'dart:async';
 
 import 'package:cubetimer/models/record/record.dart';
-import 'package:cubetimer/models/record/track.dart';
+import 'package:cubetimer/models/record/session.dart';
 import 'package:cubetimer/repositories/database/database.dart';
 import 'package:cubetimer/repositories/repository.dart';
 import 'package:get/get.dart';
 
-class TracksRepository extends Repository {
+class SessionsRepository extends Repository {
   // Variables
-  Stream get trackStream => _database.getTrackStream();
-  Stream get currentTrackStream => _currentStreamController.stream;
+  Stream get sessionStream => _database.getSessionStream();
+  Stream get currentSessionStream => _currentStreamController.stream;
   final Database _database = Get.find<Database>();
   final StreamController _currentStreamController =
       StreamController.broadcast();
 
   // Functions
-  Future<List<Track>> loadTracks() async {
-    final List<Track> tracks = await _database.loadTracks();
+  Future<List<Session>> loadSessions() async {
+    final List<Session> tracks = await _database.loadSessions();
     return tracks;
   }
 
-  Future<Track> loadCurrentTrack() async {
-    final List<Track> tracks = await loadTracks();
-    Track? result;
+  Future<Session> loadCurrentSession() async {
+    final List<Session> tracks = await loadSessions();
+    Session? result;
     bool isFound = false;
     for (final track in tracks) {
       if (track.isCurrentTrack) {
         if (isFound) {
           // Dulplicated, shouldn't happen
           track.isCurrentTrack = false;
-          await _database.updateTrack(track);
+          await _database.updateSession(track);
           throw Exception('Current track duplicated');
         } else {
           // The current track
@@ -43,7 +43,7 @@ class TracksRepository extends Repository {
         // Return the first track, should only happen at the first launch
         result = tracks.first;
         result.isCurrentTrack = true;
-        await _database.updateTrack(result);
+        await _database.updateSession(result);
         return result;
       } else {
         // No track, shouldn't happen
@@ -54,62 +54,62 @@ class TracksRepository extends Repository {
     }
   }
 
-  Future<void> setCurrentTrack(Track track) async {
+  Future<void> setCurrentSession(Session track) async {
     // Set all tracks to not current track
-    final List<Track> tracks = await loadTracks();
+    final List<Session> tracks = await loadSessions();
     for (final track in tracks) {
       if (track.isCurrentTrack) {
         track.isCurrentTrack = false;
-        await _database.updateTrack(track);
+        await _database.updateSession(track);
       }
     }
 
     // Set the specific track to current track
     track.isCurrentTrack = true;
-    await _database.updateTrack(track);
+    await _database.updateSession(track);
     _currentStreamController.sink.add(true);
   }
 
-  Future<Track> createTrack(String title) async {
-    final Track track = Track.createNew(title: title);
-    await _database.createTrack(track);
+  Future<Session> createSession(String title) async {
+    final Session track = Session.createNew(title: title);
+    await _database.createSession(track);
     return track;
   }
 
-  Future<void> updateTrack(Track track) async {
-    await _database.updateTrack(track);
+  Future<void> updateSession(Session track) async {
+    await _database.updateSession(track);
     _currentStreamController.sink.add(true);
   }
 
-  Future<void> deleteTrack(Track track) async {
-    await _database.deleteTrack(track);
+  Future<void> deleteSession(Session track) async {
+    await _database.deleteSession(track);
     _currentStreamController.sink.add(true);
   }
 
-  Future<void> createRecord(Record record, [Track? track]) async {
+  Future<void> createRecord(Record record, [Session? track]) async {
     // Create record to current track if not specified
-    track ??= await loadCurrentTrack();
+    track ??= await loadCurrentSession();
     track.records.add(record);
-    await _database.updateTrack(track);
+    await _database.updateSession(track);
     _currentStreamController.sink.add(true);
   }
 
-  Future<void> deleteRecord(Record record, [Track? track]) async {
+  Future<void> deleteRecord(Record record, [Session? session]) async {
     // Create record to current track if not specified
-    track ??= await loadCurrentTrack();
-    track.records.remove(record);
-    await _database.updateTrack(track);
+    session ??= await loadCurrentSession();
+    session.records.remove(record);
+    await _database.updateSession(session);
     _currentStreamController.sink.add(true);
   }
 
-  Future<void> updateRecord(Record record, [Track? track]) async {
-    track ??= await loadCurrentTrack();
+  Future<void> updateRecord(Record record, [Session? track]) async {
+    track ??= await loadCurrentSession();
     if (!track.records.contains(record)) {
       // Shouldn't happen
       throw Exception('Record not found in the track!');
     }
 
-    await _database.updateTrack(track);
+    await _database.updateSession(track);
     _currentStreamController.sink.add(true);
   }
 }

@@ -1,13 +1,13 @@
 import 'package:cubetimer/components/tutorial_swipe_overlay.dart';
 import 'package:cubetimer/models/disposable/tutorial.dart';
-import 'package:cubetimer/models/record/track.dart';
+import 'package:cubetimer/models/record/session.dart';
 import 'package:cubetimer/pages/more/view/more_page.dart';
 import 'package:cubetimer/pages/records/view/records_page.dart';
 import 'package:cubetimer/pages/statistics/view/statistics_page.dart';
 import 'package:cubetimer/pages/timer/view/timer_page.dart';
 import 'package:cubetimer/repositories/database/database.dart';
 import 'package:cubetimer/repositories/disposable_repository.dart';
-import 'package:cubetimer/repositories/tracks_repository.dart';
+import 'package:cubetimer/repositories/sessions_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
@@ -28,18 +28,18 @@ class MainMenuPageController extends GetxController {
     MorePage(),
   ];
   bool showNavBar = true;
-  bool showCurrentTrackBadge = true;
+  bool showCurrentSessionBadge = true;
   bool showTimeCounter = true;
   Function? leaveEditMode;
-  List<Track> get tracks => _tracks;
-  Track get currentTrack => _currentTrack;
+  List<Session> get sessions => _sessions;
+  Session get currentSession => _currentSession;
   Future get initDone => _initDone;
 
-  final TracksRepository _repository = Get.find<TracksRepository>();
+  final SessionsRepository _repository = Get.find<SessionsRepository>();
   final DisposableRepository _disposableRepository =
       Get.find<DisposableRepository>();
-  late List<Track> _tracks;
-  late Track _currentTrack;
+  late List<Session> _sessions;
+  late Session _currentSession;
   late Future _initDone;
   Widget? get appBar => _appBar;
   Widget? _appBar;
@@ -60,8 +60,8 @@ class MainMenuPageController extends GetxController {
     update();
   }
 
-  void toggleCurrentTrackBadge() {
-    showCurrentTrackBadge = !showCurrentTrackBadge;
+  void toggleCurrentSessionBadge() {
+    showCurrentSessionBadge = !showCurrentSessionBadge;
     update();
   }
 
@@ -71,20 +71,20 @@ class MainMenuPageController extends GetxController {
     update();
   }
 
-  Future<Track> createTrack(String title) async {
-    return _repository.createTrack(title);
+  Future<Session> createSession(String title) async {
+    return _repository.createSession(title);
   }
 
-  Future<void> renameTrack(Track track) async {
-    return _repository.updateTrack(track);
+  Future<void> renameSession(Session session) async {
+    return _repository.updateSession(session);
   }
 
-  Future<void> deleteTrack(Track track) async {
-    return _repository.deleteTrack(track);
+  Future<void> deleteSession(Session session) async {
+    return _repository.deleteSession(session);
   }
 
-  void selectCurrentTrack(Track track) {
-    _repository.setCurrentTrack(track);
+  void selectCurrentSession(Session session) {
+    _repository.setCurrentSession(session);
   }
 
   @override
@@ -94,29 +94,29 @@ class MainMenuPageController extends GetxController {
   }
 
   Future<void> _init() async {
-    await _loadTracks();
-    await _loadCurrentTrack();
-    _listenTrackStream();
-    _listenCurrentTrackStream();
+    await _loadSessions();
+    await _loadCurrentSession();
+    _listenSessionStream();
+    _listenCurrentSessionStream();
     _showSwipeTutorial();
   }
 
-  Future<void> _loadTracks() async {
-    _tracks = await _repository.loadTracks();
+  Future<void> _loadSessions() async {
+    _sessions = await _repository.loadSessions();
     update();
   }
 
-  void _listenTrackStream() {
-    _repository.trackStream.listen((e) => _loadTracks());
+  void _listenSessionStream() {
+    _repository.sessionStream.listen((e) => _loadSessions());
   }
 
-  Future<void> _loadCurrentTrack() async {
-    _currentTrack = await _repository.loadCurrentTrack();
+  Future<void> _loadCurrentSession() async {
+    _currentSession = await _repository.loadCurrentSession();
     update();
   }
 
-  void _listenCurrentTrackStream() {
-    _repository.currentTrackStream.listen((e) => _loadCurrentTrack());
+  void _listenCurrentSessionStream() {
+    _repository.currentSessionStream.listen((e) => _loadCurrentSession());
   }
 
   Future<void> _showSwipeTutorial() async {

@@ -1,6 +1,6 @@
 import 'package:cubetimer/pages/main_menu/controller/main_menu_page_controller.dart';
 import 'package:cubetimer/pages/main_menu/view/bottom_nav_bar.dart';
-import 'package:cubetimer/pages/main_menu/view/current_track_badge.dart';
+import 'package:cubetimer/pages/main_menu/view/current_session_badge.dart';
 import 'package:cubetimer/pages/more/view/more_page.dart';
 import 'package:cubetimer/pages/timer/view/time_counter.dart';
 import 'package:cubetimer/pages/timer/view/timer_page.dart';
@@ -51,22 +51,22 @@ class MainMenuPage extends StatelessWidget {
                 if (controller.page is TimerPage)
                   const TimeCounter()
 
-                // Current track badge
+                // Current session badge
                 else
                   Container(),
                 if (controller.page is! MorePage &&
-                    controller.showCurrentTrackBadge &&
+                    controller.showCurrentSessionBadge &&
                     controller.appBar == null)
                   Positioned(
                     top: MediaQuery.of(context).padding.top + 35,
                     right: 25,
-                    child: CurrentTrackBadge(
-                      tracks: controller.tracks,
-                      currentTrack: controller.currentTrack,
-                      onCreateTrack: controller.createTrack,
-                      onDeleteTrack: controller.deleteTrack,
-                      onRenameTrack: controller.renameTrack,
-                      onSelectCurrentTrack: controller.selectCurrentTrack,
+                    child: CurrentSessionBadge(
+                      sessions: controller.sessions,
+                      currentSession: controller.currentSession,
+                      onCreate: controller.createSession,
+                      onDelete: controller.deleteSession,
+                      onRename: controller.renameSession,
+                      onSelect: controller.selectCurrentSession,
                     ),
                   ),
 

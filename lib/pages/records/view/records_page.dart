@@ -44,7 +44,7 @@ class RecordsPage extends StatelessWidget {
                   ),
                   const SizedBox(height: 20),
                   Expanded(
-                    child: controller.track.records.isEmpty
+                    child: controller.session.records.isEmpty
                         ? Center(
                             child: Text(
                               'no data'.tr,
@@ -63,7 +63,7 @@ class RecordsPage extends StatelessWidget {
                                     .ceil(),
                             shrinkWrap: true,
                             childAspectRatio: 2,
-                            children: controller.track.records.reversed.map(
+                            children: controller.session.records.reversed.map(
                               (record) {
                                 return RecordCard(
                                   record: record,

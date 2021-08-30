@@ -7,7 +7,7 @@ import 'package:cubetimer/models/cubes/cube3x3.dart';
 import 'package:cubetimer/models/interfaces/selectable.dart';
 import 'package:cubetimer/models/record/penalty.dart';
 import 'package:cubetimer/models/record/record.dart';
-import 'package:cubetimer/models/record/track.dart';
+import 'package:cubetimer/models/record/session.dart';
 import 'package:cubetimer/models/settings/settings.dart';
 import 'package:cubetimer/models/settings/toggle/delete_record_warning.dart';
 import 'package:cubetimer/models/settings/toggle/hide_timer.dart';
@@ -15,7 +15,7 @@ import 'package:cubetimer/models/settings/toggle/inspect_time.dart';
 import 'package:cubetimer/models/solve/scramble.dart';
 import 'package:cubetimer/pages/main_menu/controller/main_menu_page_controller.dart';
 import 'package:cubetimer/repositories/settings_repository.dart';
-import 'package:cubetimer/repositories/tracks_repository.dart';
+import 'package:cubetimer/repositories/sessions_repository.dart';
 import 'package:cubetimer/utils/scramble_generator.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
@@ -35,7 +35,7 @@ class TimerPageController extends GetxController {
   Future get initDone => _initDone;
   Scramble get scramble => _scramble;
   Cube get cube => _cube;
-  List<Record> get records => _track.records;
+  List<Record> get records => _session.records;
   Penalty? get penalty => _lastRecord?.penalty;
   bool get showTime =>
       !(_settings.map[SettingsKeyHideTimer()]! as HideTimer).enabled;
@@ -43,9 +43,9 @@ class TimerPageController extends GetxController {
   int currentTime = 0;
   double timerCounterFontSize = 75;
   final SettingsRepository _settingsRepository = Get.find<SettingsRepository>();
-  final TracksRepository _repository = Get.find<TracksRepository>();
+  final SessionsRepository _repository = Get.find<SessionsRepository>();
   late Future _initDone;
-  late Track _track;
+  late Session _session;
   late Cube _cube;
   late Scramble _scramble;
   late Settings _settings;
@@ -59,8 +59,8 @@ class TimerPageController extends GetxController {
   }
 
   Future<void> _init() async {
-    await _loadCurrentTrack();
-    _listenCurrentTrackStream();
+    await _loadCurrentSession();
+    _listenCurrentSessionStream();
     await _loadSettings();
     _listenSettingsStream();
     timer.records.listen(_solveDone);
@@ -82,11 +82,11 @@ class TimerPageController extends GetxController {
     if (isRunning) {
       _stopTimer();
       Get.find<MainMenuPageController>().toggleBottomNavBar();
-      Get.find<MainMenuPageController>().toggleCurrentTrackBadge();
+      Get.find<MainMenuPageController>().toggleCurrentSessionBadge();
     } else {
       if (!isInspecting && enableInspection) {
         Get.find<MainMenuPageController>().toggleBottomNavBar();
-        Get.find<MainMenuPageController>().toggleCurrentTrackBadge();
+        Get.find<MainMenuPageController>().toggleCurrentSessionBadge();
         _startInspecting();
         update();
         return;
@@ -95,7 +95,7 @@ class TimerPageController extends GetxController {
       }
       if (!enableInspection) {
         Get.find<MainMenuPageController>().toggleBottomNavBar();
-        Get.find<MainMenuPageController>().toggleCurrentTrackBadge();
+        Get.find<MainMenuPageController>().toggleCurrentSessionBadge();
       }
       _startTimer();
     }
@@ -143,7 +143,7 @@ class TimerPageController extends GetxController {
     );
     _repository.createRecord(
       _lastRecord!,
-      _track,
+      _session,
     );
   }
 
@@ -206,13 +206,13 @@ class TimerPageController extends GetxController {
     timer.onExecute.add(StopWatchExecute.reset);
   }
 
-  Future<void> _loadCurrentTrack() async {
-    _track = await _repository.loadCurrentTrack();
+  Future<void> _loadCurrentSession() async {
+    _session = await _repository.loadCurrentSession();
     update();
   }
 
-  void _listenCurrentTrackStream() {
-    _repository.currentTrackStream.listen((e) => _loadCurrentTrack());
+  void _listenCurrentSessionStream() {
+    _repository.currentSessionStream.listen((e) => _loadCurrentSession());
   }
 
   Future<void> _loadSettings() async {

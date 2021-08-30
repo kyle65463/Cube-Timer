@@ -1,22 +1,22 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'track.dart';
+part of 'session.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator
 // **************************************************************************
 
-class TrackAdapter extends TypeAdapter<Track> {
+class SessionAdapter extends TypeAdapter<Session> {
   @override
   final int typeId = 1;
 
   @override
-  Track read(BinaryReader reader) {
+  Session read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return Track(
+    return Session(
       id: fields[0] as String,
       title: fields[1] as String,
       records: (fields[2] as List).cast<Record>(),
@@ -28,7 +28,7 @@ class TrackAdapter extends TypeAdapter<Track> {
   }
 
   @override
-  void write(BinaryWriter writer, Track obj) {
+  void write(BinaryWriter writer, Session obj) {
     writer
       ..writeByte(7)
       ..writeByte(0)
@@ -53,7 +53,7 @@ class TrackAdapter extends TypeAdapter<Track> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is TrackAdapter &&
+      other is SessionAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }

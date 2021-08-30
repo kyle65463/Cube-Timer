@@ -1,14 +1,14 @@
 import 'package:cubetimer/dialogs/components/awesome_dialog.dart';
 import 'package:cubetimer/dialogs/dialog.dart';
 import 'package:cubetimer/models/record/record.dart';
-import 'package:cubetimer/models/record/track.dart';
+import 'package:cubetimer/models/record/session.dart';
 import 'package:cubetimer/models/settings/settings.dart';
 import 'package:cubetimer/models/settings/toggle/delete_record_warning.dart';
 import 'package:cubetimer/pages/main_menu/controller/main_menu_page_controller.dart';
 import 'package:cubetimer/pages/records/view/components/record_edit_mode_appbar.dart';
 import 'package:cubetimer/pages/records/view/dialogs/record_info_dialog.dart';
 import 'package:cubetimer/repositories/settings_repository.dart';
-import 'package:cubetimer/repositories/tracks_repository.dart';
+import 'package:cubetimer/repositories/sessions_repository.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 
@@ -20,13 +20,13 @@ class RecordsPageController extends GetxController {
 
   // Variables
   bool get inEditMode => _inEditMode;
-  Track get track => _track;
+  Session get session => _session;
   Future get initDone => _initDone;
   List<Record> get selectedRecords => _selectedRecords;
-  final TracksRepository _repository = Get.find<TracksRepository>();
+  final SessionsRepository _repository = Get.find<SessionsRepository>();
   final SettingsRepository _settingsRepository = Get.find<SettingsRepository>();
   bool _inEditMode = false;
-  late Track _track;
+  late Session _session;
   late Future _initDone;
   final List<Record> _selectedRecords = [];
 
@@ -90,16 +90,16 @@ class RecordsPageController extends GetxController {
   }
 
   Future<void> _init() async {
-    await _loadCurrentTrack();
-    _listenCurrentTrackStream();
+    await _loadCurrentSession();
+    _listenCurrentSessionStream();
   }
 
-  Future<void> _loadCurrentTrack() async {
-    _track = await _repository.loadCurrentTrack();
+  Future<void> _loadCurrentSession() async {
+    _session = await _repository.loadCurrentSession();
     update();
   }
 
-  void _listenCurrentTrackStream() {
-    _repository.currentTrackStream.listen((e) => _loadCurrentTrack());
+  void _listenCurrentSessionStream() {
+    _repository.currentSessionStream.listen((e) => _loadCurrentSession());
   }
 }

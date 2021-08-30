@@ -5,12 +5,12 @@ import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:uuid/uuid.dart';
 
-part 'track.g.dart';
+part 'session.g.dart';
 
 @HiveType(typeId: 1)
-class Track extends HiveObject with Selectable, Renameable {
+class Session extends HiveObject with Selectable, Renameable {
   // Constructors
-  Track({
+  Session({
     required this.id,
     required this.title,
     required this.records,
@@ -20,7 +20,7 @@ class Track extends HiveObject with Selectable, Renameable {
     required this.isCurrentTrack,
   });
 
-  Track.createNew({
+  Session.createNew({
     required this.title,
   })  : id = const Uuid().v4(),
         records = [],
@@ -29,9 +29,9 @@ class Track extends HiveObject with Selectable, Renameable {
         isArchived = false,
         isCurrentTrack = false;
 
-  Track.defaultValue()
+  Session.defaultValue()
       : id = const Uuid().v4(),
-        title = 'default track'.tr,
+        title = 'default session'.tr,
         records = [],
         createTime = DateTime.now(),
         lastUpdateTime = DateTime.now(),

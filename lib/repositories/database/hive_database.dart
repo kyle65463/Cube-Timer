@@ -1,7 +1,7 @@
 import 'package:cubetimer/models/disposable/disposable.dart';
 import 'package:cubetimer/models/record/penalty.dart';
 import 'package:cubetimer/models/record/record.dart';
-import 'package:cubetimer/models/record/track.dart';
+import 'package:cubetimer/models/record/session.dart';
 import 'package:cubetimer/models/settings/options/language.dart';
 import 'package:cubetimer/models/settings/options/stat_record_count.dart';
 import 'package:cubetimer/models/settings/options/theme.dart';
@@ -20,7 +20,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 class HiveDatabase extends Database {
   // Variables
   late Box<SettingsValue> _settingsBox;
-  late Box<Track> _trackBox;
+  late Box<Session> _sessionBox;
   late Box<bool> _disposableBox;
 
   // Functions
@@ -36,7 +36,7 @@ class HiveDatabase extends Database {
     Hive.registerAdapter(InspectionTimeAdapter());
     Hive.registerAdapter(DeleteRecordWarningAdapter());
     Hive.registerAdapter(RecordAdapter());
-    Hive.registerAdapter(TrackAdapter());
+    Hive.registerAdapter(SessionAdapter());
     Hive.registerAdapter(TurnRAdapter());
     Hive.registerAdapter(TurnLAdapter());
     Hive.registerAdapter(TurnUAdapter());
@@ -55,7 +55,7 @@ class HiveDatabase extends Database {
     Hive.registerAdapter(PenaltyPlus2SecAdapter());
     await Hive.initFlutter();
     _settingsBox = await Hive.openBox('settings');
-    _trackBox = await Hive.openBox('track');
+    _sessionBox = await Hive.openBox('sessions');
     _disposableBox = await Hive.openBox('disposable');
   }
 
@@ -85,36 +85,36 @@ class HiveDatabase extends Database {
     await _settingsBox.put(key.name, value);
   }
 
-  /* Tracks */
+  /* Sessions */
   @override
-  Stream getTrackStream() {
-    return _trackBox.watch();
+  Stream getSessionStream() {
+    return _sessionBox.watch();
   }
 
   @override
-  Future<List<Track>> loadTracks() async {
-    final List<Track> tracks = _trackBox.values.toList();
-    if (tracks.isEmpty) {
-      final Track defaultTrack = Track.defaultValue();
-      await _trackBox.put(defaultTrack.id, defaultTrack);
-      return [defaultTrack];
+  Future<List<Session>> loadSessions() async {
+    final List<Session> sessions = _sessionBox.values.toList();
+    if (sessions.isEmpty) {
+      final Session defaultSession = Session.defaultValue();
+      await _sessionBox.put(defaultSession.id, defaultSession);
+      return [defaultSession];
     }
-    return tracks;
+    return sessions;
   }
 
   @override
-  Future<void> createTrack(Track track) async {
-    await _trackBox.put(track.id, track);
+  Future<void> createSession(Session session) async {
+    await _sessionBox.put(session.id, session);
   }
 
   @override
-  Future<void> updateTrack(Track track) async {
-    await track.save();
+  Future<void> updateSession(Session session) async {
+    await session.save();
   }
 
   @override
-  Future<void> deleteTrack(Track track) async {
-    await track.delete();
+  Future<void> deleteSession(Session session) async {
+    await session.delete();
   }
 
   @override

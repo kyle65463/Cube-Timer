@@ -6,7 +6,7 @@ import 'package:cubetimer/models/record/record.dart';
 import 'package:cubetimer/models/settings/settings.dart';
 import 'package:cubetimer/models/settings/toggle/delete_record_warning.dart';
 import 'package:cubetimer/repositories/settings_repository.dart';
-import 'package:cubetimer/repositories/tracks_repository.dart';
+import 'package:cubetimer/repositories/sessions_repository.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 
@@ -18,7 +18,7 @@ class RecordInfoDialogController extends GetxController {
 
   // Variables
   final Record record;
-  final TracksRepository _repository = Get.find<TracksRepository>();
+  final SessionsRepository _repository = Get.find<SessionsRepository>();
   final SettingsRepository _settingsRepository = Get.find<SettingsRepository>();
 
   // Functions

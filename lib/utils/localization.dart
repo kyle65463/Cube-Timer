@@ -23,9 +23,9 @@ class Localization extends Translations {
           'timer settings': 'Timer Settings',
           'confirm': 'Confirm',
           'cancel': 'Cancel',
-          'select track': 'Select session',
+          'select session': 'Select session',
           'add': 'Add',
-          'add new track': 'Add a new session',
+          'add new session': 'Add a new session',
           'enter': 'Enter',
           'enter title': 'Enter the title',
           'num records selected': '@num records selected',
@@ -95,16 +95,16 @@ class Localization extends Translations {
           'settings inspection time': 'Enable inspection time',
 
           'inspection time': 'Inspection Time',
-          'default track': 'Default Session',
+          'default session': 'Default Session',
         },
         'zh_TW': {
           'timer': '計時器',
           'statistics': '統計',
           'records': '紀錄',
           'more': '更多',
-          'select track': '選擇分類',
+          'select session': '選擇分類',
           'add': '新增',
-          'add new track': '新增分類',
+          'add new session': '新增分類',
           'enter': '輸入',
           'enter title': '輸入名稱',
           'num records selected': '已選擇 @num 筆紀錄',
@@ -183,7 +183,7 @@ class Localization extends Translations {
           'settings inspection time': '開啟觀察時間',
 
           'inspection time': '觀察時間',
-          'default track': '預設分類'
+          'default session': '預設分類'
         }
       };
 }

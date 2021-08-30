@@ -1,4 +1,4 @@
-import 'package:cubetimer/models/record/track.dart';
+import 'package:cubetimer/models/record/session.dart';
 import 'package:cubetimer/models/settings/options/stat_record_count.dart';
 import 'package:cubetimer/models/settings/settings.dart';
 import 'package:cubetimer/models/settings/settings_key.dart';
@@ -6,7 +6,7 @@ import 'package:cubetimer/models/settings/settings_value.dart';
 import 'package:cubetimer/models/statistics/data/line_chart_data.dart';
 import 'package:cubetimer/models/statistics/data/table_data.dart';
 import 'package:cubetimer/repositories/settings_repository.dart';
-import 'package:cubetimer/repositories/tracks_repository.dart';
+import 'package:cubetimer/repositories/sessions_repository.dart';
 import 'package:get/get.dart';
 
 class StatisticsController extends GetxController {
@@ -24,10 +24,10 @@ class StatisticsController extends GetxController {
   StatRecordCount get statRecordCount =>
       _settings.map[SettingsKeyStatRecordCount()]! as StatRecordCount;
 
-  final TracksRepository _repository = Get.find<TracksRepository>();
+  final SessionsRepository _repository = Get.find<SessionsRepository>();
   final SettingsRepository _settingsRepository = Get.find<SettingsRepository>();
   late Future _initDone;
-  late Track _track;
+  late Session _session;
   late LineChartStatData _lineChartData;
   late SingleStatTableData _singleStatTableData;
   late Settings _settings;
@@ -35,8 +35,8 @@ class StatisticsController extends GetxController {
   Future<void> _init() async {
     await _loadSettings();
     _listenSettingsStream();
-    await _loadCurrentTrack();
-    _listenCurrentTrackStream();
+    await _loadCurrentSession();
+    _listenCurrentSessionStream();
   }
 
   void updateSettings(SettingsKey key, SettingsValue value) {
@@ -44,17 +44,17 @@ class StatisticsController extends GetxController {
     update();
   }
 
-  Future<void> _loadCurrentTrack() async {
-    _track = await _repository.loadCurrentTrack();
-    _lineChartData = LineChartStatData(records: _track.records);
+  Future<void> _loadCurrentSession() async {
+    _session = await _repository.loadCurrentSession();
+    _lineChartData = LineChartStatData(records: _session.records);
     _lineChartData.prepare(statRecordCount.value);
-    _singleStatTableData = SingleStatTableData(records: _track.records);
+    _singleStatTableData = SingleStatTableData(records: _session.records);
     _singleStatTableData.prepare(statRecordCount.value);
     update();
   }
 
-  void _listenCurrentTrackStream() {
-    _repository.currentTrackStream.listen((e) => _loadCurrentTrack());
+  void _listenCurrentSessionStream() {
+    _repository.currentSessionStream.listen((e) => _loadCurrentSession());
   }
 
   Future<void> _loadSettings() async {
@@ -65,7 +65,7 @@ class StatisticsController extends GetxController {
   void _listenSettingsStream() {
     _settingsRepository.settingsStream.listen((e) async {
       await _loadSettings();
-      _loadCurrentTrack();
+      _loadCurrentSession();
     });
   }
 }
