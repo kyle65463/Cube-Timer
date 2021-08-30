@@ -1,6 +1,7 @@
 import 'package:cubetimer/models/interfaces/renamable.dart';
 import 'package:cubetimer/models/interfaces/selectable.dart';
 import 'package:cubetimer/models/record/record.dart';
+import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:uuid/uuid.dart';
 
@@ -30,7 +31,7 @@ class Track extends HiveObject with Selectable, Renameable {
 
   Track.defaultValue()
       : id = const Uuid().v4(),
-        title = 'Default track',
+        title = 'default track'.tr,
         records = [],
         createTime = DateTime.now(),
         lastUpdateTime = DateTime.now(),
